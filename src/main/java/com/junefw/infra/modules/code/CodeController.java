@@ -27,9 +27,9 @@ public class CodeController {
 	public String codeGroupForm() throws Exception {
 		
 		
-		
 		return "code/codeGroupForm";
 	}
+	
 	@RequestMapping(value = "/code/codeGroupInst")
 	public String codeGroupInst(Code dto) throws Exception {
 		
@@ -38,5 +38,17 @@ public class CodeController {
 		
 		return "";
 	}
+	@RequestMapping(value = "/code/codeGroupView")
+	public String codeGroupView(Code vo, Model model) throws Exception {
+		
+		System.out.println("vo.getIfcgSeq():" + vo.getIfcgSeq());
+		
+		Code rt = service.selectOne(vo);
+		
+		model.addAttribute("item", rt);
+		
+		return "code/codeGroupView";
+	}
+	
 	
 }
