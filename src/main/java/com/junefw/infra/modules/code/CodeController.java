@@ -39,13 +39,13 @@ public class CodeController {
 		return "";
 	}
 	@RequestMapping(value = "/code/codeGroupView")
-	public String codeGroupView(Code vo, Model model) throws Exception {
+	public String codeGroupView(CodeVo vo, Model model) throws Exception {
 		
 		System.out.println("vo.getIfcgSeq():" + vo.getIfcgSeq());
 		
-		Code rt = service.selectOne(vo);
+		Code item = service.selectOne(vo);
 		
-		model.addAttribute("item", rt);
+		model.addAttribute("item", item);
 		
 		return "code/codeGroupView";
 	}
