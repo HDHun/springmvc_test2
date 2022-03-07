@@ -23,12 +23,13 @@ public class CodeController {
 		return "code/codeGroupList";
 	}
 	
-	@RequestMapping(value = "/code/codeGroupForm")
-	public String codeGroupForm() throws Exception {
-		
-		
-		return "code/codeGroupForm";
-	}
+	
+	  @RequestMapping(value = "/code/codeGroupForm") public String codeGroupForm()
+	  throws Exception {
+	  
+	  
+	  return "code/codeGroupForm"; }
+	 
 	
 	@RequestMapping(value = "/code/codeGroupInst")
 	public String codeGroupInst(Code dto) throws Exception {
@@ -51,4 +52,21 @@ public class CodeController {
 	}
 	
 	
+	/*
+	 * @RequestMapping(value = "/code/codeGroupForm") public String
+	 * codeGroupForm(CodeVo vo, Model model) throws Exception {
+	 * 
+	 * Code item = service.selectOne(vo);
+	 * 
+	 * model.addAttribute("item", item);
+	 * 
+	 * return "code/codeGroupForm"; }
+	 */
+	
+	  @RequestMapping(value = "/code/codeGroupUpdt") public String
+	  codeGroupUpdt(Code dto) throws Exception {
+	  
+	  service.update(dto); return ""; }
+	 
+	 
 }

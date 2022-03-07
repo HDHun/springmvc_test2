@@ -31,14 +31,22 @@
 	
 	<select id="selectOne" resultMap ="resultMapObj">
 		select (
-			a.ifcgName
-			,a.ifcgDelNy
-		) from 
-		infrCodeGroup a
-		where 1=1
-			and ifcgDelNy = 0
-			and ifcgSeq = #{ifcgSeq}
+			a.ifcgSeq
+			,a.ifcgName
 			
+			
+		) from 
+			shop.infrCodeGroup a
+		where 1=1
+			and ifcgSeq = #{ifcgSeq}
 
 	</select>
+	<update id="update">
+				UPDATE
+					infrcodegroup
+				SET 
+					ifcgName = #{ifcgName}
+				WHERE 1=1
+					AND ifcgSeq = #{ifcgSeq}
+		</update>
 </mapper>
