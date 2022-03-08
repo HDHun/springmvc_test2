@@ -6,8 +6,8 @@ codeGroupForm.jsp<%@ page language="java" contentType="text/html; charset=utf-8"
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
 
-
-<form method="post" action="/infra/code/codeGroupInst">
-	<input type="text" name="ifcgName" placeholder="아이디">
+<form method="post" action="codeUpdt">
+	<input type="text" name="ifcdSeq" value="${item.ifcdSeq}" style="visibility:hidden;">
+	<input type="text" name="ifcdChangeName" placeholder="바꿀NAME" value="${item.ifcdName}">
 	<input type="submit" value="제출">
-</form>	
+</form>

@@ -19,6 +19,15 @@
 				AND ifcgDelNy = 0
     
 	</select>
+	<select id="selectListCode" resultMap ="resultMapObj">
+		select 
+			a.ifcdSeq
+			,a.ifcdName
+		 from 
+			shop.infrcode a
+		where 1=1
+			and ifcdDelNy=0
+	</select>
 	<insert id="insert">
 		INSERT INTO infrCodeGroup (
 			ifcgName
@@ -28,15 +37,35 @@
 			,0
 		)
 	</insert>
+	<insert id="insertCode">
+		INSERT INTO infrCode (
+			ifcdName
+			,ifcdDelNy
+			,ifcdSeq
+		) values (
+			#{ifcdName}
+			,0
+			,#{ifcdSeq}
+		)
+	</insert>
 	
 	<select id="selectOne" resultMap ="resultMapObj">
-		select (
+		select 
 			a.ifcgSeq
 			,a.ifcgName
-			
-			
-		) from 
-			shop.infrCodeGroup a
+		 from 
+			shop.infrcodegroup a
+		where 1=1
+			and ifcgSeq = #{ifcgSeq}
+
+	</select>
+	<select id="selectOneCode" resultMap ="resultMapObj">
+		select 
+			a.ifcdSeq
+			,a.ifcdName
+			,a.ifcdDelNy
+		 from 
+			shop.infrcode a
 		where 1=1
 			and ifcgSeq = #{ifcgSeq}
 
@@ -48,5 +77,13 @@
 					ifcgName = #{ifcgName}
 				WHERE 1=1
 					AND ifcgSeq = #{ifcgSeq}
+		</update>
+	<update id="updateCode">
+				UPDATE
+					infrcode
+				SET 
+					ifcdName = #{ifcdName}
+				WHERE 1=1
+					AND ifcdSeq = #{ifcdSeq}
 		</update>
 </mapper>

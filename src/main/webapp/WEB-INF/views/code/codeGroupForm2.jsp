@@ -5,7 +5,9 @@ codeGroupForm.jsp<%@ page language="java" contentType="text/html; charset=utf-8"
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
-<form method="post" action="/infra/code/codeGroupUpdt">
-	<input type="text" name="ifcgName" placeholder="아이디">
+
+<form method="post" action="codeGroupUpdt">
+	<input type="text" name="ifcgSeq" value="${item.ifcgSeq}" style="visibility:hidden;">
+	<input type="text" name="ifcgChangeName" placeholder="바꿀NAME" value="${item.ifcgName}">
 	<input type="submit" value="제출">
-</form>	
+</form>
