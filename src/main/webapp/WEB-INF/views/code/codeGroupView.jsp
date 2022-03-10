@@ -7,5 +7,5 @@
 
 
 <c:out value="${item.ifcgSeq}"/> | <c:out value="${item.ifcgName}"/> | <c:out value="${item.ifcgDelNy}"/> <br>
-
+		
 <a href="/infra/code/codeGroupForm2?ifcgSeq=<c:out value="${item.ifcgName}"/>">수정</a>

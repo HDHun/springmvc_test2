@@ -8,22 +8,18 @@
 
 
 <form method="post" action="/infra/code/codeInst">
-	<select name="ifcdSeq">
+	<select name="ifcgSeq">
 		<c:forEach items="${list}" var="item" varStatus="status">
-			<option value="${item.ifcgSeq}"><c:out value="${item.ifcgSeq}"/><c:out value="${item.ifcgName}"/> </option>
+			<option value="<c:out value="${item.ifcgSeq}"/>">|<c:out value="${item.ifcgSeq}"/>|<c:out value="${item.ifcgName}"/> </option>
 		</c:forEach>
-	
-	
 	</select>
 	
 	
 	
-	<input type="text" name="ifcdSeq" placeholder="seq" value="<c:out value="${item.ifcdSeq}"/>">
-	<input type="text" name="ifcdName" placeholder="id" value="<c:out value="${item.ifcdName}"/>">
+	<input type="text" name="ifcdSeq" placeholder="ifcdseq" value="<c:out value="${item.ifcdSeq}"/>">
+	<input type="text" name="ifcdName" placeholder="name" value="<c:out value="${item.ifcdName}"/>">
 	<input type="submit" value="제출">
 </form>
-
-
 
 
 

@@ -5,6 +5,7 @@ public class CodeVo {
 	private String ifcgSeq;
 	private String ifcdSeq;
 	private String ifcgName;
+	
 	public String getIfcgName() {
 		return ifcgName;
 	}

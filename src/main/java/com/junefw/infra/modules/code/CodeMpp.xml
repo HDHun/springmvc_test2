@@ -42,10 +42,12 @@
 			ifcdName
 			,ifcdDelNy
 			,ifcdSeq
+			,ifcgSeq
 		) values (
 			#{ifcdName}
 			,0
 			,#{ifcdSeq}
+			,0
 		)
 	</insert>
 	
@@ -67,7 +69,7 @@
 		 from 
 			shop.infrcode a
 		where 1=1
-			and ifcgSeq = #{ifcgSeq}
+			and ifcdSeq = #{ifcdSeq}
 
 	</select>
 	<update id="update">

@@ -44,21 +44,22 @@ public class CodeController {
 		  
 		List<Code> list = service.selectListCode();
 				model.addAttribute("list",list);
-		  return "code/codeForm"; }
+		  return "code/codeForm"; 
+	}
 	 
 	
-	@RequestMapping(value = "/code/codeInst")
+	@RequestMapping(value = "/code/codeGroupInst")
 	public String codeGroupInst(Code dto) throws Exception {
 		
-		service.insertCode(dto);
+		service.insert(dto);
 		
 		return "";
 	}
-	@RequestMapping(value = "/code/codeGroupInst")
+	@RequestMapping(value = "/code/codeInst")
 	public String codeInst(Code dto) throws Exception {
 		
 		// 입력이 되어야 함
-		service.insert(dto);
+		service.insertCode(dto);
 		
 		return "";
 	}
@@ -77,6 +78,7 @@ public class CodeController {
 	@RequestMapping(value = "/code/codeView")
 	public String codeView(CodeVo vo, Model model) throws Exception {
 		
+		System.out.println("vo.getIfcdSeq(): " + vo.getIfcdSeq());
 		
 		// 디비까지 가서 한 건의 데이터를 가져온다.
 		Code item = service.selectOneCode(vo);
