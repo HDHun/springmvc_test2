@@ -14,8 +14,9 @@
 	<c:otherwise>
 		<c:forEach items="${list}" var="item" varStatus="status">	
 		
-		<c:out value="${item.spitSeq}"/> | <c:out value="${item.spitItem}"/> | <c:out value="${item.spitItemCate}"/> <br>
+		<c:out value="${item.ifmmSeq}"/> | <a href="/infra/member/memberView?ifmmSeq=${item.ifmmSeq}"><c:out value="${item.ifmmName}"/></a> | <c:out value="${item.ifmmId}"/> <br>
 		
 		</c:forEach>
 	</c:otherwise>
 </c:choose>	 
+

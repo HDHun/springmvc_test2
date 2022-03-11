@@ -7,11 +7,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CodeServiceImpl implements CodeService{
+	@Autowired
+	CodeDao dao;
 
 	@Override
-	public List<Code> selectListCode() throws Exception {
+	public List<Code> selectListCode(CodeVo vo) throws Exception {
 		
-		return dao.selectListCode();
+		return dao.selectListCode(vo);
 	}
 
 	@Override
@@ -30,12 +32,10 @@ public class CodeServiceImpl implements CodeService{
 	}
 
 
-	@Autowired
-	CodeDao dao;
 
 	@Override
-	public List<Code> selectList() throws Exception {
-		return dao.selectList();
+	public List<Code> selectList(CodeVo vo) throws Exception {
+		return dao.selectList(vo);
 	}
 
 	@Override

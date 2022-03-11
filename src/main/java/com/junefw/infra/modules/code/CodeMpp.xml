@@ -16,18 +16,14 @@
 			 FROM 
 			 	shop.infrcodegroup a
 			 WHERE 1=1
-				AND ifcgDelNy = 0
-    
+				<choose>
+					<when test="shIfcgDelNy ==1">AND ifcgDelNy = 1</when>
+					<when test="shIfcgDelNy ==0">AND ifcgDelNy = 0</when>
+				</choose>
+				<if test="shIfcgName != null and !shIfcgName.equals('')"> AND ifcgName LIKE concat('%',#{shIfcgName},'%')</if>
+    			<!-- <if test="shIfcgSeq !=null and !shIfcgSeq.eauals('')">AND ifcgSeq =#{shIfcgSeq}</if> -->
 	</select>
-	<select id="selectListCode" resultMap ="resultMapObj">
-		select 
-			a.ifcdSeq
-			,a.ifcdName
-		 from 
-			shop.infrcode a
-		where 1=1
-			and ifcdDelNy=0
-	</select>
+	
 	<insert id="insert">
 		INSERT INTO infrCodeGroup (
 			ifcgName
@@ -37,6 +33,40 @@
 			,0
 		)
 	</insert>
+	
+	
+	<select id="selectOne" resultMap ="resultMapObj">
+		select 
+			a.ifcgSeq
+			,a.ifcgName
+		 from 
+			shop.infrcodegroup a
+		where 1=1
+			and ifcgSeq = #{ifcgSeq}
+
+	</select>
+	
+	<update id="update">
+				UPDATE
+					infrcodegroup
+				SET 
+					ifcgName = #{ifcgName}
+				WHERE 1=1
+					AND ifcgSeq = #{ifcgSeq}
+		</update>
+		
+		<select id="selectListCode" resultMap ="resultMapObj">
+		select 
+			a.ifcdSeq
+			,a.ifcdName
+		 from 
+			shop.infrcode a
+		where 1=1
+			and ifcdDelNy=0
+			<if test="shIfcgSeq !=null and !shIfcgSeq.eauals('')">AND ifcgSeq =#{shIfcgSeq}</if>
+			
+			
+	</select>
 	<insert id="insertCode">
 		INSERT INTO infrCode (
 			ifcdName
@@ -50,17 +80,6 @@
 			,0
 		)
 	</insert>
-	
-	<select id="selectOne" resultMap ="resultMapObj">
-		select 
-			a.ifcgSeq
-			,a.ifcgName
-		 from 
-			shop.infrcodegroup a
-		where 1=1
-			and ifcgSeq = #{ifcgSeq}
-
-	</select>
 	<select id="selectOneCode" resultMap ="resultMapObj">
 		select 
 			a.ifcdSeq
@@ -72,14 +91,6 @@
 			and ifcdSeq = #{ifcdSeq}
 
 	</select>
-	<update id="update">
-				UPDATE
-					infrcodegroup
-				SET 
-					ifcgName = #{ifcgName}
-				WHERE 1=1
-					AND ifcgSeq = #{ifcgSeq}
-		</update>
 	<update id="updateCode">
 				UPDATE
 					infrcode

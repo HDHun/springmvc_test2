@@ -13,28 +13,61 @@ public class MemberController {
 	@Autowired
 	MemberServiceImpl service;
 	
-	@RequestMapping(value = "/member/memberList")
-//	public String memberList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
-	public String memberList(Model model) throws Exception {
-
-		List<Member> list = service.selectList();
-		model.addAttribute("list", list);
-
-		return "member/memberList";
+	 @RequestMapping(value = "/member/memberInst")
+	  public String memberInst(Member dto) throws Exception {
+		  
+		  // 입력이 되어야 함
+		  service.insertCode(dto);
+		  
+		  return "redirect:/member/memberList";
+	  }
+	  
+	  @RequestMapping(value = "/member/memberView")
+	  public String memberView(MemberVo vo, Model model) throws Exception {
+		  
+		  System.out.println("vo.getIfmmSeq(): " + vo.getIfmmSeq());
+		  
+		  // 디비까지 가서 한 건의 데이터를 가져온다.
+		  Member item = service.selectOneCode(vo);
+		  
+		  // jsp로 데이터를 넘겨준다
+		  model.addAttribute("item", item);
+		  
+		  return "member/memberView";
+	  }
+	  @RequestMapping(value = "/member/memberForm") 
+	  public String memberForm(Model model) throws Exception {
+		  
+		  List<Member> list = service.selectListCode();
+		  model.addAttribute("list",list);
+		  return "member/memberForm"; 
+	  }
+	  
+	  
+	  @RequestMapping(value = "/member/memberForm2") public String memberForm2(MemberVo vo,
+	  Model model) throws Exception {
+	  
+	  Member item = service.selectOneCode(vo);
+	  
+	  model.addAttribute("item", item);
+	  
+	  return "member/memberForm2"; }
+	 
+	
+	 
+	 
+	  @RequestMapping(value = "/member/memberUpdt") public String
+	  memberUpdt(Member dto) throws Exception {
+		  
+		  service.updateCode(dto); return "redirect:/member/memberView?ifmmSeq=" +dto.getIfmmSeq(); }
+	  
+	  @RequestMapping(value = "/member/memberList")
+	  public String memberList(Model model) throws Exception {
+		  
+		  List<Member> list = service.selectListCode();
+		  
+		  model.addAttribute("list", list);
+		  
+		  return "member/memberList";
+	  }
 	}
-	@RequestMapping(value = "/member/memberForm")
-	public String memberForm(Model model) throws Exception {
-		
-		return "member/memberForm";
-	}
-	@RequestMapping(value = "/member/memberInst")
-	public String memberInst(Model model, Member dto) throws Exception {
-		
-		System.out.println("dto.getSpitItem(): " + dto.getSpitItem());
-		System.out.println("dto.getSpitItemCate(): " + dto.getSpitItemCate());
-	// 입력을 작동시킨다	
-		int result = service.insert(dto);
-		System.out.println("result: " + result);
-		return "";
-	}
-}

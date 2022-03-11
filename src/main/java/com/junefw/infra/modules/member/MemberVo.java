@@ -1,11 +1,18 @@
 package com.junefw.infra.modules.member;
 
-public class Member {
-	
+public class MemberVo {
+	// VO where 절에 들어가는 필드는 여기에
 	private String ifmmSeq;
 	private String ifmmName;
-	private String ifmmId;
 	private Integer ifmmDelNy;
+	
+	
+	public Integer getIfmmDelNy() {
+		return ifmmDelNy;
+	}
+	public void setIfmmDelNy(Integer ifmmDelNy) {
+		this.ifmmDelNy = ifmmDelNy;
+	}
 	public String getIfmmSeq() {
 		return ifmmSeq;
 	}
@@ -18,18 +25,16 @@ public class Member {
 	public void setIfmmName(String ifmmName) {
 		this.ifmmName = ifmmName;
 	}
-	public String getIfmmId() {
-		return ifmmId;
-	}
-	public void setIfmmId(String ifmmId) {
-		this.ifmmId = ifmmId;
-	}
-	public Integer getIfmmDelNy() {
-		return ifmmDelNy;
-	}
-	public void setIfmmDelNy(Integer ifmmDelNy) {
-		this.ifmmDelNy = ifmmDelNy;
-	}
-
-	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

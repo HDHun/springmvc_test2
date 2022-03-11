@@ -14,21 +14,22 @@ public class CodeController {
 	CodeServiceImpl service;
 	
 	@RequestMapping(value = "/code/codeGroupList")
-	public String codeGroupList(Model model) throws Exception {
+	public String codeGroupList(CodeVo vo, Model model) throws Exception {
 
-		List<Code> list = service.selectList();
+		List<Code> list = service.selectList(vo);
 		
 		model.addAttribute("list", list);
 		
 		return "code/codeGroupList";
 	}
 	@RequestMapping(value = "/code/codeList")
-	public String codeList(Model model) throws Exception {
+	public String codeList(CodeVo vo, Model model) throws Exception {
 		
-		List<Code> list = service.selectListCode();
-		
+		List<Code> list = service.selectListCode(vo);
 		model.addAttribute("list", list);
 		
+		List<Code> listCodeGroup = service.selectList(vo);
+		model.addAttribute("listCodeGroup",listCodeGroup);
 		return "code/codeList";
 	}
 	
@@ -40,9 +41,9 @@ public class CodeController {
 	  return "code/codeGroupForm"; }
 	  
 	  @RequestMapping(value = "/code/codeForm") 
-	  public String codeForm(Model model) throws Exception {
+	  public String codeForm(CodeVo vo,Model model) throws Exception {
 		  
-		List<Code> list = service.selectListCode();
+		List<Code> list = service.selectListCode(vo);
 				model.addAttribute("list",list);
 		  return "code/codeForm"; 
 	}
@@ -61,7 +62,7 @@ public class CodeController {
 		// 입력이 되어야 함
 		service.insertCode(dto);
 		
-		return "";
+		return "redirect:/code/codeList";
 	}
 	@RequestMapping(value = "/code/codeGroupView")
 	public String codeGroupView(CodeVo vo, Model model) throws Exception {
@@ -120,7 +121,7 @@ public class CodeController {
 	  @RequestMapping(value = "/code/codeUpdt") public String
 	  codeUpdt(Code dto) throws Exception {
 		  
-		  service.updateCode(dto); return ""; }
+		  service.updateCode(dto); return "redirect:/code/codeView?ifcdSeq=" +dto.getIfcdSeq(); }
 	  
 	 
 }

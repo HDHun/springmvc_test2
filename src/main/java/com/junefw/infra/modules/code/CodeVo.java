@@ -5,7 +5,29 @@ public class CodeVo {
 	private String ifcgSeq;
 	private String ifcdSeq;
 	private String ifcgName;
+	private String shIfcgName;
+	private String shIfcgSeq;
 	
+	public String getShIfcgSeq() {
+		return shIfcgSeq;
+	}
+	public void setShIfcgSeq(String shIfcgSeq) {
+		this.shIfcgSeq = shIfcgSeq;
+	}
+	private Integer shIfcgDelNy;
+	
+	public Integer getShIfcgDelNy() {
+		return shIfcgDelNy;
+	}
+	public void setShIfcgDelNy(Integer shIfcgDelNy) {
+		this.shIfcgDelNy = shIfcgDelNy;
+	}
+	public String getShIfcgName() {
+		return shIfcgName;
+	}
+	public void setShIfcgName(String shIfcgName) {
+		this.shIfcgName = shIfcgName;
+	}
 	public String getIfcgName() {
 		return ifcgName;
 	}

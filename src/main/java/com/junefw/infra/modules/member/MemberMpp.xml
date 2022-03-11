@@ -8,25 +8,46 @@
 
     <resultMap id="resultMapObj" type="com.junefw.infra.modules.member.Member"></resultMap>
 
-	<select id="selectList" resultMap="resultMapObj">
-			select
-				spitSeq
-				, spitItem
-				, spitItemCate
-			from
-				spItem
+
+	<select id="selectListCode" resultMap ="resultMapObj">
+		select 
+			a.ifmmSeq
+			,a.ifmmName
+			,a.ifmmId
+		 from 
+			shop.infrmember a
+		where 1=1
+			and ifmmDelNy=0
 	</select>
-	<insert id="insert">
-		insert into spItem (
-			spitItem
-			,spitItemCate
-			,spitDelNy
-			,spiiSeq
-		) values(
-		#{spitItem}
-		,#{spitItemCate}
-		,0
-		,1
+	
+	<insert id="insertCode">
+		INSERT INTO infrmember (
+			ifmmSeq
+			,ifmmName
+			,ifmmDelNy
+		) values (
+			#{ifmmSeq}
+			,#{ifmmName}
+			,0
 		)
 	</insert>
+	<select id="selectOneCode" resultMap ="resultMapObj">
+		select 
+			a.ifmmSeq
+			,a.ifmmName
+			,a.ifmmId
+		 from 
+			shop.infrmember a
+		where 1=1
+			and ifmmSeq = #{ifmmSeq}
+
+	</select>
+	<update id="updateCode">
+				UPDATE
+					infrmember
+				SET 
+					ifmmName = #{ifmmName}
+				WHERE 1=1
+					AND ifmmSeq = #{ifmmSeq}
+		</update>
 </mapper>

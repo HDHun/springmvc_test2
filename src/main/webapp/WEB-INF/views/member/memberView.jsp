@@ -6,8 +6,9 @@
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
 
-<form method="post" action="codeGroupUpdt">
-	<input type="text" name="ifcgSeq" value="${item.ifcgSeq}" style="visibility:hidden;">
-	<input type="text" name="ifcgChangeName" placeholder="name" value="${item.ifcgName}">
-	<input type="submit" value="제출">
-</form>
+
+<c:out value="${item.ifmmSeq}"/> | <c:out value="${item.ifmmName}"/> | <c:out value="${item.ifmmId}"/>
+
+<br>
+
+<a href="/infra/member/memberForm2?ifmmSeq=<c:out value="${item.ifmmName}"/>">수정</a>
