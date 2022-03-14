@@ -1,11 +1,13 @@
 package com.junefw.infra.modules.code;
 
 public class Code {
-	// DTO
+	// DTO codegroup
 	private String ifcgSeq;
 	private String ifcgName;
 	private Integer ifcgDelNy;
+	private String ifcgNameEng;
 	
+	// code
 	private String ifcdSeq;
 	private String ifcdName;
 	private String ifcdDelNy;
@@ -48,6 +50,12 @@ public class Code {
 	}
 	public void setIfcgDelNy(Integer ifcgDelNy) {
 		this.ifcgDelNy = ifcgDelNy;
+	}
+	public String getIfcgNameEng() {
+		return ifcgNameEng;
+	}
+	public void setIfcgNameEng(String ifcgNameEng) {
+		this.ifcgNameEng = ifcgNameEng;
 	}
 	// --------------
 	

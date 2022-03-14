@@ -3,11 +3,37 @@ package com.junefw.infra.modules.code;
 public class CodeVo {
 	// VO where 절에 들어가는 필드는 여기에
 	private String ifcgSeq;
-	private String ifcdSeq;
 	private String ifcgName;
-	private String shIfcgName;
-	private String shIfcgSeq;
+	private String ifcgNameEng;
 	
+	private String shIfcgSeq;
+	private String shIfcgName;
+
+	
+	private String ifcdSeq;
+	
+	private String shOption;
+	private String shValue;
+	
+	// --------------
+	public String getIfcgNameEng() {
+		return ifcgNameEng;
+	}
+	public void setIfcgNameEng(String ifcgNameEng) {
+		this.ifcgNameEng = ifcgNameEng;
+	}
+	public String getShOption() {
+		return shOption;
+	}
+	public void setShOption(String shOption) {
+		this.shOption = shOption;
+	}
+	public String getShValue() {
+		return shValue;
+	}
+	public void setShValue(String shValue) {
+		this.shValue = shValue;
+	}
 	public String getShIfcgSeq() {
 		return shIfcgSeq;
 	}
@@ -40,7 +66,6 @@ public class CodeVo {
 	public void setIfcdSeq(String ifcdSeq) {
 		this.ifcdSeq = ifcdSeq;
 	}
-	// --------------
 	public String getIfcgSeq() {
 		return ifcgSeq;
 	}
