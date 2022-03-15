@@ -3,20 +3,17 @@ package com.junefw.infra.modules.code;
 import java.util.List;
 
 public interface CodeService {
-
-	public List<Code> selectList(CodeVo vo) throws Exception;
-
-	public int insert(Code dto) throws Exception;
-
-	public int update(Code dto) throws Exception; 
-	public Code selectOne(CodeVo vo) throws Exception;
+	//codegroup
+	List<Code> selectList(CodeVo vo) throws Exception;
+	int insert(Code dto) throws Exception;
+	int update(Code dto) throws Exception; 
+	Code selectOne(CodeVo vo) throws Exception;
+	int selectOneCount(CodeVo vo) throws Exception;
 
 	
 	// code
-	public List<Code> selectListCode(CodeVo vo) throws Exception;
-	
-	public int insertCode(Code dto) throws Exception;
-	
-	public int updateCode(Code dto) throws Exception; 
-	public Code selectOneCode(CodeVo vo) throws Exception;
+	List<Code> selectListCode(CodeVo vo) throws Exception;
+	int insertCode(Code dto) throws Exception;
+	int updateCode(Code dto) throws Exception; 
+	Code selectOneCode(CodeVo vo) throws Exception;
 }

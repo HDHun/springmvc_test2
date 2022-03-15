@@ -8,100 +8,110 @@
 
     <resultMap id="resultMapObj" type="com.junefw.infra.modules.code.Code"></resultMap> <!-- 결과 객체 지정 -->
 
+
+	<sql id = "selectCommon">
+		 FROM 
+		 	shop.infrcodegroup a
+		 WHERE 1=1
+			<choose>
+				<when test="shIfcgDelNy ==1">AND ifcgDelNy = 1</when>
+				<when test="shIfcgDelNy ==0">AND ifcgDelNy = 0</when>
+			</choose>
+			<if test="shIfcgName != null and !shIfcgName.equals('')"> AND ifcgName LIKE concat('%',#{shIfcgName},'%')</if>
+			<choose>
+				<when test="shOption ==1">AND ifcgName LIKE concat('%',#{shValue},'%')</when>
+				<when test="shOption ==2">AND ifcgNameEng LIKE concat('%',#{shValue},'%')</when>
+			</choose>
+	
+	</sql>
 	<select id="selectList" resultMap="resultMapObj">
 			SELECT 
 				a.ifcgSeq
 			    ,a.ifcgName
 			    ,a.ifcgNameEng
 			    ,a.ifcgDelNy
-			 FROM 
-			 	shop.infrcodegroup a
-			 WHERE 1=1
-				<choose>
-					<when test="shIfcgDelNy ==1">AND ifcgDelNy = 1</when>
-					<when test="shIfcgDelNy ==0">AND ifcgDelNy = 0</when>
-				</choose>
-				<if test="shIfcgName != null and !shIfcgName.equals('')"> AND ifcgName LIKE concat('%',#{shIfcgName},'%')</if>
-				<choose>
-					<when test="shOption ==1">AND ifcgName LIKE concat('%',#{shValue},'%')</when>
-					<when test="shOption ==2">AND ifcgNameEng LIKE concat('%',#{shValue},'%')</when>
-				</choose>
-			
-			</select>
+				<include refid="selectCommon"/>		
+				limit #{startRnumForMysql},#{rowNumToShow} 	
+	</select>
+	
+	<select id="selectOneCount" resultType="Integer">  <!-- Integer -->
+			SELECT 
+				count(*)
+				<include refid="selectCommon"/>		
+	</select>
 	
 	<insert id="insert">
-		INSERT INTO infrCodeGroup (
-			ifcgName
-			,ifcgDelNy
-		) values (
-			#{ifcgName}
-			,0
-		)
+			INSERT INTO infrCodeGroup (
+				ifcgName
+				,ifcgDelNy
+				) values (
+				#{ifcgName}
+				,0
+				)
 	</insert>
 	
 	
 	<select id="selectOne" resultMap ="resultMapObj">
-		select 
-			a.ifcgSeq
-			,a.ifcgName
-		 from 
-			shop.infrcodegroup a
-		where 1=1
-			and ifcgSeq = #{ifcgSeq}
+			select 
+				a.ifcgSeq
+				,a.ifcgName
+		 	from 
+				shop.infrcodegroup a
+			where 1=1
+				and ifcgSeq = #{ifcgSeq}
 
 	</select>
 	
 	<update id="update">
-				UPDATE
-					infrcodegroup
-				SET 
-					ifcgName = #{ifcgName}
-				WHERE 1=1
-					AND ifcgSeq = #{ifcgSeq}
-		</update>
+			UPDATE
+				infrcodegroup
+			SET 
+				ifcgName = #{ifcgName}
+			WHERE 1=1
+				AND ifcgSeq = #{ifcgSeq}
+	</update>
 		
-		<select id="selectListCode" resultMap ="resultMapObj">
-		select 
-			a.ifcdSeq
-			,a.ifcdName
-		 from 
-			shop.infrcode a
-		where 1=1
-			and ifcdDelNy=0
+	<select id="selectListCode" resultMap ="resultMapObj">
+			select 
+				a.ifcdSeq
+				,a.ifcdName
+		 	from 
+				shop.infrcode a
+			where 1=1
+				and ifcdDelNy=0
 			<if test="shIfcgSeq !=null and !shIfcgSeq.eauals('')">AND ifcgSeq =#{shIfcgSeq}</if>
 			
 			
 	</select>
 	<insert id="insertCode">
-		INSERT INTO infrCode (
-			ifcdName
-			,ifcdDelNy
-			,ifcdSeq
-			,ifcgSeq
-		) values (
-			#{ifcdName}
-			,0
-			,#{ifcdSeq}
-			,0
-		)
+			INSERT INTO infrCode (
+				ifcdName
+				,ifcdDelNy
+				,ifcdSeq
+				,ifcgSeq
+			) values (
+				#{ifcdName}
+				,0
+				,#{ifcdSeq}
+				,0
+			)
 	</insert>
 	<select id="selectOneCode" resultMap ="resultMapObj">
-		select 
-			a.ifcdSeq
-			,a.ifcdName
-			,a.ifcdDelNy
-		 from 
-			shop.infrcode a
-		where 1=1
-			and ifcdSeq = #{ifcdSeq}
-
+			select 
+				a.ifcdSeq
+				,a.ifcdName
+				,a.ifcdDelNy
+			 from 
+				shop.infrcode a
+			where 1=1
+				and ifcdSeq = #{ifcdSeq}
 	</select>
 	<update id="updateCode">
-				UPDATE
-					infrcode
-				SET 
-					ifcdName = #{ifcdName}
-				WHERE 1=1
-					AND ifcdSeq = #{ifcdSeq}
-		</update>
+			UPDATE
+				infrcode
+			SET 
+				ifcdName = #{ifcdName}
+			WHERE 1=1
+				AND ifcdSeq = #{ifcdSeq}
+	</update>
 </mapper>
