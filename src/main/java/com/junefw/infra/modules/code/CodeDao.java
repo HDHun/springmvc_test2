@@ -37,6 +37,7 @@ public class CodeDao {
 	
 	public int updateCode(Code dto) {return sqlSession.update(namespace + ".updateCode", dto);}
 	
+	public int selectOneCodeCount(CodeVo vo) { return sqlSession.selectOne(namespace + ".selectOneCodeCount", vo);}
 	
 	
 	

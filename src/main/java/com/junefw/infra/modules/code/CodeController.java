@@ -74,15 +74,17 @@ public class CodeController {
 		  return "code/codeForm2"; }
 	  
 	  @RequestMapping(value = "/code/codeList")
-		public String codeList(CodeVo vo, Model model) throws Exception {
-			
+		public String codeList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
+			int codeCount = service.selectOneCodeCount(vo);
+					vo.setParamsPaging(codeCount);
+			if(codeCount !=0) {
 			List<Code> list = service.selectListCode(vo);
-			model.addAttribute("list", list);
-			
-			List<Code> listCodeGroup = service.selectList(vo);
-			model.addAttribute("listCodeGroup",listCodeGroup);
-			return "code/codeList";
-		}
+			model.addAttribute("list", list);}
+			else {
+				/* @modelAttribute("vo") = model.attribute("vo",vo) */
+			}
+			return "code/codeList";}
+		
 		@RequestMapping(value = "/code/codeInst")
 		public String codeInst(Code dto) throws Exception {
 			

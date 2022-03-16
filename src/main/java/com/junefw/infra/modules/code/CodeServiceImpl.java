@@ -9,13 +9,19 @@ import org.springframework.stereotype.Service;
 public class CodeServiceImpl implements CodeService{
 	
 	
+	@Autowired
+	CodeDao dao;
 	
+	@Override
+	public int selectOneCodeCount(CodeVo vo) throws Exception {
+		
+		return dao.selectOneCount(vo);
+	}
+
 	@Override
 	public int selectOneCount(CodeVo vo) throws Exception {
 		return dao.selectOneCount(vo);
 	}
-	@Autowired
-	CodeDao dao;
 
 	@Override
 	public List<Code> selectListCode(CodeVo vo) throws Exception {
