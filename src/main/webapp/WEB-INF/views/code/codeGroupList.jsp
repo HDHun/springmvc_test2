@@ -18,7 +18,7 @@
 
 
 ||
-그룹이름 : <input type="text" name="shIfcgName">
+그룹이름 : <input type="text" name="shIfcgName" id="shIfcgName">
 ||
 
 <select name="shOption">
@@ -27,9 +27,14 @@
 	<option value="2">영문
 </select>
 
-<input type="text" name="shValue">
-<input type="submit" name="search">
+<input type="text" name="shValue" id="shValue">
+<!-- <input type="submit" name="search"> -->
+<input type="Submit" id="btnSubmit" name="search">
+<!-- <input type="Submit" id="btnSubmit2" name="search">
+$("#btnSubmit").on("click", function(){
 
+	if(	!checkNull($("#shValue"), $("#shValue").val(), "2번쨰버튼.")) return false;
+	}); -->
 
 
 <br>
@@ -68,3 +73,39 @@
 	</c:if>  
   </ul>
 </nav>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/infra/resources/js/validation.js"></script>
+
+<script type="text/javascript">
+	$("#btnSubmit").on("click", function(){
+		
+	 /* 	if($("#shIfcgName").val() == "" || $("shIfcgName").val() == null){
+			alert("null이다");
+			$("#shIfcgName").focus();
+		} */
+	 
+	if(	!checkNull($("#shIfcgName"), $("#shIfcgName").val(), "코드그룹이름을 입력하세요.")) return false;
+	if(	!checkNull($("#shValue"), $("#shValue").val(), "검색어를 입력하세요.")) return false;
+		
+		
+		
+		
+	});
+	
+
+</script>
+
+<!-- 
+		/* alert($(#shOption).val()); */
+	//	alert($("#shIfcgName").val()); // jquery방식
+	//	alert($("#shIfcgDelNy").val()); // jquery방식
+	//	alert($("#shOption").val()); // jquery방식
+	//	alert($("#shValue").val()); // jquery방식
+/* 		alert(document.getElementById("shIfcgName").value); // javascript방식
+ */		 -->
+
+
+
+
