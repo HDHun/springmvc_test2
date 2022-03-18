@@ -11,14 +11,14 @@
 
 <select name="shIfcgDelNy">
 	<option value="">::삭제여부::
-	<option value="1">Y
-	<option value="0">N
+	<option value="1" <c:if test="${vo.shIfcgDelNy eq 1}">selected</c:if>> Y
+	<option value="0"<c:if test="${vo.shIfcgDelNy eq 0}">selected</c:if>>N
 </select>
 
 
 
 ||
-그룹이름 : <input type="text" name="shIfcgName" id="shIfcgName">
+그룹이름 : <input type="text" name="shIfcgName" id="shIfcgName" value="<c:out value="${vo.shIfcgName}"/>">
 ||
 
 <select name="shOption">
@@ -27,7 +27,7 @@
 	<option value="2">영문
 </select>
 
-<input type="text" name="shValue" id="shValue">
+<input type="text" name="shValue" id="shValue" value="<c:out value="${vo.shValue}"/>">
 <!-- <input type="submit" name="search"> -->
 <input type="Submit" id="btnSubmit" name="search">
 <!-- <input type="Submit" id="btnSubmit2" name="search">

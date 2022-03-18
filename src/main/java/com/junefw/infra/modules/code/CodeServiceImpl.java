@@ -53,7 +53,9 @@ public class CodeServiceImpl implements CodeService{
 
 	@Override
 	public int insert(Code dto) throws Exception {
-		return dao.insert(dto);
+			dao.insert(dto);
+			dao.insertCode(dto);
+		return 1;
 	}
 
 	@Override
