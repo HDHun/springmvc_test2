@@ -8,7 +8,6 @@ checkNull = function (obj, value, message) {
 		return true;
 	}
 }
-+
 
 checkOnlyNumber = function(obj, value, message) {
     var regExp = /^[0-9]+$/;

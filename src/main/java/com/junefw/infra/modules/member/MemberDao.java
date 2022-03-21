@@ -1,5 +1,7 @@
 package com.junefw.infra.modules.member;
 
+
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -7,8 +9,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.junefw.infra.modules.code.Code;
-import com.junefw.infra.modules.code.CodeVo;
+import com.junefw.infra.modules.member.Member;
+import com.junefw.infra.modules.member.MemberVo;
 
 @Repository
 public class MemberDao {
