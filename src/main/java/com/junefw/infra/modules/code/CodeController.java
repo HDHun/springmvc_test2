@@ -36,14 +36,18 @@ public class CodeController {
 	@RequestMapping(value = "/code/codeGroupInst")
 	public String codeGroupInst(Code dto) throws Exception {
 		service.insert(dto);
-		return "";}
+		System.out.println("dto.getifcgSeq" + dto.getIfcgSeq());
+		/* return "redirect:/code/codeGroupList"; */
+		return "redirect:/code/codeGroupView?ifcgSeq=" + dto.getIfcgSeq();
+	}
 	
 	@RequestMapping(value = "/code/codeGroupView")
-	public String codeGroupView(CodeVo vo, Model model) throws Exception {
+	public String codeGroupView(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 	// 디비까지 가서 한 건의 데이터를 가져온다.
 	Code item = service.selectOne(vo);
 	model.addAttribute("item", item);
-	return "code/codeGroupView";	}
+	return "code/codeGroupView";	
+	}
 
 	
 	@RequestMapping(value = "/code/codeGroupForm2") public String

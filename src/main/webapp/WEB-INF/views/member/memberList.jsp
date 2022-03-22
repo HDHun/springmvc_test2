@@ -108,7 +108,26 @@ div {
 	 				 </div>
 				</div>
 				
-				
+			
+		<form id ="" name="" method="get" action="/infra/member/memberList">
+
+<select name="shIfmmDelNy" class="form-select" style="width: 200px; display: inline;">
+	<option value="">::삭제여부::
+	<option value="1" <c:if test="${vo.shIfmmDelNy eq 1}">selected</c:if>> Y
+	<option value="0"<c:if test="${vo.shIfmmDelNy eq 0}">selected</c:if>>N
+</select>
+
+<select class="form-select" style="width: 200px; display: inline;" name="shOption">
+	<option value="">::검색구분::
+	<option value="1">이름
+	<option value="2">아이디
+</select>
+<input class="form-control" style="width: 200px; display: inline;" type="text" name="shValue" id="shValue" value="<c:out value="${vo.shValue}"/>">
+<button type="Submit" id="btnSubmit" name="search" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+ 							<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+								</svg></button>
+				</div>
+		</div>
 		<div class="container-fluid">
 			<div class="table-responsive">
 			  <table class="table">
@@ -121,79 +140,29 @@ div {
 							<th scope="col" style="width: 5%;"><div style="width: 100px;">#</div></th>
 							<th scope="col" style="width: 10%;"><div style="width: 100px;">이름</div></th>
 							<th scope="col" style="width: 15%;"><div style="width: 100px;">배송지</div></th>
-							<th scope="col" style="width: 10%;"><div style="width: 100px;">등급</div></th>
 							<th scope="col" style="width: 15%;"><div style="width: 100px;">전화번호</div></th>	
-							<th scope="col" style="width: 15%;"><div style="width: 100px;">최근주문일</div></th>
 							<th scope="col" style="width: 15%;"><div style="width: 100px;">상세정보</div></th>
 	      				</tr>
 	   			 </thead>
 	   			 <tbody>
+	   			 <c:forEach items="${list}" var="item" varStatus="status">
 	      				<tr>
 							<td scope="col">
 								<div class="form-check">
 								<input class="form-check-input" type="checkbox" value=""id="flexCheckDefault1"></div></td>
-							<td scope="col">1</td>
-							<td scope="col">한동훈</td>
+							<td scope="col"><c:out value="${item.ifmmSeq}"/></td>
+							<td scope="col"><c:out value="${item.ifmmName}"/></td>
 							<td scope="col">파주</td>
-							<td scope="col">실버</td>
 							<td scope="col">01064795894</td>
-							<td scope="col">2022.01.02</td>
 							<td scope="col"><button type="button"class="btn btn-secondary" onclick="location.href='./memberView.html'">상세정보</button></td>
-								
 	    			  </tr>
-				      <tr>
-							<td scope="col">
-								<div class="form-check">
-								<input class="form-check-input" type="checkbox" value=""id="flexCheckDefault2"></div></td>
-							<td scope="col">2</td>
-							<td scope="col">좋은</td>
-							<td scope="col">수원</td>
-							<td scope="col">브론즈</td>
-							<td scope="col">01011111111</td>
-							<td scope="col">2021.10.23</td>
-							<td scope="col"><button type="button"class="btn btn-secondary">상세정보</button></td>
-								
-	    			  </tr>
-	           		 <tr>
-							<td scope="col">
-								<div class="form-check">
-								<input class="form-check-input" type="checkbox" value=""id="flexCheckDefault3"></div></td>
-								<td scope="col">3</td>
-								<td scope="col">사람</td>
-								<td scope="col">광명</td>
-								<td scope="col">금</td>
-								<td scope="col">01022222222</td>
-								<td scope="col">2022.02.04</td>
-								<td scope="col"><button type="button"class="btn btn-secondary">상세정보</button></td>
-				   </tr>
-				   	<tr>
-								<td scope="col">
-									<div class="form-check">
-									<input class="form-check-input" type="checkbox" value=""id="flexCheckDefault4"></div></td>
-								<td scope="col">4</td>
-								<td scope="col">개미</td>
-								<td scope="col">천안</td>
-								<td scope="col">실버</td>
-								<td scope="col">01033333333</td>
-								<td scope="col">2020.12.24</td>
-								<td scope="col"><button type="button"class="btn btn-secondary">상세정보</button></td>
-					</tr>
-					<tr>
-								<td scope="col">
-									<div class="form-check">
-									<input class="form-check-input" type="checkbox" value=""id="flexCheckDefault5"></div></td>
-								<td scope="col">5</td>
-								<td scope="col">벌</td>
-								<td scope="col">서울</td>
-								<td scope="col">VIP</td>
-								<td scope="col">01044444444</td>
-								<td scope="col">2022.02.03</td>
-								<td scope="col"><button type="button"class="btn btn-secondary">상세정보</button></td>
-					</tr>
+				</c:forEach>
+				      
 			    </tbody>
 			  </table>
 			</div>
 		</div>
+</form>		
 	
 		
 		<button class="btn btn-info" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop1" aria-controls="offcanvasTop1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -238,19 +207,7 @@ div {
 						  <path fill-rule="evenodd"	d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
 							</svg>
 				</span>
-				<div style="float: right; margin:50px;">
-					<select class="form-select" style="width:200px; display: inline;">
-						<option selected>검색구분</option>
-						<option value="1">이름</option>
-						<option value="2">등급</option>
-					</select>
-				<div class="input-group" style="display:inline;">
-					<input type="text" class="form-control" placeholder="검색어"style="width:200px; display:inline;">
-						<button type="button" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
- 							<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-								</svg></button>
-				</div>
-		</div>
+			
 
 				<nav aria-label="...">
 				  <ul class="pagination">

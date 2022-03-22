@@ -29,7 +29,7 @@
 
 <input type="text" name="shValue" id="shValue" value="<c:out value="${vo.shValue}"/>">
 <!-- <input type="submit" name="search"> -->
-<input type="Submit" id="btnSubmit" name="search">
+<input type="Submit" id="btnSubmit">
 <!-- <input type="Submit" id="btnSubmit2" name="search">
 $("#btnSubmit").on("click", function(){
 
@@ -45,31 +45,34 @@ $("#btnSubmit").on("click", function(){
 		</tr>	
 	</c:when>
 	<c:otherwise>
+	
 		<c:forEach items="${list}" var="item" varStatus="status">	
 		
-		<c:out value="${item.ifcgSeq}"/> | <a href="/infra/code/codeGroupView?ifcgSeq=${item.ifcgSeq}"><c:out value="${item.ifcgName}"/></a>| <c:out value="${item.ifcgNameEng}"/>| <c:out value="${item.ifcgDelNy}"/> <br>
+		<c:out value="${item.ifcgSeq}"/> | <a href="/infra/code/codeGroupView?ifcgSeq=${item.ifcgSeq}&shOption=<c:out value="${vo.shOption}"/>&shValue=<c:out value="${vo.shValue}"/>"><c:out value="${item.ifcgName}"/></a>| <c:out value="${item.ifcgNameEng}"/>| <c:out value="${item.ifcgDelNy}"/> <br>
 		
 		</c:forEach>
 	</c:otherwise>
 </c:choose>	 
 </form>
+<a href="/infra/code/codeGroupForm?ifcgSeq=<c:out value="${item.ifcgName}"/>">등록</a>
+
 <nav aria-label="...">
   <ul class="pagination">
 	<c:if test="${vo.startPage gt vo.pageNumToShow}">
-		<li class="page-item"><a class="page-link" href="/infra/code/codeGroupList?thisPage=${vo.startPage - 1}">Previous</a></li>
+		<li class="page-item"><a class="page-link" href="/infra/code/codeGroupList?thisPage=${vo.startPage - 1}&shOption=<c:out value="${vo.shOption}"/>&shValue=<c:out value="${vo.shValue}"/>">Previous</a></li>
 	</c:if>
 	<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
 		<c:choose>
 			<c:when test="${i.index eq vo.thisPage}">
-                <li class="page-item active"><a class="page-link" href="/infra/code/codeGroupList?thisPage=${i.index}">${i.index}</a></li>
+                <li class="page-item active"><a class="page-link" href="/infra/code/codeGroupList?thisPage=${i.index}&shOption=<c:out value="${vo.shOption}"/>&shValue=<c:out value="${vo.shValue}"/>">${i.index}</a></li>
 			</c:when>
 			<c:otherwise>             
-                <li class="page-item"><a class="page-link" href="/infra/code/codeGroupList?thisPage=${i.index}">${i.index}</a></li>
+                <li class="page-item"><a class="page-link" href="/infra/code/codeGroupList?thisPage=${i.index}&shOption=<c:out value="${vo.shOption}"/>&shValue=<c:out value="${vo.shValue}"/>">${i.index}</a></li>
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>     
 	<c:if test="${vo.endPage ne vo.totalPages}">                
-		<li class="page-item"><a class="page-link" href="/infra/code/codeGroupList?thisPage=${vo.endPage + 1}">Next</a></li>
+		<li class="page-item"><a class="page-link" href="/infra/code/codeGroupList?thisPage=${vo.endPage + 1}&shOption=<c:out value="${vo.shOption}"/>&shValue=<c:out value="${vo.shValue}"/>">Next</a></li>
 	</c:if>  
   </ul>
 </nav>
@@ -86,7 +89,7 @@ $("#btnSubmit").on("click", function(){
 			$("#shIfcgName").focus();
 		} */
 	 
-	if(	!checkNull($("#shIfcgName"), $("#shIfcgName").val(), "코드그룹이름을 입력하세요.")) return false;
+	/* if(	!checkNull($("#shIfcgName"), $("#shIfcgName").val(), "코드그룹이름을 입력하세요.")) return false; */
 	if(	!checkNull($("#shValue"), $("#shValue").val(), "검색어를 입력하세요.")) return false;
 		
 		

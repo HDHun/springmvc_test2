@@ -7,9 +7,9 @@
 
 
 
-<form id ="form" method="post" action="/infra/code/codeGroupInst">
+<form id ="form" method="get"  action="/infra/code/codeGroupInst">
+	<input type="text" name="ifcgSeq" placeholder="seq">
 	<input type="text" name="ifcgName" placeholder="코드그룹">
-	<input type="text" name="ifcdName" placeholder="코드">
 	<input type="submit" id="btnSubmit" value="제출">
 </form>	
 
@@ -21,10 +21,10 @@
 <script src="/infra/resources/js/validation.js"></script>
 
 <script type="text/javascript">
-	$("#btnSubmit").on("click", function(){
+	/* $("#btnSubmit").on("click", function(){
 	
 	if(	!checkNull($("#IfcgName"), $("#IfcgName").val(), "코드그룹이름을 입력하세요.")) return false;
-		
+	 */	
 		
 		
 		

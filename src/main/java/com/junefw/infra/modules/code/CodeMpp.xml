@@ -30,7 +30,8 @@
 			    ,a.ifcgName
 			    ,a.ifcgNameEng
 			    ,a.ifcgDelNy
-				<include refid="selectCommon"/>		
+				<include refid="selectCommon"/>	
+				order by a.ifcgSeq desc	
 				limit #{startRnumForMysql},#{rowNumToShow} 	
 	</select>
 	
@@ -42,15 +43,15 @@
 	
 	<insert id="insert">
 			INSERT INTO infrCodeGroup (
-				ifcgName
+				,ifcgName
 				,ifcgDelNy
-				) values (
-				#{ifcgName}
+				) values (				
+				,#{ifcgName}
 				,0
 				)
-	<selectKey resultType="String" keyProperty="fdcgSeq" order="AFTER">
-		SELECT last_insert_id()
-	</selectKey>
+	<selectKey resultType="String" keyProperty="ifcgSeq" order="AFTER">
+			SELECT last_insert_id()
+		</selectKey>		
 	</insert>
 	
 	
