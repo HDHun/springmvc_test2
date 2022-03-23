@@ -21,10 +21,10 @@
 그룹이름 : <input type="text" name="shIfcgName" id="shIfcgName" value="<c:out value="${vo.shIfcgName}"/>">
 ||
 
-<select name="shOption">
-	<option value="">::검색구분::
-	<option value="1">한글
-	<option value="2">영문
+<select id="shOption" name="shOption">
+	<option value="0">::검색구분::
+	<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>한글
+	<option value="2"  <c:if test="${vo.shOption eq 2}">selected</c:if>>영문
 </select>
 
 <input type="text" name="shValue" id="shValue" value="<c:out value="${vo.shValue}"/>">
@@ -54,7 +54,7 @@ $("#btnSubmit").on("click", function(){
 	</c:otherwise>
 </c:choose>	 
 </form>
-<a href="/infra/code/codeGroupForm?ifcgSeq=<c:out value="${item.ifcgName}"/>">등록</a>
+
 
 <nav aria-label="...">
   <ul class="pagination">
@@ -76,7 +76,7 @@ $("#btnSubmit").on("click", function(){
 	</c:if>  
   </ul>
 </nav>
-
+<a href="/infra/code/codeGroupForm?shOption=<c:out value="${vo.shOption}"/>&thisPage=<c:out value="${vo.thisPage}"/>&shValue=<c:out value="${vo.shValue}"/>">등록</a>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="/infra/resources/js/validation.js"></script>
@@ -93,7 +93,7 @@ $("#btnSubmit").on("click", function(){
 	if(	!checkNull($("#shValue"), $("#shValue").val(), "검색어를 입력하세요.")) return false;
 		
 		
-		
+
 		
 	});
 	

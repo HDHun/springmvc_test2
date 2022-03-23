@@ -53,8 +53,7 @@ public class CodeServiceImpl implements CodeService{
 
 	@Override
 	public int insert(Code dto) throws Exception {
-			dao.insert(dto);
-			/* dao.insertCode(dto); */
+		dao.insert(dto);
 		return 1;
 	}
 
@@ -66,6 +65,18 @@ public class CodeServiceImpl implements CodeService{
 	
 	@Override public int update(Code dto) throws Exception { 
 		return dao.update(dto); 
+	}
+
+	@Override
+	public int delete(CodeVo vo) throws Exception {
+
+		return dao.delete(vo);
+	}
+
+	@Override
+	public int updateDelete(CodeVo vo) throws Exception {
+
+		return dao.updateDelete(vo);
 	}
 	 
 	 

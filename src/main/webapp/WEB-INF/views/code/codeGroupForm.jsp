@@ -8,12 +8,15 @@
 
 
 <form id ="form" method="get"  action="/infra/code/codeGroupInst">
-	<input type="text" name="ifcgSeq" placeholder="seq">
+	<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage}"/>">
+	<input type="hidden" id="shOption" name="shOption" value="<c:out value="${vo.shOption}"/>">
+	<input type="hidden" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>">
 	<input type="text" name="ifcgName" placeholder="코드그룹">
 	<input type="submit" id="btnSubmit" value="제출">
 </form>	
 
 
+<a href="/infra/code/codeGroupList?thisPage=<c:out value="${vo.thisPage}"/>&shOption=<c:out value="${vo.shOption}"/>&shValue=<c:out value="${vo.shValue}"/>">목록</a>
 
 
 
