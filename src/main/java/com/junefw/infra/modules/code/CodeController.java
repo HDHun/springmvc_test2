@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -15,7 +16,7 @@ public class CodeController {
 	@Autowired
 	CodeServiceImpl service;
 	
-	@RequestMapping(value = "/code/codeGroupList")
+	@RequestMapping(value = "/code/codeGroupList" /*method = RequestMethod.POST*/)
 	public String codeGroupList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 		int count = service.selectOneCount(vo);
 		vo.setParamsPaging(count);
@@ -69,7 +70,9 @@ public class CodeController {
 	public String codeGroupView(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 	// 디비까지 가서 한 건의 데이터를 가져온다.
 	Code item = service.selectOne(vo);
+	
 	model.addAttribute("item", item);
+	
 	return "code/codeGroupView";	
 	}
 
@@ -123,7 +126,9 @@ public class CodeController {
 	  public String codeForm(CodeVo vo,Model model) throws Exception {  
 		List<Code> list = service.selectListCode(vo);
 		model.addAttribute("list",list);
-		return "code/codeForm";}
+		return "code/codeForm";
+		}
+	  
 	  
 	  @RequestMapping(value = "/code/codeForm2") public String codeForm2(CodeVo vo,
 			  Model model) throws Exception {

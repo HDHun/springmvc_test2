@@ -36,6 +36,8 @@ public class CodeDao {
 	//	code
 	
 	public List<Code> selectListCode(CodeVo vo) { List<Code> list = sqlSession.selectList(namespace + ".selectListCode",vo); return list;}
+
+	public List<Code> selectListForCache() { List<Code> list = sqlSession.selectList(namespace + ".selectListForCache",""); return list;}
 	
 	public int insertCode(Code dto) {return sqlSession.insert(namespace + ".insertCode", dto);}
 	

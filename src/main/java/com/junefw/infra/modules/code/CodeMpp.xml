@@ -128,6 +128,7 @@
 				shop.infrcode a
 			where 1=1
 				and ifcdSeq = #{ifcdSeq}
+			
 	</select>
 	<select id="selectOneCodeCount" resultType ="Integer">
 			select 
@@ -150,4 +151,17 @@
 			WHERE 1=1
 				AND ifcdSeq = #{ifcdSeq}
 	</update>
+	<select id="selectListForCache" resultMap ="resultMapObj">
+			select 
+				a.ifcdSeq
+				,a.ifcdName
+				,a.ifcgSeq
+		 	from 
+				shop.infrcode a
+			where 1=1
+				and ifcdDelNy = 0
+				and ifcdUseNy = 1
+	</select>
+	
+	
 </mapper>

@@ -11,6 +11,14 @@ public class CodeVo {
 	private String shIfcgName;
 	//infrcode
 	private String ifcdSeq;
+	private String ifcdName;
+	private String ifcdDelNy;
+	private String ifcdUseNy;
+
+	
+	// search
+	private String shIfcdName;
+
 	// common
 	private String shOption;
 	private String shValue;
@@ -36,6 +44,36 @@ public class CodeVo {
 	
 	// --------------
 	
+	public String getIfcdName() {
+		return ifcdName;
+	}
+	
+	public void setIfcdName(String ifcdName) {
+		this.ifcdName = ifcdName;
+	}
+	
+	public String getIfcdDelNy() {
+		return ifcdDelNy;
+	}
+	
+	public void setIfcdDelNy(String ifcdDelNy) {
+		this.ifcdDelNy = ifcdDelNy;
+	}
+	
+	public String getIfcdUseNy() {
+		return ifcdUseNy;
+	}
+	
+	public void setIfcdUseNy(String ifcdUseNy) {
+		this.ifcdUseNy = ifcdUseNy;
+	}
+	public String getShIfcdName() {
+		return shIfcdName;
+	}
+	
+	public void setShIfcdName(String shIfcdName) {
+		this.shIfcdName = shIfcdName;
+	}
 	
 	
 	public String getIfcgSeq() {

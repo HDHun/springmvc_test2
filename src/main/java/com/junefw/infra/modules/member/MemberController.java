@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.junefw.infra.modules.code.CodeServiceImpl;
+
 @Controller
 public class MemberController {
 
@@ -35,12 +37,19 @@ public class MemberController {
 		  
 		  return "member/memberView";
 	  }
+	  
 	  @RequestMapping(value = "/member/memberForm") 
-	  public String memberForm(Model model) throws Exception {
+	  public String memberForm(MemberVo vo, Model model) throws Exception {
 		  
-		  List<Member> list = service.selectListCode();
-		  model.addAttribute("list",list);
-		  return "member/memberForm"; 
+		  
+		List<Member> list = service.selectListCode();
+		  
+		model.addAttribute("list",list);
+		
+		model.addAttribute("codeGender", CodeServiceImpl.selectListCachedCode("16"));
+		  
+		return "member/memberForm"; 
+		  
 	  }
 	  
 	  
