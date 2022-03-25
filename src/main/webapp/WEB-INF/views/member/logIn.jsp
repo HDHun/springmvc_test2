@@ -192,8 +192,6 @@ KURLY CORP. ALL RIGHTS RESERVED</p>
 	
 	</script>
 
-</body>
-</html>
 <form method="post" action="/infra/member/memberInst">
 	<select name="ifmmSeq">
 		<c:forEach items="${list}" var="item" varStatus="status">
@@ -207,6 +205,8 @@ KURLY CORP. ALL RIGHTS RESERVED</p>
 	<input type="text" name="ifmmName" placeholder="ifmmname" value="<c:out value="${item.ifmmName}"/>">
 	<input type="submit" value="제출">
 </form>
+</body>
+</html>
 
 
 

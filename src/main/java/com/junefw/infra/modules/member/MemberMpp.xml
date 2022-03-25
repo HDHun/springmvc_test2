@@ -18,7 +18,7 @@
 			</choose>
 			<if test="shIfmmName != null and !shIfmmName.equals('')"> AND ifmmName LIKE concat('%',#{shIfmmName},'%')</if>
 			<choose>
-				<when test="shOption ==1">AND ifcgName LIKE concat('%',#{shValue},'%')</when>
+				<when test="shOption ==1">AND ifmmName LIKE concat('%',#{shValue},'%')</when>
 			</choose>
 	
 	</sql>
@@ -26,9 +26,11 @@
 			SELECT 
 				a.ifmmSeq
 			    ,a.ifmmName
+			    ,a.ifmmId
 			    ,a.ifmmDelNy
 				<include refid="selectCommon"/>		
 				limit #{startRnumForMysql},#{rowNumToShow} 	
+						
 	</select>
 	
 	<select id="selectOneCount" resultType="Integer">  <!-- Integer -->
@@ -45,23 +47,10 @@
 				#{ifmmName}
 				,0
 				)
-	<selectKey resultType="String" keyProperty="fdcgSeq" order="AFTER">
+	<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
 		SELECT last_insert_id()
 	</selectKey>
 	</insert>
-	
-	
-	<select id="selectOne" resultMap ="resultMapObj">
-			select 
-				a.ifmmSeq
-				,a.ifmmName
-		 	from 
-				shop.infrmember a
-			where 1=1
-				and ifmmSeq = #{ifmmSeq}
-
-	</select>
-	
 	<update id="update">
 			UPDATE
 				infrmember
@@ -71,62 +60,16 @@
 				AND ifmmSeq = #{ifmmSeq}
 	</update>
 		
-	<select id="selectListCode" resultMap ="resultMapObj">
+	<select id="selectOne" resultMap ="resultMapObj">
 			select 
 				a.ifmmSeq
 				,a.ifmmName
-		 	from 
-				shop.infrmember a
-			where 1=1
-				and ifmmDelNy=0
-			<if test="shIfmmSeq !=null and !shIfmmSeq.equals('')">AND ifmmSeq =#{shIfmmSeq}</if>
-				<choose>
-				<when test="shOption ==1">AND ifmmName LIKE concat('%',#{shValue},'%')</when>
-			</choose>
-			<!-- limit #{startRnumForMysql},#{rowNumToShow}  -->
-			
-	</select>
-	<insert id="insertCode">
-			INSERT INTO infrMember (
-				ifmmName
-				,ifmmDelNy
-				,ifmmSeq
-				,ifmmSeq
-			) values (
-				#{ifmmName}
-				,0
-				,#{ifmmSeq}
-				,0
-			)
-	</insert>
-	<select id="selectOneCode" resultMap ="resultMapObj">
-			select 
-				a.ifmmSeq
-				,a.ifmmName
+				a,ifmmId
 				,a.ifmmDelNy
 			 from 
 				shop.infrmember a
 			where 1=1
 				and ifmmSeq = #{ifmmSeq}
 	</select>
-	<select id="selectOneCodeCount" resultType ="Integer">
-			select 
-				count(*)
-			from 
-				shop.infrmember a
-			where 1=1
-				and ifmmDelNy=0
-			<if test="shIfmmSeq !=null and !shIfmmSeq.equals('')">AND ifmmSeq =#{shIfmmSeq}</if>
-				<choose>
-				<when test="shOption ==1">AND ifmmName LIKE concat('%',#{shValue},'%')</when>
-			</choose>
-	</select>
-	<update id="updateCode">
-			UPDATE
-				infrmember
-			SET 
-				ifmmName = #{ifmmName}
-			WHERE 1=1
-				AND ifmmSeq = #{ifmmSeq}
-	</update>
+	
 </mapper>

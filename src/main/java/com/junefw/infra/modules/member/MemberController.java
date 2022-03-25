@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.junefw.infra.modules.code.CodeServiceImpl;
+
 
 @Controller
 public class MemberController {
@@ -15,13 +17,25 @@ public class MemberController {
 	@Autowired
 	MemberServiceImpl service;
 	
+	@RequestMapping(value = "/member/memberList" /*method = RequestMethod.POST*/)
+	public String memberList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
+		int count = service.selectOneCount(vo);
+		vo.setParamsPaging(count);
+		if(count !=0) {
+		List<Member> list = service.selectList(vo);
+		model.addAttribute("list", list);}
+		else {
+			/* @modelAttribute("vo") = model.attribute("vo",vo) */
+		}
+		return "member/memberList";}
+	
 	 @RequestMapping(value = "/member/memberInst")
 	  public String memberInst(Member dto) throws Exception {
 		  
 		  // 입력이 되어야 함
-		  service.insertCode(dto);
+		  service.insert(dto);
 		  
-		  return "redirect:/member/memberList";
+		  return "redirect:/member/memberView";
 	  }
 	  
 	  @RequestMapping(value = "/member/memberView")
@@ -30,7 +44,7 @@ public class MemberController {
 		  System.out.println("vo.getIfmmSeq(): " + vo.getIfmmSeq());
 		  
 		  // 디비까지 가서 한 건의 데이터를 가져온다.
-		  Member item = service.selectOneCode(vo);
+		  Member item = service.selectOne(vo);
 		  
 		  // jsp로 데이터를 넘겨준다
 		  model.addAttribute("item", item);
@@ -39,24 +53,23 @@ public class MemberController {
 	  }
 	  
 	  @RequestMapping(value = "/member/memberForm") 
-	  public String memberForm(MemberVo vo, Model model) throws Exception {
+	  public String memberForm(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
 		  
 		  
-		List<Member> list = service.selectListCode();
+		Member list = service.selectOne(vo);
 		  
-		model.addAttribute("list",list);
 		
-		model.addAttribute("codeGender", CodeServiceImpl.selectListCachedCode("16"));
-		  
+		/*
+		 * model.addAttribute("codeGender", CodeServiceImpl.selectListCachedCode("16"));
+		 */  
 		return "member/memberForm"; 
 		  
 	  }
 	  
 	  
-	  @RequestMapping(value = "/member/memberForm2") public String memberForm2(MemberVo vo,
-	  Model model) throws Exception {
+	  @RequestMapping(value = "/member/memberForm2") public String memberForm2(MemberVo vo, Model model) throws Exception {
 	  
-	  Member item = service.selectOneCode(vo);
+	  Member item = service.selectOne(vo);
 	  
 	  model.addAttribute("item", item);
 	  
@@ -68,15 +81,30 @@ public class MemberController {
 	  @RequestMapping(value = "/member/memberUpdt") public String
 	  memberUpdt(Member dto) throws Exception {
 		  
-		  service.updateCode(dto); return "redirect:/member/memberView?ifmmSeq=" +dto.getIfmmSeq(); }
+		  service.update(dto); return "redirect:/member/memberView?ifmmSeq=" +dto.getIfmmSeq(); }
 	  
-	  @RequestMapping(value = "/member/memberList")
-	  public String memberList(Model model) throws Exception {
+	 
+	  
+	  @RequestMapping(value = "/member/MemberDele") public String
+	  memberGroupDele(MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
+		  service.delete(vo);
+			/*
+			 * redirectAttributes.addAttribute("thisPage", vo.getThisPage());
+			 * redirectAttributes.addAttribute("shOption", vo.getShOption());
+			 * redirectAttributes.addAttribute("shValue", vo.getShValue());
+			 */
+			
+		  return "redirect:/member/MemberList";
+		  }
+	  @RequestMapping(value = "/member/MemberNele") public String
+	  memberGroupNele(MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
+		  service.updateDelete(vo);
+			/*
+			 * redirectAttributes.addAttribute("thisPage", vo.getThisPage());
+			 * redirectAttributes.addAttribute("shOption", vo.getShOption());
+			 * redirectAttributes.addAttribute("shValue", vo.getShValue());
+			 */
 		  
-		  List<Member> list = service.selectListCode();
-		  
-		  model.addAttribute("list", list);
-		  
-		  return "member/memberList";
+		  return "redirect:/member/MemberList";
 	  }
 	}

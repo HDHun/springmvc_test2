@@ -3,15 +3,23 @@ package com.junefw.infra.modules.member;
 import java.util.List;
 
 
+
 public interface MemberService {
 	
 
 	
-public List<Member> selectListCode() throws Exception;
 	
-	public int insertCode(Member dto) throws Exception;
+	int insert(Member dto) throws Exception;
+	int update(Member dto) throws Exception; 
+	Member selectOne(MemberVo vo) throws Exception;
+	List<Member> selectList(MemberVo vo) throws Exception;
+	int delete(MemberVo vo) throws Exception; 
+	int updateDelete(MemberVo vo) throws Exception; 
+	int selectOneCount(MemberVo vo) throws Exception;
 	
-	public int updateCode(Member dto) throws Exception; 
-	public Member selectOneCode(MemberVo vo) throws Exception;
+	
+	
+	
+	
 	
 }

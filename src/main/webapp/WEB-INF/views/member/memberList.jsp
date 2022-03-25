@@ -47,7 +47,7 @@ div {
 	
 		<div class="container-fluid" style="clear: both;background-color: white;" >
 			<div style="text-align: center;">
-				<input type="image" class="d-md-none" src="../../images/kurly.png" style="width: 150px;">
+				<input type="image" class="d-md-none" src="/infra/resources/images/kurly.PNG" style="width: 150px;">
 			</div>
 			<button class="btn d-md-none" style="float: right;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
 	 			 <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/></svg></button>
@@ -109,25 +109,25 @@ div {
 				</div>
 				
 			
-		<form id ="" name="" method="get" action="/infra/member/memberList">
-
-<select name="shIfmmDelNy" class="form-select" style="width: 200px; display: inline;">
-	<option value="">::삭제여부::
-	<option value="1" <c:if test="${vo.shIfmmDelNy eq 1}">selected</c:if>> Y
-	<option value="0"<c:if test="${vo.shIfmmDelNy eq 0}">selected</c:if>>N
-</select>
-
-<select class="form-select" style="width: 200px; display: inline;" name="shOption">
-	<option value="">::검색구분::
-	<option value="1">이름
-	<option value="2">아이디
-</select>
-<input class="form-control" style="width: 200px; display: inline;" type="text" name="shValue" id="shValue" value="<c:out value="${vo.shValue}"/>">
-<button type="Submit" id="btnSubmit" name="search" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
- 							<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-								</svg></button>
-				</div>
-		</div>
+<form id ="formList" name="formList" method="get" action="/infra/member/memberList">
+	<div style="text-align: center;">
+		<select name="shIfmmDelNy" class="form-select" style="width: 200px; display: inline;">
+			<option value="">::삭제여부::
+			<option value="1" <c:if test="${vo.shIfmmDelNy eq 1}">selected</c:if>> Y
+			<option value="0"<c:if test="${vo.shIfmmDelNy eq 0}">selected</c:if>>N
+		</select>
+		
+		<select class="form-select" style="width: 200px; display: inline;" name="shOption">
+			<option value="">::검색구분::
+			<option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>이름
+			<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>아이디
+		</select>
+		<input class="form-control" style="width: 200px; display: inline;" type="text" name="shValue" id="shValue" value="<c:out value="${vo.shValue}"/>">
+		<button type="Submit" id="btnSubmit" name="search" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+		 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+		</svg></button>
+	</div>
+				
 		<div class="container-fluid">
 			<div class="table-responsive">
 			  <table class="table">
@@ -137,10 +137,9 @@ div {
 								<div class="form-check">
 								<input class="form-check-input" type="checkbox" value=""id="flexCheckDefault"> 
 								<label class="form-check-label" for="flexCheckDefault" style="width: 100px;">전체선택</label></div></th>
-							<th scope="col" style="width: 5%;"><div style="width: 100px;">#</div></th>
+							<th scope="col" style="width: 5%;"><div style="width: 80px;">#</div></th>
 							<th scope="col" style="width: 10%;"><div style="width: 100px;">이름</div></th>
-							<th scope="col" style="width: 15%;"><div style="width: 100px;">배송지</div></th>
-							<th scope="col" style="width: 15%;"><div style="width: 100px;">전화번호</div></th>	
+							<th scope="col" style="width: 15%;"><div style="width: 100px;">아이디</div></th>
 							<th scope="col" style="width: 15%;"><div style="width: 100px;">상세정보</div></th>
 	      				</tr>
 	   			 </thead>
@@ -152,8 +151,7 @@ div {
 								<input class="form-check-input" type="checkbox" value=""id="flexCheckDefault1"></div></td>
 							<td scope="col"><c:out value="${item.ifmmSeq}"/></td>
 							<td scope="col"><c:out value="${item.ifmmName}"/></td>
-							<td scope="col">파주</td>
-							<td scope="col">01064795894</td>
+							<td scope="col"><c:out value="${item.ifmmId}"/></td>
 							<td scope="col"><button type="button"class="btn btn-secondary" onclick="location.href='./memberView.html'">상세정보</button></td>
 	    			  </tr>
 				</c:forEach>
@@ -209,8 +207,8 @@ div {
 				</span>
 			
 
-				<nav aria-label="...">
-				  <ul class="pagination">
+				<nav aria-label="..." >
+				  <ul class="pagination"style="justify-content: center;">
 					<c:if test="${vo.startPage gt vo.pageNumToShow}">
 						<li class="page-item"><a class="page-link" href="/infra/member/memberList?thisPage=${vo.startPage - 1}">Previous</a></li>
 					</c:if>
@@ -237,6 +235,6 @@ div {
 
 
 
-	<script src="../../../_bootstrap/_bootstrap/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
+	<script src="/infra/resources/_bootstrap/_bootstrap/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
