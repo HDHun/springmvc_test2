@@ -106,60 +106,57 @@ div  {
 						</ul>
 	 				 </div>
 				</div>
-<form method="post" action="/infra/member/memberUpdt">
-
-<input type="text" name="ifmmSeq" placeholder="ifmmSeq" value=<c:out value="${item.ifmmSeq}"/>> 
-<input type="text" name="ifmmName" placeholder="ifmmname" value=<c:out value="${item.ifmmName}"/>> 
-	
+<form method="post" action="/infra/member/memberInst">
+	<input type="hidden" id="shOption" name="shOption" value="<c:out value="${vo.shOption}"/>">
+	<input type="hidden" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>">
+	<input type="hidden" id="ifmmSeq" name ="ifmmSeq">
 
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
-					<label for="id" class="form-label">아이디</label> <input type="text"
-						class="form-control" id="id" maxlength="20" minlength="4"
-						placeholder="영문(대소문자),숫자,특수문자O,4~20자리조합">
+					<label for="id" class="form-label">아이디</label>
+					<input type="text" class="form-control" id="id" name="ifmmId" maxlength="20" 
+					minlength="4" placeholder="영문(대소문자),숫자,특수문자O,4~20자리조합">
 				</div>
 
 			</div>
 			<div class="row">
 				<div class="col-12 col-md-6">
-					<label for="password" class="form-label">비밀번호</label> <input
-						type="password" class="form-control" id="password" maxlength="20"
-						minlength="4" placeholder="영문(대소문자),숫자,특수문자O,4~20자리조합">
+					<label for="password" class="form-label">비밀번호</label>
+					<input type="password" class="form-control" id="password" maxlength="20"minlength="4" placeholder="영문(대소문자),숫자,특수문자O,4~20자리조합">
 				</div>
 				<div class="col-12 col-md-6">
-					<label for="passwordcheck" class="form-label">비밀번호 확인</label> <input
-						type="password" class="form-control" id="passwordcheck"
-						maxlength="20" minlength="4">
+					<label for="passwordcheck" class="form-label">비밀번호 확인</label>
+					<input type="password" class="form-control" id="passwordcheck"maxlength="20" minlength="4">
 				</div>
 
 			</div>
 			<div class="row">
 				<div class="col-12 col-md-6">
-					<label for="name" class="form-label">이름</label> <input type="text"
-						class="form-control" id="name">
+					<label for="name" class="form-label">이름</label> 
+					<input type="text" class="form-control" id="name">
 				</div>
 				<div class="col-12 col-md-6">
-					<label for="nameen" class="form-label">이름(영문)</label> <input
-						type="text" class="form-control" id="nameen">
-				</div>
-
-			</div>
-			<div class="row">
-				<div class="col-12 col-md-6">
-					<label for="firname" class="form-label">성</label> <input
-						type="text" class="form-control" id="firname">
-				</div>
-				<div class="col-12 col-md-6">
-					<label for="firnameen" class="form-label">성(영문)</label> <input
-						type="text" class="form-control" id="firnameen">
+					<label for="nameen" class="form-label">이름(영문)</label> 
+					<input type="text" class="form-control" id="nameen">
 				</div>
 
 			</div>
 			<div class="row">
 				<div class="col-12 col-md-6">
-					<label for="gender" class="form-label">성별</label> <select
-						class="form-select" id="gender">
+					<label for="firname" class="form-label">성</label> 
+					<input type="text" class="form-control" id="firname">
+				</div>
+				<div class="col-12 col-md-6">
+					<label for="firnameen" class="form-label">성(영문)</label> 
+					<input type="text" class="form-control" id="firnameen">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class="col-12 col-md-6">
+					<label for="gender" class="form-label">성별</label> 
+					<select class="form-select" id="gender">
 						<option>선택</option>
 						<option>남성</option>
 						<option>여성</option>
@@ -174,39 +171,35 @@ div  {
 
 			<div class="row">
 				<div class="col-12 col-md-6">
-					<label for="email" class="form-label">이메일</label> <input
-						type="text" class="form-control" id="email"
-						placeholder="name@example.com">
+					<label for="email" class="form-label">이메일</label>
+					 <input type="text" class="form-control" id="email"placeholder="name@example.com">
 				</div>
 				<div class="col-12 col-md-6">
 					이메일 마케팅 동의여부 <br>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="checkbox" id="email1"
-							value="option1"> <label class="form-check-label"
-							for="email1">동의</label>
+							<label class="form-check-label" for="email1">동의</label>
+						<input class="form-check-input" type="checkbox" id="email1"value="option1"> 
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-12 col-md-6">
-					<label for="phone" class="form-label">핸드폰</label> <input
-						type="text" class="form-control" id="phone"
-						placeholder="숫자만(01044448888)">
+					<label for="phone" class="form-label">핸드폰</label> 
+					<input type="text" class="form-control" id="phone"placeholder="숫자만(01044448888)">
 				</div>
 				<div class="col-12 col-md-6">
 					핸드폰 정보 마케팅 사용 동의 <br>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="checkbox" id="phone"
-							value="option2"> <label class="form-check-label"
-							for="phone">동의</label>
+						<input class="form-check-input" type="checkbox" id="phone"value="option2"> 
+							<label class="form-check-label"for="phone">동의</label>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-12 col-md-6">
 
-					<label for="sns" class="form-label">SNS</label> <select
-						class="form-select" id="sns">
+					<label for="sns" class="form-label">SNS</label> 
+					<select class="form-select" id="sns">
 						<option>선택</option>
 						<option>Facebook</option>
 						<option>Instagram</option>
@@ -215,15 +208,15 @@ div  {
 
 				</div>
 				<div class="col-12 col-md-6">
-					<label for="fax" class="form-label">FAX</label> <input type="text"
-						class="form-control" id="fax" placeholder="숫자만(024448888)">
+					<label for="fax" class="form-label">FAX</label>
+					 <input type="text" class="form-control" id="fax" placeholder="숫자만(024448888)">
 				</div>
 
 			</div>
 			<div class="row">
 				<div class="col-12 col-md-6">
-					<label for="state" class="form-label">거주국가</label> <select
-						class="form-select" id="state">
+					<label for="state" class="form-label">거주국가</label> 
+					<select class="form-select" id="state">
 						<option>선택</option>
 						<option>한국</option>
 						<option>미국</option>
@@ -233,8 +226,8 @@ div  {
 					</select>
 				</div>
 				<div class="col-12 col-md-6">
-					<label for="recommender" class="form-label">추천인</label> <input
-						type="text" class="form-control" id="recommender">
+					<label for="recommender" class="form-label">추천인</label>
+					 <input type="text" class="form-control" id="recommender">
 				</div>
 
 			</div>
@@ -244,100 +237,79 @@ div  {
 					
 					
 					<div class="input-group mb-3" id="address">
-						<input type="text" class="form-control" id="search" name="search">
+						<input type="text" class="form-control" id="sample5_address" name="search">
 						<!-- Button trigger modal -->
-						<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#search" onclick="execPostCode();">
+						<button type="button" class="btn btn-secondary" onclick="sample5_execDaumPostcode()" value="주소검색">
 	 						 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
 							 <path	d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 							</svg>
 						</button>
-		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-		<script type="text/javascript">
-		function execPostCode() {
-	         new daum.Postcode({
-	             oncomplete: function(data) {
-	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-	 
-	                // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
-	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-	                var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
-	                var extraRoadAddr = ''; // 도로명 조합형 주소 변수
-	 
-	                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-	                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-	                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-	                    extraRoadAddr += data.bname;
-	                }
-	                // 건물명이 있고, 공동주택일 경우 추가한다.
-	                if(data.buildingName !== '' && data.apartment === 'Y'){
-	                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-	                }
-	                // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-	                if(extraRoadAddr !== ''){
-	                    extraRoadAddr = ' (' + extraRoadAddr + ')';
-	                }
-	                // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
-	                if(fullRoadAddr !== ''){
-	                    fullRoadAddr += extraRoadAddr;
-	                }
-	 
-	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	                console.log(data.zonecode);
-	                console.log(fullRoadAddr);
-	                
-	                document.getElementById('post1').value = data.zonecode; //5자리 새우편번호 사용
-	                document.getElementById('post2').value = fullAddr;
-	                /* document.getElementById('signUpUserPostNo').value = data.zonecode; //5자리 새우편번호 사용
-	                document.getElementById('signUpUserCompanyAddress').value = fullRoadAddr;
-	                document.getElementById('signUpUserCompanyAddressDetail').value = data.jibunAddress; */
-	            }
-	         }).open();
-	     }
+						<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
+		
 
-		</script>
+					<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+					<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=22f130cc15670a20bd9b606872111930"></script>
+					<script>
+					    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+					        mapOption = {
+					            center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+					            level: 5 // 지도의 확대 레벨
+					        };
+					
+					    //지도를 미리 생성
+					    var map = new daum.maps.Map(mapContainer, mapOption);
+					    //주소-좌표 변환 객체를 생성
+					    var geocoder = new daum.maps.services.Geocoder();
+					    //마커를 미리 생성
+					    var marker = new daum.maps.Marker({
+					        position: new daum.maps.LatLng(37.537187, 127.005476),
+					        map: map
+					    });
+					
+					
+					    function sample5_execDaumPostcode() {
+					        new daum.Postcode({
+					            oncomplete: function(data) {
+					                var addr = data.address; // 최종 주소 변수
+					
+					                // 주소 정보를 해당 필드에 넣는다.
+					                document.getElementById("sample5_address").value = addr;
+					                // 주소로 상세 정보를 검색
+					                geocoder.addressSearch(data.address, function(results, status) {
+					                    // 정상적으로 검색이 완료됐으면
+					                    if (status === daum.maps.services.Status.OK) {
+					
+					                        var result = results[0]; //첫번째 결과의 값을 활용
+					
+					                        // 해당 주소에 대한 좌표를 받아서
+					                        var coords = new daum.maps.LatLng(result.y, result.x);
+					                        // 지도를 보여준다.
+					                        mapContainer.style.display = "block";
+					                        map.relayout();
+					                        // 지도 중심을 변경한다.
+					                        map.setCenter(coords);
+					                        // 마커를 결과값으로 받은 위치로 옮긴다.
+					                        marker.setPosition(coords)
+					                    }
+					                });
+					            }
+					        }).open();
+					    }
+					</script>
 
-<!-- Modal -->
-				<div class="modal fade" id="search" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				  <div class="modal-dialog">
-				    <div class="modal-content">
-						      <div class="modal-header">
-						      	<h5 class="modal-title" id="exampleModalLabel">주소검색</h5>
-						      	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						      </div>
-						   <div class="modal-body">
-						   		<div class="input-group mb-3">
-								  <input type="text" class="form-control" placeholder="예)판교역로 235, 분당주공, 삼평동 681" aria-label="Recipient's username" aria-describedby="button-addon2">
-									  <button class="btn btn-outline-secondary" type="button" id="button-addon2">
-									 	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-										<path	d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-									</svg></button>
-								</div>
-									<h2>tip</h2>
-									<p>아래와 같은 조합으로 검색을 하시면 더욱 정확한 결과가 검색됩니다.</p>
-									<p>도로명 + 건물번호</p>
-									<p>지역명(동/리) + 번지</p>
-									<p>지역명(동/리) + 건물명(아파트명)</p>
-									<p>사서함명 + 번호</p>
-						   </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-					        <button type="button" class="btn btn-primary">저장</button>
-					      </div>
-				    </div>
-				  </div>
+
+						
 				</div>
-						
-											</div>
-										</div>
-										<div class="col-12 col-md-6">
-											<label for="address1" class="form-label">상세주소</label>
-											<div class="input-group mb-3" id="address1">
-												<input type="text" class="form-control" id="post2">
-						
-											</div>
-										</div>
-									</div>
-								</div>
+			</div>
+					<div class="col-12 col-md-6">
+						<label for="address1" class="form-label">상세주소</label>
+						<div class="input-group mb-3" id="address1">
+							<input type="text" class="form-control" id="post2">
+	
+						</div>
+					</div>
+				</div>
+			</div>
 		
 			<div class="row">
 				<div class="col-12 col-md-3">
@@ -359,20 +331,9 @@ div  {
 
 			</div>
 		
-		
+	<input type="submit" value="제출" id="btnSubmit">	
 </form>
 
-<!-- <div id="map" style="width:500px;height:400px;"></div>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=22f130cc15670a20bd9b606872111930"></script>
-	<script>
-		var container = document.getElementById('map');
-		var options = {
-			center: new kakao.maps.LatLng(33.450701, 126.570667),
-			level: 3
-		};
-
-		var map = new kakao.maps.Map(container, options);
-	</script> -->
 <script src="/infra/resources/_bootstrap/_bootstrap/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="/infra/resources/js/validation.js"></script>

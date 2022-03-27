@@ -99,6 +99,7 @@ $("#btnSubmit").on("click", function(){
 	</c:if>  
   </ul>
 </nav> --%>
+
 <a href="/infra/code/codeGroupForm?shOption=<c:out value="${vo.shOption}"/>&thisPage=<c:out value="${vo.thisPage}"/>&shValue=<c:out value="${vo.shValue}"/>">등록</a>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -106,17 +107,7 @@ $("#btnSubmit").on("click", function(){
 
 <script type="text/javascript">
 	$("#btnSubmit").on("click", function(){
-		
-	 /* 	if($("#shIfcgName").val() == "" || $("shIfcgName").val() == null){
-			alert("null이다");
-			$("#shIfcgName").focus();
-		} */
-	 
-	/* if(	!checkNull($("#shIfcgName"), $("#shIfcgName").val(), "코드그룹이름을 입력하세요.")) return false; */
 	if(	!checkNull($("#shValue"), $("#shValue").val(), "검색어를 입력하세요.")) return false;
-		
-		
-
 		
 	});
 	abc = function(seq) {

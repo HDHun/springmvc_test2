@@ -19,6 +19,7 @@
 			<if test="shIfmmName != null and !shIfmmName.equals('')"> AND ifmmName LIKE concat('%',#{shIfmmName},'%')</if>
 			<choose>
 				<when test="shOption ==1">AND ifmmName LIKE concat('%',#{shValue},'%')</when>
+				<when test="shOption ==2">AND ifmmId LIKE concat('%',#{shValue},'%')</when>
 			</choose>
 	
 	</sql>
@@ -41,10 +42,20 @@
 	
 	<insert id="insert">
 			INSERT INTO infrMember (
-				ifmmName
+				ifmmId
+				,ifmmPassword
+				,ifmmName
+				,ifmmEmailConsentNy
+				,ifmmSmsConsentNy
+				,ifmmPushConsentNy
 				,ifmmDelNy
 				) values (
+				#{ifmmId}
+				#{ifmmPassword}
 				#{ifmmName}
+				#{ifmmEmailconsentNy}
+				#{ifmmSmsConsentNy}
+				#{ifmmPushConsentNy}
 				,0
 				)
 	<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
@@ -71,5 +82,19 @@
 			where 1=1
 				and ifmmSeq = #{ifmmSeq}
 	</select>
+		<update id="updateDelete">
+		UPDATE
+			infrMember
+		SET
+			ifmmDelny = 1
+		WHERE 1=1
+					AND ifmmSeq = #{ifmmSeq}
+	</update>
+	<delete id="delete">
+		DELETE FROM 
+			infrMember
+		WHERE 1=1
+				AND ifmmSeq = #{ifmmSeq}
+	</delete>
 	
 </mapper>

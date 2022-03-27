@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=dievice-width, intitial-scale=1.0">
 
 <link
-	href="../../../_bootstrap/_bootstrap/bootstrap-5.1.3-dist/css/bootstrap.min.css"
+	href="/infra/resources/_bootstrap/_bootstrap/bootstrap-5.1.3-dist/css/bootstrap.min.css"
 	rel="stylesheet">
 
 
@@ -40,14 +40,19 @@ div {
 			<a style="color: black; text-decoration-line:none;" href="#">고객센터</a>
 		</p>
 		<div style="text-align: center; clear: both;">
-			<input type="image" src="/infra/resources/images/kurly.PNG" style="width: 150px;">
+			<a href="/infra/member/memberList">
+			<image src="/infra/resources/images/kurly.PNG" style="width: 150px;">
+			</image>
+			</a>
 		</div>
 	</header>
 	
 	
 		<div class="container-fluid" style="clear: both;background-color: white;" >
 			<div style="text-align: center;">
-				<input type="image" class="d-md-none" src="/infra/resources/images/kurly.PNG" style="width: 150px;">
+				<a href="/infra/member/memberList">
+				<image class="d-md-none" src="/infra/resources/images/kurly.PNG"  style="width: 150px;"></image>
+			</a>
 			</div>
 			<button class="btn d-md-none" style="float: right;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
 	 			 <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/></svg></button>
@@ -109,7 +114,8 @@ div {
 				</div>
 				
 			
-<form id ="formList" name="formList" method="get" action="/infra/member/memberList">
+<form id ="formList" name="formList" method="post" action="/infra/member/memberList">
+<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
 	<div style="text-align: center;">
 		<select name="shIfmmDelNy" class="form-select" style="width: 200px; display: inline;">
 			<option value="">::삭제여부::
@@ -127,7 +133,8 @@ div {
 		 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 		</svg></button>
 	</div>
-				
+		회원 수 : <c:out value="${vo.totalRows}"/>
+		
 		<div class="container-fluid">
 			<div class="table-responsive">
 			  <table class="table">
@@ -135,7 +142,7 @@ div {
 	   				   <tr>
 							<th scope="col" style="width: 15%;">
 								<div class="form-check">
-								<input class="form-check-input" type="checkbox" value=""id="flexCheckDefault"> 
+								<input class="form-check-input" type="checkbox" value=""id="check" name="memberSeq"> 
 								<label class="form-check-label" for="flexCheckDefault" style="width: 100px;">전체선택</label></div></th>
 							<th scope="col" style="width: 5%;"><div style="width: 80px;">#</div></th>
 							<th scope="col" style="width: 10%;"><div style="width: 100px;">이름</div></th>
@@ -148,11 +155,11 @@ div {
 	      				<tr>
 							<td scope="col">
 								<div class="form-check">
-								<input class="form-check-input" type="checkbox" value=""id="flexCheckDefault1"></div></td>
+							<input class="form-check-input" type="checkbox" value="${item.ifmmSeq}"id="check1" name="memberSeq"></div></td>
 							<td scope="col"><c:out value="${item.ifmmSeq}"/></td>
 							<td scope="col"><c:out value="${item.ifmmName}"/></td>
 							<td scope="col"><c:out value="${item.ifmmId}"/></td>
-							<td scope="col"><button type="button"class="btn btn-secondary" onclick="location.href='./memberView.html'">상세정보</button></td>
+							<td scope="col"><a class="btn btn-secondary"href="/infra/member/memberView?ifmmSeq=<c:out value="${item.ifmmSeq}"/>">상세정보</a></td>
 	    			  </tr>
 				</c:forEach>
 				      
@@ -160,9 +167,10 @@ div {
 			  </table>
 			</div>
 		</div>
-</form>		
 	
-		
+		</form>	
+	
+<!-- 푸쉬전송 -->
 		<button class="btn btn-info" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop1" aria-controls="offcanvasTop1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 						fill="currentColor" class="bi bi-send" viewBox="0 0 16 16" data-toggle="modal" data-target="#sendModal">
 						  <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
@@ -179,13 +187,17 @@ div {
 						</div>
 					  </div>
 					</div>
-		
-		<button class="btn btn-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-						fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+<!-- 데이터 삭제 -->		
+		<a class="btn btn-danger" href="/infra/member/memberNele?ifmmSeq=<c:out value="${item.ifmmSeq}"/>" id = btnNelete>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
  						 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-  							<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-							</svg></button>
-					<div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+  						 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+						</svg>
+		</a>					
+							
+							
+							
+					<!-- <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
 					  <div class="offcanvas-header">
 					    <h5 id="offcanvasTopLabel">Delete Infomation</h5>
 					    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -198,35 +210,51 @@ div {
 					    		<button type="button" value="아니오" class="btn btn-outline-secondary">아니오</button>
 					  		</div>
 					  </div>
-					</div>
-				<span class="badge bg-secondary" style="float: right;">
+					</div> -->
+					
+					
+<!-- 데이터 등록 -->
+
+
+				<!-- <a class="badge bg-secondary" style="float: right;" href="/infra/member/memberForm">
+				 -->
+				 <form id="goForm" method="post">
+				 <a class="badge bg-secondary" style="float: right;" href="javascript:goForm();">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 						fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
 						  <path fill-rule="evenodd"	d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
 							</svg>
-				</span>
-			
+				</a>
+				 </form>
+				 
+		
+
+
+
+
+
 
 				<nav aria-label="..." >
 				  <ul class="pagination"style="justify-content: center;">
 					<c:if test="${vo.startPage gt vo.pageNumToShow}">
-						<li class="page-item"><a class="page-link" href="/infra/member/memberList?thisPage=${vo.startPage - 1}">Previous</a></li>
+						<li class="page-item"><a class="page-link" href="javascript:page(<c:out value='${vo.startPage - 1}'/>);">Previous</a></li>
 					</c:if>
 					<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
 						<c:choose>
 							<c:when test="${i.index eq vo.thisPage}">
-				                <li class="page-item active"><a class="page-link" href="/infra/member/memberList?thisPage=${i.index}">${i.index}</a></li>
+				                <li class="page-item active"><a class="page-link"href="javascript:page(<c:out value='${i.index}'/>);">${i.index}</a></li>
 							</c:when>
 							<c:otherwise>             
-				                <li class="page-item"><a class="page-link" href="/infra/member/memberList?thisPage=${i.index}">${i.index}</a></li>
+				                <li class="page-item"><a class="page-link" href="javascript:page(<c:out value='${i.index}'/>);">${i.index}</a></li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>     
 					<c:if test="${vo.endPage ne vo.totalPages}">                
-						<li class="page-item"><a class="page-link" href="/infra/member/memberList?thisPage=${vo.endPage + 1}">Next</a></li>
+						<li class="page-item"><a class="page-link" href="javascript:page(<c:out value='${vo.startPage + 1}'/>);">Next</a></li>
 					</c:if>  
 				  </ul>
 				</nav>
+				
 				<footer style="border-top:2px solid purple; margin-top : 5%;">
 					<p style="text-align: center;">Market Service | 대표 : 한동훈 | 사업자등록번호 : 000-00-000000 | 경기도 파주시</p>
 					<p style="text-align: center;">Copyright 2014.Market Service Inc. all rights reserved</p>
@@ -236,5 +264,34 @@ div {
 
 
 	<script src="/infra/resources/_bootstrap/_bootstrap/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="/infra/resources/js/validation.js"></script>
+	
+	<script type="text/javascript">
+	$("#btnSubmit").on("click", function(){
+	
+	if(	!checkNull($("#shValue"), $("#shValue").val(), "검색어를 입력하세요.")) return false;});
+
+	$("#btnNelete").on("click", function(){
+		var answer =  confirm("정말 삭제하시겠습니까?");
+		if(answer){
+	
+		} else {
+			return false;
+			}
+	});
+	
+	page = function(seq) {
+		$("#thisPage").val(seq);
+		$("#formList").submit();
+	}
+	goForm = function() {
+		$("#goForm").attr("action","/infra/member/memberForm");
+		$("#goForm").submit();
+	}
+</script>
+	
+	
 </body>
 </html>
