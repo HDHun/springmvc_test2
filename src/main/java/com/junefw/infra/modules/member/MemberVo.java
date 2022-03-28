@@ -18,6 +18,12 @@ public class MemberVo {
 	private String shIfmmName;
 	private String shIfmmId;
 	private String shIfmmSeq;
+	private String shDateStart;
+	private String shDateEnd;
+	private Integer shOptionDate;
+	
+
+
 	//common
 	private String shOption;
 	private String shValue;
@@ -226,6 +232,24 @@ public class MemberVo {
 	}
 	public void setShIfmmSeq(String shIfmmSeq) {
 		this.shIfmmSeq = shIfmmSeq;
+	}
+	public String getShDateStart() {
+		return shDateStart;
+	}
+	public void setShDateStart(String shDateStart) {
+		this.shDateStart = shDateStart;
+	}
+	public String getShDateEnd() {
+		return shDateEnd;
+	}
+	public void setShDateEnd(String shDateEnd) {
+		this.shDateEnd = shDateEnd;
+	}
+	public Integer getShOptionDate() {
+		return shOptionDate;
+	}
+	public void setShOptionDate(Integer shOptionDate) {
+		this.shOptionDate = shOptionDate;
 	}
 	
 	

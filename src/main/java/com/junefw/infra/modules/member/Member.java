@@ -1,5 +1,7 @@
 package com.junefw.infra.modules.member;
 
+import java.util.Date;
+
 public class Member {
 	//member
 	private String ifmmSeq;
@@ -8,10 +10,24 @@ public class Member {
 	private Integer ifmmDelNy;
 	private Integer ifmmAdminNy;
 	private String ifmmPassword;
+	private String ifmmDob;
 	private Integer ifmmEmailConsentNy;
 	private String ifmmSmsConsentNy;
 	private String ifmmPushConsentNy;
 	
+	private String regIp;
+	private String regSeq;
+	private String regDevice;
+	private Date regDateTime;
+	private Date regDateTimesvr;
+
+	
+	
+	private String modIp;
+	private String modSeq;
+	private String modDevice;
+	private Date modDateTime;
+	private Date modDateTimesvr;
 	//address
 	private String ifmaSeq;
 	private String ifmaDefaultNy;
@@ -47,6 +63,12 @@ public class Member {
 	private String ifcdDelNy;
 	
 	// getset
+	public String getIfmmDob() {
+		return ifmmDob;
+	}
+	public void setIfmmDob(String ifmmDob) {
+		this.ifmmDob = ifmmDob;
+	}
 	private String ifmpSeq;
 	public String getIfmmSeq() {
 		return ifmmSeq;
@@ -259,10 +281,68 @@ public class Member {
 		this.ifcdDelNy = ifcdDelNy;
 	}
 	
+	public String getRegIp() {
+		return regIp;
+	}
+	public void setRegIp(String regIp) {
+		this.regIp = regIp;
+	}
+	public String getRegSeq() {
+		return regSeq;
+	}
+	public void setRegSeq(String regSeq) {
+		this.regSeq = regSeq;
+	}
+	public String getRegDevice() {
+		return regDevice;
+	}
+	public void setRegDevice(String regDevice) {
+		this.regDevice = regDevice;
+	}
+	public Date getRegDateTime() {
+		return regDateTime;
+	}
+	public void setRegDateTime(Date regDateTime) {
+		this.regDateTime = regDateTime;
+	}
+	public Date getRegDateTimesvr() {
+		return regDateTimesvr;
+	}
+	public void setRegDateTimesvr(Date regDateTimesvr) {
+		this.regDateTimesvr = regDateTimesvr;
+	}
+	public String getModIp() {
+		return modIp;
+	}
+	public void setModIp(String modIp) {
+		this.modIp = modIp;
+	}
+	public String getModSeq() {
+		return modSeq;
+	}
+	public void setModSeq(String modSeq) {
+		this.modSeq = modSeq;
+	}
+	public String getModDevice() {
+		return modDevice;
+	}
+	public void setModDevice(String modDevice) {
+		this.modDevice = modDevice;
+	}
+	public Date getModDateTime() {
+		return modDateTime;
+	}
+	public void setModDateTime(Date modDateTime) {
+		this.modDateTime = modDateTime;
+	}
+	public Date getModDateTimesvr() {
+		return modDateTimesvr;
+	}
+	public void setModDateTimesvr(Date modDateTimesvr) {
+		this.modDateTimesvr = modDateTimesvr;
 	
 	
-	
-	
+	}
 
 	
 

@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.junefw.infra.common.constants.Constants;
+import com.junefw.infra.common.util.UtilDateTime;
+import com.junefw.infra.modules.code.Code;
+
 
 
 @Controller
@@ -17,9 +21,27 @@ public class MemberController {
 	@Autowired
 	MemberServiceImpl service;
 	
+
+	
+	
+	
 	@RequestMapping(value = "/member/memberList" /*method = RequestMethod.POST*/)
-	public String memberList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
+	public String memberList(@ModelAttribute("vo") MemberVo vo, Model model, Code code) throws Exception {
+		System.out.println("UtilDateTime.nowLocalDateTime()" + UtilDateTime.nowLocalDateTime());
+		System.out.println("UtilDateTime.nowDate()"+UtilDateTime.nowDate());
+		System.out.println("UtilDateTime.nowString()"+UtilDateTime.nowString());
+		
+		
+		
+		  vo.setShOptionDate(vo.getShOptionDate() == null ? 1 : vo.getShOptionDate());
+		  vo.setShDateStart(vo.getShDateStart() == null ?
+		  UtilDateTime.calculateDayString(UtilDateTime.nowLocalDateTime(),
+		  Constants.DATE_INTERVAL) : vo.getShDateStart());
+		  vo.setShDateEnd(vo.getShDateEnd() == null ? UtilDateTime.nowString() :
+		  vo.getShDateEnd());
+		 
 		int count = service.selectOneCount(vo);
+		
 		vo.setParamsPaging(count);
 		if(count !=0) {
 		List<Member> list = service.selectList(vo);

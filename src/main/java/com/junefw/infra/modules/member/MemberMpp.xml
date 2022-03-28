@@ -21,6 +21,11 @@
 				<when test="shOption ==1">AND ifmmName LIKE concat('%',#{shValue},'%')</when>
 				<when test="shOption ==2">AND ifmmId LIKE concat('%',#{shValue},'%')</when>
 			</choose>
+			<choose>
+		<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+		<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+		<when test="shOptionDate == 3">AND a.ifmmDob BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+	</choose>
 	
 	</sql>
 	<select id="selectList" resultMap="resultMapObj">
@@ -49,15 +54,43 @@
 				,ifmmSmsConsentNy
 				,ifmmPushConsentNy
 				,ifmmDelNy
+				,ifmmDob
+				,regIp
+				,regSeq
+				,regDevice
+			 	,regDateTime
+				,regDateTimesvr
+				,modIp
+				,modSeq
+				,modDevice
+			 	,modDateTime
+				,modDateTimesvr
 				) values (
 				#{ifmmId}
-				#{ifmmPassword}
-				#{ifmmName}
-				#{ifmmEmailconsentNy}
-				#{ifmmSmsConsentNy}
-				#{ifmmPushConsentNy}
+				,#{ifmmPassword}
+				,#{ifmmName}
+				,#{ifmmEmailconsentNy}
+				,#{ifmmSmsConsentNy}
+				,#{ifmmPushConsentNy}
 				,0
+				,#{regIp}
+				,#{regSeq}
+				,#{regDevice}
+				,#{regDateTime}
+				,#{regDateTimesvr}
+				,#{modIp}
+				,#{modSeq}
+				,#{modDevice}
+				,#{modDateTime}
+				,#{modDateTimesvr}
+				<choose>
+				<when test="ifmmDob.equals('')">,NULL</when>
+				<otherwise>,#{ifmmDob}</otherwise>
+			</choose>
 				)
+	
+	
+		
 	<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
 		SELECT last_insert_id()
 	</selectKey>

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.junefw.infra.common.util.UtilDateTime;
+
 @Service
 public class MemberServiceImpl implements MemberService{
 	@Autowired
@@ -15,6 +17,8 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int insert(Member dto) throws Exception {
 		dao.insert(dto);
+		dto.setRegDateTime(UtilDateTime.nowDate());
+		dto.setModDateTime(UtilDateTime.nowDate());
 		return 1;
 	}
 

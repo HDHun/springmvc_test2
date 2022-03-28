@@ -330,7 +330,7 @@ div  {
 				</div>
 
 			</div>
-		
+		<fmt:formatDate value="${item.regDateTime }" pattern="yyyy-MM-dd HH:mm:ss"/>
 	<input type="submit" value="제출" id="btnSubmit">	
 </form>
 
