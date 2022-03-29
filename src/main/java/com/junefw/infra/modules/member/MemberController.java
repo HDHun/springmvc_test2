@@ -33,14 +33,14 @@ public class MemberController {
 		
 		
 		
-		  vo.setShOptionDate(vo.getShOptionDate() == null ? 1 : vo.getShOptionDate());
-		  vo.setShDateStart(vo.getShDateStart() == null ?
-		  UtilDateTime.calculateDayString(UtilDateTime.nowLocalDateTime(),
-		  Constants.DATE_INTERVAL) : vo.getShDateStart());
-		  vo.setShDateEnd(vo.getShDateEnd() == null ? UtilDateTime.nowString() :
-		  vo.getShDateEnd());
+		
 		 
-		int count = service.selectOneCount(vo);
+			vo.setShDateStart(vo.getShDateStart() == null ? 
+					UtilDateTime.calculateDayString(UtilDateTime.nowLocalDateTime(), 
+							Constants.DATE_INTERVAL) : UtilDateTime.addStringTime(vo.getShDateStart()));
+			vo.setShDateEnd(vo.getShDateEnd() == null ? UtilDateTime.nowString() : UtilDateTime.addStringTime(vo.getShDateEnd()));
+
+			int count = service.selectOneCount(vo);
 		
 		vo.setParamsPaging(count);
 		if(count !=0) {
@@ -56,8 +56,11 @@ public class MemberController {
 		  
 		  // 입력이 되어야 함
 		  service.insert(dto);
+		  service.insertPhone(dto);
+		  service.insertAddress(dto);
+		  service.insertEmail(dto);
 		  
-		  return "redirect:/member/memberView";
+		  return "redirect:/member/memberList";
 	  }
 	  
 	  @RequestMapping(value = "/member/memberView")
@@ -85,6 +88,7 @@ public class MemberController {
 		 * model.addAttribute("codeGender", CodeServiceImpl.selectListCachedCode("16"));
 		 */  
 		return "member/memberForm"; 
+		
 		  
 	  }
 	  
@@ -103,12 +107,33 @@ public class MemberController {
 	  @RequestMapping(value = "/member/memberUpdt") public String
 	  memberUpdt(Member dto) throws Exception {
 		  
-		  service.update(dto); return "redirect:/member/memberView?ifmmSeq=" +dto.getIfmmSeq(); }
+		  service.update(dto); 
+			/*
+			 * return "redirect:/member/memberView?ifmmSeq=" +dto.getIfmmSeq();
+			 */		 
+		  return "redirect:/member/memberList"; 
+		  
+	  }
+	  @RequestMapping(value = "/member/MemberMultiUele") public String
+	  memberMultiUele(MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
+
+		  String[] checkboxSeqArray = vo.getCheckboxSeqArray();
+		  
+		  for(String checkboxSeq : checkboxSeqArray) {
+			  vo.setIfmmSeq(checkboxSeq);
+			  service.Uelete(vo);
+		  }
+		  
+		  
+		  
+		  
+		  return "redirect:/member/MemberList";
+	  }
 	  
 	 
 	  
 	  @RequestMapping(value = "/member/MemberDele") public String
-	  memberGroupDele(MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
+	  memberDele(MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
 		  service.delete(vo);
 			/*
 			 * redirectAttributes.addAttribute("thisPage", vo.getThisPage());
@@ -119,7 +144,7 @@ public class MemberController {
 		  return "redirect:/member/MemberList";
 		  }
 	  @RequestMapping(value = "/member/MemberNele") public String
-	  memberGroupNele(MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
+	  memberNele(MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
 		  service.updateDelete(vo);
 			/*
 			 * redirectAttributes.addAttribute("thisPage", vo.getThisPage());

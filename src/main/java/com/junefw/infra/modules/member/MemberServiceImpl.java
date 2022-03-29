@@ -47,10 +47,32 @@ public class MemberServiceImpl implements MemberService{
 	public int updateDelete(MemberVo vo) throws Exception {
 		return dao.updateDelete(vo);
 	}
+	@Override
+	public int Uelete(MemberVo vo) throws Exception {
+		return dao.Uelete(vo);
+	}
 
 	@Override
 	public int selectOneCount(MemberVo vo) throws Exception {
 		return dao.selectOneCount(vo);
+	}
+
+	@Override
+	public int insertEmail(Member dto) throws Exception {
+		
+		return dao.insertEmail(dto);
+	}
+
+	@Override
+	public int insertAddress(Member dto) throws Exception {
+		
+		return dao.insertAddress(dto);
+	}
+
+	@Override
+	public int insertPhone(Member dto) throws Exception {
+		
+		return dao.insertPhone(dto);
 	}
 
 	

@@ -5,8 +5,17 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
+<jsp:useBean id="CodeServiceImpl" class="com.junefw.infra.modules.code.CodeServiceImpl"/>
+<%-- desc 처리 
+<% pageContext.setAttribute("br", "\n"); %>
+<div class="col-sm-6 mt-3 mt-sm-0">
+            <label for="ifmmDesc" class="form-label">설명</label>
+            <p>${fn:replace(item.ifmmDesc, br, '<br/>')}</p>
+            <p><c:out value="${fn:replace(item.ifmmDesc, br, '<br/>')}" escapeXml = "false"/></p>
+        </div>
 
-<!DOCTYPE HTML>
+ --%>
+ <!DOCTYPE HTML>
 <html>
 
 <head>
@@ -79,6 +88,8 @@ div {
 			
 <form id ="formList" name="formList" method="post" action="/infra/member/memberList">
 <input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
+<input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+
 	<div style="text-align: center;">
 		<select name="shIfmmDelNy" class="form-select" style="width: 200px; display: inline;">
 			<option value="">::삭제여부::
@@ -92,15 +103,15 @@ div {
 			<option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>아이디
 		</select>
 		<select class="form-select" style="width: 200px; display: inline;" name="shOptionDate">
-			<option value="">::검색구분::
-			<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>reg
-			<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>mod
+			<option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>::검색구분::
+			<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일
+			<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일
 			<option value="3" <c:if test="${vo.shOptionDate eq 3}">selected</c:if>>생일
 		</select>
 		<fmt:parseDate value="${vo.shDateStart}" var="shDateStart" pattern="yyyy-MM-dd"/>
-		<input  class="form-control"  type="text" style="width: 200px; display: inline;" name="shDateStart" id="shDateStart">
+		<input  class="form-control"  type="text" style="width: 200px; display: inline;" name="shDateStart" id="shDateStart" value="<fmt:formatDate value="${shDateStart}" pattern="yyyy-MM-dd" />" autocomplete="off">
 		<fmt:parseDate value="${vo.shDateEnd}" var="shDateEnd" pattern="yyyy-MM-dd"/>
-		<input  class="form-control" type="text" style="width: 200px; display: inline;" name="shDateEnd" id="shDateEnd">
+		<input  class="form-control" type="text" style="width: 200px; display: inline;" name="shDateEnd" id="shDateEnd"  value="<fmt:formatDate value="${shDateEnd}" pattern="yyyy-MM-dd" />" autocomplete="off">
 			
 		<input class="form-control" style="width: 200px; display: inline;" type="text" name="shValue" id="shValue" value="<c:out value="${vo.shValue}"/>">
 		<button type="Submit" id="btnSubmit" name="search" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -117,11 +128,12 @@ div {
 	   				   <tr>
 							<th scope="col" style="width: 15%;">
 								<div class="form-check">
-								<input class="form-check-input" type="checkbox" value=""id="check" name="memberSeq"> 
+								<input class="form-check-input" type="checkbox" value=""id="check" name=""> 
 								<label class="form-check-label" for="flexCheckDefault" style="width: 100px;">전체선택</label></div></th>
 							<th scope="col" style="width: 5%;"><div style="width: 80px;">#</div></th>
 							<th scope="col" style="width: 10%;"><div style="width: 100px;">이름</div></th>
 							<th scope="col" style="width: 15%;"><div style="width: 100px;">아이디</div></th>
+							<th scope="col" style="width: 15%;"><div style="width: 100px;">생일</div></th>
 							<th scope="col" style="width: 15%;"><div style="width: 100px;">상세정보</div></th>
 	      				</tr>
 	   			 </thead>
@@ -130,10 +142,13 @@ div {
 	      				<tr>
 							<td scope="col">
 								<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="${item.ifmmSeq}"id="check1" name="memberSeq"></div></td>
+									<input class="form-check-input" type="checkbox" value="${item.ifmmSeq}"id="checkboxSeq" name="checkboxSeq" value="<c:out value="${item.ifmmSeq}"/>">
+								</div>
+							</td>
 							<td scope="col"><c:out value="${item.ifmmSeq}"/></td>
 							<td scope="col"><c:out value="${item.ifmmName}"/></td>
 							<td scope="col"><c:out value="${item.ifmmId}"/></td>
+							<td scope="col"><c:out value="${item.ifmmDob}"/></td>
 							<td scope="col"><a class="btn btn-secondary"href="/infra/member/memberView?ifmmSeq=<c:out value="${item.ifmmSeq}"/>">상세정보</a></td>
 	    			  </tr>
 				</c:forEach>
@@ -290,13 +305,53 @@ KURLY CORP. ALL RIGHTS RESERVED</p>
 
 
 </footer>
-
-
+<%-- 
+	전화번호
+        	<c:choose>
+                		<c:when test="${fn:length(item.ifmpNumber) eq 10 }">
+							<c:out value="${fn:substring(item.ifmpNumber,0,3)}"/>
+							-<c:out value="${fn:substring(item.ifmpNumber,3,6)}"/>
+							-<c:out value="${fn:substring(item.ifmpNumber,6,10)}"/>
+                		</c:when>
+                		<c:otherwise>
+							<c:out value="${fn:substring(item.ifmpNumber,0,3)}"/>
+							-<c:out value="${fn:substring(item.ifmpNumber,3,7)}"/>
+							-<c:out value="${fn:substring(item.ifmpNumber,7,11)}"/>
+                		</c:otherwise>
+               		</c:choose>
+               		
+               		  	<c:set var="numberPhone" value="${item.ifmpNumber }"/>
+                	<c:choose>
+                		<c:when test="${fn:length(numberPhone) eq 10 }">
+							<c:out value="${fn:substring(numberPhone,0,3)}"/>
+							- <c:out value="${fn:substring(numberPhone,3,6)}"/>
+							- <c:out value="${fn:substring(numberPhone,6,10)}"/>
+                		</c:when>
+                		<c:otherwise>
+							<c:out value="${fn:substring(numberPhone,0,3)}"/>
+							- <c:out value="${fn:substring(numberPhone,3,7)}"/>
+							- <c:out value="${fn:substring(numberPhone,7,11)}"/>
+                		</c:otherwise>
+               		</c:choose>
+ --%>
 	<script src="/infra/resources/_bootstrap/_bootstrap/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="/infra/resources/jquery/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
 	<script src="/infra/resources/js/validation.js"></script>
 	<script type="text/javascript">
+	$("chekboxAll").click(function() {
+		if($("#checkboxAll").is(":checked")) $("input[name=checkboxSeq]").prop("checked",true);
+		else $("input[name=checkboxSeq]").prop("checked", false);
+		
+			});
+	$("input[name=checkboxSeq]:checked").each(function() { 
+		checkboxSeqArray.push($(this).val());
+	});
+	
+	$("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
+						
+	form.attr("action", goUrlMultiDele).submit();
+	
 	$("#btnSubmit").on("click", function(){
 	
 	if(	!checkNull($("#shValue"), $("#shValue").val(), "검색어를 입력하세요.")) return false;});
@@ -317,6 +372,11 @@ KURLY CORP. ALL RIGHTS RESERVED</p>
 	goForm = function() {
 		$("#goForm").attr("action","/infra/member/memberForm");
 		$("#goForm").submit();
+	}
+	goView = function(seq) {
+		$("#ifmmSeq").val(seq);
+		$("#goView").attr("action","/infra/member/memberView");
+		$("#goView").submit();
 	}
 	$(document).ready(function(){
 		$("#shDateStart").datepicker();

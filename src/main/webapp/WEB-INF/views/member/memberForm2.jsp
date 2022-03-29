@@ -11,25 +11,25 @@
 
 <!DOCTYPE HTML>
 <html>
+
 <head>
 <meta charset="uTF-8">
 <meta name="viewport" content="width=dievice-width, intitial-scale=1.0">
 
 <link
-	href="../../../_bootstrap/_bootstrap/bootstrap-5.1.3-dist/css/bootstrap.min.css"
+	href="/infra/resources/_bootstrap/_bootstrap/bootstrap-5.1.3-dist/css/bootstrap.min.css"
 	rel="stylesheet">
+<link href="/infra/resources/jquery/jquery-ui-1.13.1.custom/jquery-ui.css" rel="stylesheet">
 
 
 
 <title>memberForm2</title>
 <style type="text/css">
-div {
-	margin: 10px;
+div  {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
-.container {
-	border: 1px black;
-}
 </style>
 </head>
 <body>
@@ -54,41 +54,11 @@ div {
 			
 			<nav>
 				<ul class="nav justify-content-center">
-				 	<li class="dropdown nav-item " style="margin-left: 60px;">
-				          <a style="color: black;" class="nav-link dropdown-toggle d-none d-md-block d-lg-block d-xl-block d-xxl-block" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-				           전체 카테고리
-				          </a>
-				          <ul class="dropdown-menu" aria-labelledby="navbarDropdown" role="menu">
-				            <li><a class="dropdown-item" href="#">채소</a></li>
-				            <li><a class="dropdown-item" href="#">과일·견과·쌀</a></li>
-				            <li><a class="dropdown-item" href="#">수산물·건어물</a></li>
-				            <li><a class="dropdown-item" href="#">정육·계란</a></li>
-				            <li><a class="dropdown-item" href="#">국·반찬·요리</a></li>
-				            <li><a class="dropdown-item" href="#">샐러드·간편식</a></li>
-				            <li><a class="dropdown-item" href="#">면·양념·오일</a></li>
-				            <li><a class="dropdown-item" href="#">생수·음료·우유·커피</a></li>
-				            <li><a class="dropdown-item" href="#">간식·과자·떡</a></li>
-				            <li><a class="dropdown-item" href="#">베이커리·치즈·델리</a></li>
-				            <li><a class="dropdown-item" href="#">건강식품</a></li>
-				            <li><a class="dropdown-item" href="#">전통주</a></li>
-				            <li><a class="dropdown-item" href="#">생활용품·리빙·캠핑</a></li>
-				            <li><a class="dropdown-item" href="#">스킨케어·메이크업</a></li>
-				            <li><a class="dropdown-item" href="#">헤어·바디·구강</a></li>
-				            <li><a class="dropdown-item" href="#">주방용품</a></li>
-				            <li><a class="dropdown-item" href="#">가전용품</a></li>
-				            <li><a class="dropdown-item" href="#">반려동물</a></li>
-				            <li><a class="dropdown-item" href="#">베이비·키즈·완구</a></li>
-				            <li><a class="dropdown-item" href="#">컬리의 추천</a></li>
-				          </ul>
-			        </li>
-					<li class="nav-item d-none d-md-block d-lg-block d-xl-block d-xxl-block">
+				
 					<a class="nav-link active" aria-current="page" href="#" style="color: black;">홈</a></li>
 					<li class="nav-item d-none d-md-block d-lg-block d-xl-block d-xxl-block">
 					<a class="nav-link" href="#"style="color: black;">회원관리</a></li>
-					<li class="nav-item d-none d-md-block d-lg-block d-xl-block d-xxl-block">
-					<a class="nav-link" href="#"style="color: black;">시스템 관리</a></li>
-					<li class="nav-item d-none d-md-block d-lg-block d-xl-block d-xxl-block">
-					<a class="nav-link" href="#" style="color: black;">상품관리</a></li>
+				
 				</ul>
 			</nav>
 		</div>
@@ -107,19 +77,16 @@ div {
 						</ul>
 	 				 </div>
 				</div>
-<form method="post" action="/infra/member/memberUpdt">
 
-<input type="text" name="ifmmSeq" placeholder="ifmmSeq" value=<c:out value="${item.ifmmSeq}"/>> 
-	<input type="text" name="ifmmName" placeholder="ifmmname" value=<c:out value="${item.ifmmName}"/>> 
-	
-	
-	
+<form id ="formList" name="formList" method="post" action="/infra/member/memberUpdt">
+	<input type="hidden" id="ifmmSeq" name ="ifmmSeq">
+	<input type="hidden" id="shOption" name="shOption" value="<c:out value="${vo.shOption}"/>">
+	<input type="hidden" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="gy-3 col-12">
 					<label for="id" class="form-label">아이디</label>
-					<input type="text" class="form-control" id="id" 
-					maxlength="20" minlength="4" value="Huun">
+					<input type="text" class="form-control" id="id"  maxlength="20" minlength="4" value="Huun">
 				</div>
 
 			</div>
@@ -127,91 +94,76 @@ div {
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12 col-md-6">
-					<label for="password" class="form-label">비밀번호</label> <input
-						type="password" class="form-control" id="password" maxlength="20"
-						minlength="4" value="*************">
+					<label for="password" class="form-label">비밀번호</label>
+					 <input type="password" class="form-control" id="password" maxlength="20" minlength="4" value="*************">
 				</div>
 				<div class="col-12 col-md-6">
-					<label for="passwordcheck" class="form-label">비밀번호 확인</label> <input
-						type="password" class="form-control" id="passwordcheck"
-						maxlength="20" minlength="4" value="*************">
+					<label for="passwordcheck" class="form-label">비밀번호 확인</label> 
+					<input type="password" class="form-control" id="passwordcheck" maxlength="20" minlength="4" value="*************">
 				</div>
 
 			</div>
 		</div>
+			
 			<div class="row">
 				<div class="col-12 col-md-6">
-					<label for="name" class="form-label">이름</label> <input type="text"
-						class="form-control" id="name" value="동훈">
+					<label for="name" class="form-label">이름</label> 
+					<input type="text" class="form-control" id="name" value="동훈">
 				</div>
 				<div class="col-12 col-md-6">
-					<label for="nameen" class="form-label">이름(영문)</label> <input
-						type="text" class="form-control" id="nameen" value="DongHun">
+					<label for="nameen" class="form-label">이름(영문)</label>
+					 <input type="text" class="form-control" id="nameen" value="DongHun">
 				</div>
 
 			</div>
+		
 			<div class="row">
 				<div class="col-12 col-md-6">
-					<label for="firname" class="form-label">성</label> <input
-						type="text" class="form-control" id="firname" value="한">
-				</div>
-				<div class="col-12 col-md-6">
-					<label for="firnameen" class="form-label">성(영문)</label> <input
-						type="text" class="form-control" id="firnameen" value="Han">
-				</div>
-
-			</div>
-			<div class="row">
-				<div class="col-12 col-md-6">
-					<label for="gender" class="form-label">성별</label> <select
-						class="form-select" id="gender">
+					<label for="gender" class="form-label">성별</label>
+					<select class="form-select" id="gender">
 						<option>선택</option>
 						<option selected>남성</option>
 						<option>여성</option>
 					</select>
 				</div>
 				<div class="col-12 col-md-6">
-					<label for="birth" class="form-label">생일</label> <input type="text"
-						class="form-control" id="birth" value="1996.12.03">
+					<label for="birth" class="form-label">생일</label> 
+					<input type="text" class="form-control" id="birth" value="1996.12.03">
 				</div>
 
 			</div>
 
 			<div class="row">
 				<div class="col">
-					<label for="email" class="form-label">이메일</label> <input
-						type="text" class="form-control" id="email"
-						value="Huun@naver.com">
+					<label for="email" class="form-label">이메일</label> 
+					<input type="text" class="form-control" id="email" value="Huun@naver.com">
 				</div>
 				<div class="col">
 					이메일 마케팅 동의여부 <br>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="checkbox" id="email1"
-							value="option1" checked> <label class="form-check-label"
-							for="email1">동의</label>
+						<input class="form-check-input" type="checkbox" id="email1" value="option1" checked> 
+						<label class="form-check-label" for="email1">동의</label>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col">
-					<label for="phone" class="form-label">핸드폰</label> <input
-						type="text" class="form-control" id="phone"
-						value="01064795894">
+					<label for="phone" class="form-label">핸드폰</label> 
+					<input type="text" class="form-control" id="phone" value="01064795894">
 				</div>
 				<div class="col">
 					핸드폰 정보 마케팅 사용 동의 <br>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="checkbox" id="phone"
-							value="option2" checked> <label class="form-check-label"
-							for="phone">동의</label>
+						<input class="form-check-input" type="checkbox" id="phone"value="option2" checked> 
+						<label class="form-check-label" for="phone">동의</label>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-sm-6">
 
-					<label for="sns" class="form-label">SNS</label> <select
-						class="form-select" id="sns">
+					<label for="sns" class="form-label">SNS</label> 
+					<select class="form-select" id="sns">
 						<option>선택</option>
 						<option>Facebook</option>
 						<option selected>Instagram</option>
@@ -220,15 +172,15 @@ div {
 
 				</div>
 				<div class="col-sm-6">
-					<label for="fax" class="form-label">FAX</label> <input type="text"
-						class="form-control" id="fax" value="024448888">
+					<label for="fax" class="form-label">FAX</label> 
+					<input type="text" class="form-control" id="fax" value="024448888">
 				</div>
 
 			</div>
 			<div class="row">
 				<div class="col-12 col-md-6">
-					<label for="state" class="form-label">거주국가</label> <select
-						class="form-select" id="state">
+					<label for="state" class="form-label">거주국가</label>
+					 <select class="form-select" id="state">
 						<option>선택</option>
 						<option selected>한국</option>
 						<option>미국</option>
@@ -238,8 +190,8 @@ div {
 					</select>
 				</div>
 				<div class="col-12 col-md-6">
-					<label for="recommender" class="form-label">추천인</label> <input
-						type="text" class="form-control" id="recommender">
+					<label for="recommender" class="form-label">추천인</label>
+					 <input type="text" class="form-control" id="recommender">
 				</div>
 
 			</div>
@@ -255,8 +207,6 @@ div {
  										 <path	d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 										</svg>
 </button>
-
-	
 
 <!-- Modal -->
 <div class="modal fade" id="search" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -299,33 +249,59 @@ div {
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-12 col-md-6">
+		<div class="row">
+				<div class="col-12 col-md-3">
 					<label for="changer" class="form-label">최종수정자</label> <input
-						type="text" class="form-control" id="changer" value="한동훈">
+						type="text" class="form-control" id="changer">
 				</div>
-				<div class="col-12 col-md-6">
+				<div class="col-12 col-md-3">
 					<label for="changeday" class="form-label">최종수정일</label> <input
-						type="text" class="form-control" id="changeday" value="2022-01-01">
+						type="text" class="form-control" id="changeday">
 				</div>
-				<div class="col-12 col-md-6">
+				<div class="col-12 col-md-3">
 					<label for="firstchanger" class="form-label">최초등록자</label> <input
-						type="text" class="form-control" id="firstchanger" value="2022-01-01">
+						type="text" class="form-control" id="firstchanger">
 				</div>
-				<div class="col-12 col-md-6">
+				<div class="col-12 col-md-3">
 					<label for="firstchangeday" class="form-label">최초등록일</label> <input
-						type="text" class="form-control" id="fisrtchangeday" value="한동훈">
+						type="text" class="form-control" id="fisrtchangeday">
 				</div>
 
 			</div>
 		
-<input type="submit" value="제출">	
+<input class="btn btn-primary" type="submit" value="제출" id="editSubmit">
+<a class="btn btn-primary" href="/infra/member/memberView?ifmmSeq=<c:out value="${item.ifmmSeq}"/>" role="button">뒤로</a>
 </form>
+
+
 	
+	<script src="/infra/resources/_bootstrap/_bootstrap/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="/infra/resources/jquery/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
+	<script src="/infra/resources/js/validation.js"></script>
+	<script type="text/javascript">
+	
+	goForm = function() {
+		$("#goForm").attr("action","/infra/member/memberForm");
+		$("#goForm").submit();
+	}
+	$(document).ready(function(){
+		 $("#ifmmDob").datepicker();
+	}); 
 
-
-	<script src="../../../_bootstrap/_bootstrap/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
-
+	$.datepicker.setDefaults({
+	    dateFormat: 'yy-mm-dd',
+	    prevText: '이전 달',
+	    nextText: '다음 달',
+	    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+	    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+	    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+	    showMonthAfterYear: true,
+	    yearSuffix: '년'
+	    });
+	</script>
 
 </body>
 </html>

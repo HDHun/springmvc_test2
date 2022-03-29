@@ -19,6 +19,7 @@
 <link
 	href="/infra/resources/_bootstrap/_bootstrap/bootstrap-5.1.3-dist/css/bootstrap.min.css"
 	rel="stylesheet">
+<link href="/infra/resources/jquery/jquery-ui-1.13.1.custom/jquery-ui.css" rel="stylesheet">
 
 
 
@@ -53,41 +54,11 @@ div  {
 			
 			<nav>
 				<ul class="nav justify-content-center">
-				 	<li class="dropdown nav-item " style="margin-left: 60px;">
-				          <a style="color: black;" class="nav-link dropdown-toggle d-none d-md-block d-lg-block d-xl-block d-xxl-block" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-				           전체 카테고리
-				          </a>
-				          <ul class="dropdown-menu" aria-labelledby="navbarDropdown" role="menu">
-				            <li><a class="dropdown-item" href="#">채소</a></li>
-				            <li><a class="dropdown-item" href="#">과일·견과·쌀</a></li>
-				            <li><a class="dropdown-item" href="#">수산물·건어물</a></li>
-				            <li><a class="dropdown-item" href="#">정육·계란</a></li>
-				            <li><a class="dropdown-item" href="#">국·반찬·요리</a></li>
-				            <li><a class="dropdown-item" href="#">샐러드·간편식</a></li>
-				            <li><a class="dropdown-item" href="#">면·양념·오일</a></li>
-				            <li><a class="dropdown-item" href="#">생수·음료·우유·커피</a></li>
-				            <li><a class="dropdown-item" href="#">간식·과자·떡</a></li>
-				            <li><a class="dropdown-item" href="#">베이커리·치즈·델리</a></li>
-				            <li><a class="dropdown-item" href="#">건강식품</a></li>
-				            <li><a class="dropdown-item" href="#">전통주</a></li>
-				            <li><a class="dropdown-item" href="#">생활용품·리빙·캠핑</a></li>
-				            <li><a class="dropdown-item" href="#">스킨케어·메이크업</a></li>
-				            <li><a class="dropdown-item" href="#">헤어·바디·구강</a></li>
-				            <li><a class="dropdown-item" href="#">주방용품</a></li>
-				            <li><a class="dropdown-item" href="#">가전용품</a></li>
-				            <li><a class="dropdown-item" href="#">반려동물</a></li>
-				            <li><a class="dropdown-item" href="#">베이비·키즈·완구</a></li>
-				            <li><a class="dropdown-item" href="#">컬리의 추천</a></li>
-				          </ul>
-			        </li>
-					<li class="nav-item d-none d-md-block d-lg-block d-xl-block d-xxl-block">
+				
 					<a class="nav-link active" aria-current="page" href="#" style="color: black;">홈</a></li>
 					<li class="nav-item d-none d-md-block d-lg-block d-xl-block d-xxl-block">
 					<a class="nav-link" href="#"style="color: black;">회원관리</a></li>
-					<li class="nav-item d-none d-md-block d-lg-block d-xl-block d-xxl-block">
-					<a class="nav-link" href="#"style="color: black;">시스템 관리</a></li>
-					<li class="nav-item d-none d-md-block d-lg-block d-xl-block d-xxl-block">
-					<a class="nav-link" href="#" style="color: black;">상품관리</a></li>
+				
 				</ul>
 			</nav>
 		</div>
@@ -110,6 +81,7 @@ div  {
 	<input type="hidden" id="shOption" name="shOption" value="<c:out value="${vo.shOption}"/>">
 	<input type="hidden" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>">
 	<input type="hidden" id="ifmmSeq" name ="ifmmSeq">
+	<input type="hidden" id="ifmpDefaultNy" name ="ifmpDefaultNy" value="1">
 
 		<div class="container-fluid">
 			<div class="row">
@@ -123,36 +95,25 @@ div  {
 			<div class="row">
 				<div class="col-12 col-md-6">
 					<label for="password" class="form-label">비밀번호</label>
-					<input type="password" class="form-control" id="password" maxlength="20"minlength="4" placeholder="영문(대소문자),숫자,특수문자O,4~20자리조합">
+					<input type="password" class="form-control" id="password" name="ifmmPassword" maxlength="20"minlength="4" placeholder="영문(대소문자),숫자,특수문자O,4~20자리조합">
 				</div>
 				<div class="col-12 col-md-6">
 					<label for="passwordcheck" class="form-label">비밀번호 확인</label>
-					<input type="password" class="form-control" id="passwordcheck"maxlength="20" minlength="4">
+					<input type="password" class="form-control" id="passwordcheck" name="ifmmPasswordCheck"maxlength="20" minlength="4">
 				</div>
 
 			</div>
 			<div class="row">
 				<div class="col-12 col-md-6">
 					<label for="name" class="form-label">이름</label> 
-					<input type="text" class="form-control" id="name">
+					<input type="text" class="form-control" id="name" name="ifmmName">
 				</div>
 				<div class="col-12 col-md-6">
 					<label for="nameen" class="form-label">이름(영문)</label> 
 					<input type="text" class="form-control" id="nameen">
 				</div>
-
 			</div>
-			<div class="row">
-				<div class="col-12 col-md-6">
-					<label for="firname" class="form-label">성</label> 
-					<input type="text" class="form-control" id="firname">
-				</div>
-				<div class="col-12 col-md-6">
-					<label for="firnameen" class="form-label">성(영문)</label> 
-					<input type="text" class="form-control" id="firnameen">
-				</div>
-
-			</div>
+		
 			<div class="row">
 				<div class="col-12 col-md-6">
 					<label for="gender" class="form-label">성별</label> 
@@ -164,7 +125,8 @@ div  {
 				</div>
 				<div class="col-12 col-md-6">
 					<label for="birth" class="form-label">생일</label>
-					 <input type="date" class="form-control" id="birth">
+					 <input  class="form-control" type="text" name="ifmmDob" id="ifmmDob">
+		
 				</div>
 
 			</div>
@@ -172,7 +134,7 @@ div  {
 			<div class="row">
 				<div class="col-12 col-md-6">
 					<label for="email" class="form-label">이메일</label>
-					 <input type="text" class="form-control" id="email"placeholder="name@example.com">
+					 <input type="text" class="form-control" id="email" name="ifmeEmailFull" placeholder="name@example.com">
 				</div>
 				<div class="col-12 col-md-6">
 					이메일 마케팅 동의여부 <br>
@@ -185,7 +147,7 @@ div  {
 			<div class="row">
 				<div class="col-12 col-md-6">
 					<label for="phone" class="form-label">핸드폰</label> 
-					<input type="text" class="form-control" id="phone"placeholder="숫자만(01044448888)">
+					<input type="text" class="form-control" id="phone" name="ifmpNumber" placeholder="숫자만(01044448888)">
 				</div>
 				<div class="col-12 col-md-6">
 					핸드폰 정보 마케팅 사용 동의 <br>
@@ -237,7 +199,7 @@ div  {
 					
 					
 					<div class="input-group mb-3" id="address">
-						<input type="text" class="form-control" id="sample5_address" name="search">
+						<input type="text" class="form-control" id="sample5_address" name="ifmaAddress1">
 						<!-- Button trigger modal -->
 						<button type="button" class="btn btn-secondary" onclick="sample5_execDaumPostcode()" value="주소검색">
 	 						 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -331,13 +293,33 @@ div  {
 
 			</div>
 		<fmt:formatDate value="${item.regDateTime }" pattern="yyyy-MM-dd HH:mm:ss"/>
-	<input type="submit" value="제출" id="btnSubmit">	
+	<input class="btn btn-primary" type="submit" value="제출" id="btnSubmit">
+<a class="btn btn-primary" href="/infra/member/memberList" role="button">취소</a>
 </form>
 
 <script src="/infra/resources/_bootstrap/_bootstrap/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/infra/resources/jquery/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
 <script src="/infra/resources/js/validation.js"></script>
+<script type="text/javascript">
 
+	$(document).ready(function(){
+		 $("#ifmmDob").datepicker();
+	}); 
+
+	$.datepicker.setDefaults({
+	    dateFormat: 'yy-mm-dd',
+	    prevText: '이전 달',
+	    nextText: '다음 달',
+	    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+	    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+	    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+	    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+	    showMonthAfterYear: true,
+	    yearSuffix: '년'
+	    });
+	</script>
 
 
 

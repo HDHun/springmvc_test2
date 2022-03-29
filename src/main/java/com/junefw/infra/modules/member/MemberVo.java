@@ -63,7 +63,9 @@ public class MemberVo {
 	private String ifcdDelNy;
 	
 	
-	
+	//checkbox
+	private String[] checkboxSeqArray;
+
 
 
 
@@ -416,6 +418,17 @@ public class MemberVo {
 	public void setIfcdDelNy(String ifcdDelNy) {
 		this.ifcdDelNy = ifcdDelNy;
 	}
+	//checkbox
+
+	public String[] getCheckboxSeqArray() {
+		return checkboxSeqArray;
+	}
+	public void setCheckboxSeqArray(String[] checkboxSeqArray) {
+		this.checkboxSeqArray = checkboxSeqArray;
+	}
+	
+	
+	
 	
 	// ---- paging
 		public void setParamsPaging(int totalRowsParam) {

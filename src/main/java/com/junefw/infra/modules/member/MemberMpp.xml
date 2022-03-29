@@ -34,6 +34,7 @@
 			    ,a.ifmmName
 			    ,a.ifmmId
 			    ,a.ifmmDelNy
+			    ,a.ifmmDob
 				<include refid="selectCommon"/>		
 				limit #{startRnumForMysql},#{rowNumToShow} 	
 						
@@ -50,12 +51,27 @@
 				ifmmId
 				,ifmmPassword
 				,ifmmName
-				,ifmmEmailConsentNy
-				,ifmmSmsConsentNy
-				,ifmmPushConsentNy
+				<!-- ,ifmmEmailConsentNy
+				,ifmmSmsConsentNy -->
 				,ifmmDelNy
 				,ifmmDob
-				,regIp
+				
+				) values (
+				#{ifmmId}
+				,#{ifmmPassword}
+				,#{ifmmName}
+				<!-- ,#{ifmmEmailconsentNy}
+				,#{ifmmSmsConsentNy} -->
+				,0
+				<choose>
+				<when test="ifmmDob.equals('')">,NULL</when>
+				<otherwise>,#{ifmmDob}</otherwise>
+				</choose>
+				
+				
+				)
+	
+				<!-- ,regIp
 				,regSeq
 				,regDevice
 			 	,regDateTime
@@ -65,14 +81,7 @@
 				,modDevice
 			 	,modDateTime
 				,modDateTimesvr
-				) values (
-				#{ifmmId}
-				,#{ifmmPassword}
-				,#{ifmmName}
-				,#{ifmmEmailconsentNy}
-				,#{ifmmSmsConsentNy}
-				,#{ifmmPushConsentNy}
-				,0
+				
 				,#{regIp}
 				,#{regSeq}
 				,#{regDevice}
@@ -82,19 +91,52 @@
 				,#{modSeq}
 				,#{modDevice}
 				,#{modDateTime}
-				,#{modDateTimesvr}
-				<choose>
-				<when test="ifmmDob.equals('')">,NULL</when>
-				<otherwise>,#{ifmmDob}</otherwise>
-			</choose>
-				)
-	
-	
+				,#{modDateTimesvr} -->
 		
 	<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
 		SELECT last_insert_id()
 	</selectKey>
+	
 	</insert>
+	<insert id="insertEmail">
+			INSERT INTO infrMemberEmail (
+				ifmeEmailFull
+				,ifmeDelNy
+				) values (
+				#{ifmeEmailFull}
+				,0)
+	<selectKey resultType="String" keyProperty="ifmeSeq,ifmmSeq" order="AFTER">
+		SELECT last_insert_id()
+	</selectKey>
+	
+	</insert>
+	<insert id="insertAddress">
+			INSERT INTO infrMemberAddress (
+				ifmaAddress1
+				,ifmaDelNy
+				) values (
+				#{ifmaAddress1}
+				,0)
+	<selectKey resultType="String" keyProperty="ifmaSeq,ifmmSeq" order="AFTER">
+		SELECT last_insert_id()
+	</selectKey>
+	
+	</insert>
+	<insert id="insertPhone">
+			INSERT INTO infrMemberPhone (
+				ifmpNumber
+				,ifmpDefaultNy
+				,ifmpDelNy
+				) values (
+				#{ifmpNumber}
+				,1
+				,0)
+	<selectKey resultType="String" keyProperty="ifmpSeq,ifmmSeq" order="AFTER">
+		SELECT last_insert_id()
+	</selectKey>
+	
+	</insert>
+	
 	<update id="update">
 			UPDATE
 				infrmember
@@ -116,6 +158,14 @@
 				and ifmmSeq = #{ifmmSeq}
 	</select>
 		<update id="updateDelete">
+		UPDATE
+			infrMember
+		SET
+			ifmmDelny = 1
+		WHERE 1=1
+					AND ifmmSeq = #{ifmmSeq}
+	</update>
+		<update id="Uelete">
 		UPDATE
 			infrMember
 		SET
