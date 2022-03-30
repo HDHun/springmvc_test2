@@ -80,12 +80,17 @@ div  {
 <form method="post" action="/infra/member/memberView">
 	<input type="hidden" id="shOption" name="shOption" value="<c:out value="${vo.shOption}"/>">
 	<input type="hidden" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>">
+	<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage}"/>">
 	<input type="hidden" id="ifmmSeq" name ="ifmmSeq">
+	
+		
 		<div class="container-fluid">
 			<div class="row">
 				<div class="gy-3 col-12">
-					<label for="id" class="form-label">아이디</label>
-					<input type="text" class="form-control" id="id" maxlength="20" minlength="4" value="<c:out value="${item.ifmmName}"/>" disabled>
+
+					<label for="ifmmId" class="form-label">아이디</label>
+					<input type="text" class="form-control" id="ifmmId" maxlength="20" minlength="4" value="<c:out value="${item.ifmmId}"/>" disabled>
+	
 				</div>
 
 			</div>
@@ -93,12 +98,12 @@ div  {
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12 col-md-6">
-					<label for="password" class="form-label">비밀번호</label> 
-					<input type="password" class="form-control" id="password" maxlength="20" minlength="4" value="*************" disabled>
+					<label for="ifmmPassword" class="form-label">비밀번호</label> 
+					<input type="password" class="form-control" id="ifmmPassword" maxlength="20" minlength="4" value="<c:out value="${item.ifmmPassword}"/>" disabled>
 				</div>
 				<div class="col-12 col-md-6">
 					<label for="passwordcheck" class="form-label">비밀번호 확인</label> 
-					<input type="password" class="form-control" id="passwordcheck"maxlength="20" minlength="4" value="*************" disabled>
+					<input type="password" class="form-control" id="passwordcheck"maxlength="20" minlength="4" value="<c:out value="${item.ifmmPassword}"/>" disabled>
 				</div>
 
 			</div>
@@ -106,11 +111,11 @@ div  {
 			<div class="row">
 				<div class="col-12 col-md-6">
 					<label for="name" class="form-label">이름</label>
-					 <input type="text" class="form-control" id="name" value="동훈" disabled>
+					 <input type="text" class="form-control" id="ifmmName" value="<c:out value="${item.ifmmName}"/>" disabled>
 				</div>
 				<div class="col-12 col-md-6">
 					<label for="nameen" class="form-label">이름(영문)</label> 
-					<input type="text" class="form-control" id="nameen" value="DongHun" disabled>
+					<input type="text" class="form-control" id="nameen" disabled>
 				</div>
 
 			</div>
@@ -126,7 +131,7 @@ div  {
 				</div>
 				<div class="col-12 col-md-6">
 					<label for="birth" class="form-label">생일</label> 
-					<input type="text" class="form-control" id="birth" value="1996.12.03" disabled>
+					<input type="text" class="form-control" id="ifmmDob" value="<c:out value="${item.ifmmDob}"/>" disabled>
 				</div>
 
 			</div>
@@ -134,20 +139,20 @@ div  {
 			<div class="row">
 				<div class="col">
 					<label for="email" class="form-label">이메일</label> 
-					<input type="text" class="form-control" id="email" disabled value="Huun@naver.com">
+					<input type="text" class="form-control" id="ifmeEmail" disabled value="<c:out value="${item.ifmeEmailFull}"/>">
 				</div>
 				<div class="col">
 					이메일 마케팅 동의여부 <br>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="checkbox" id="email1" value="option1" checked> 
-							<label class="form-check-label" for="email1" >동의</label>
+						<input class="form-check-input" type="checkbox" id="ifmeEmail" value="option1" checked> 
+							<label class="form-check-label" for="ifmeEmail" >동의</label>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col">
-					<label for="phone" class="form-label">핸드폰</label>
-					<input type="text" class="form-control" id="phone" value="01064795894" disabled>
+					<label for="ifmpNumber" class="form-label">핸드폰</label>
+					<input type="text" class="form-control" id="ifmpNumber" value="<c:out value="${item.ifmpNumber}"/>" disabled>
 				</div>
 				<div class="col">
 					핸드폰 정보 마케팅 사용 동의 <br>
@@ -197,7 +202,7 @@ div  {
 				<div class="col-12 col-md-6">
 					<label for="address" class="form-label">주소</label>
 					<div class="input-group mb-3" id="address" >
-						<input type="text" class="form-control"placeholder="경기도 파주시 가온로" disabled>
+						<input type="text" class="form-control"disabled value="<c:out value="${item.ifmaAddress1}"/>">
 						<!-- Button trigger modal -->
 <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#search">
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -239,12 +244,12 @@ div  {
 
 					</div>
 				</div>
+<!-- 상세주소 넣으면 밑부분 날라감 -->		
 				<div class="col-12 col-md-6">
 					<label for="address1" class="form-label">상세주소</label>
-					<div class="input-group mb-3" id="address1">
-						<input type="text" class="form-control" value="1111-111" disabled>
-
-					</div>
+				<div class="input-group mb-3" id="address1">
+					<input type="text" class="form-control" disabled>
+				</div>
 				</div>
 			</div>
 			<div class="row">
@@ -267,11 +272,11 @@ div  {
 
 			</div>
 		
-		
 <a class="btn btn-primary" href="/infra/member/memberList" role="button">목록</a>
 <a class="btn btn-primary" href="/infra/member/memberForm2?ifmmSeq=<c:out value="${item.ifmmSeq}"/>" role="button">수정</a>
-</form>
 	
+		
+</form>
 
 
 <script src="/infra/resources/_bootstrap/_bootstrap/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>

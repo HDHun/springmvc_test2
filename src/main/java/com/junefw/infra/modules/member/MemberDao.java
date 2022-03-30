@@ -44,14 +44,18 @@ public class MemberDao {
 	
 		//email
 		public int insertEmail(Member dto) {return sqlSession.insert(namespace + ".insertEmail", dto);}
+		public int updateEmail(Member dto) {return sqlSession.update(namespace + ".updateEmail", dto);}
 		
 		// address
 		public int insertAddress(Member dto) {return sqlSession.insert(namespace + ".insertAddress", dto);}
+		public int updateAddress(Member dto) {return sqlSession.update(namespace + ".updateAddress", dto);}
 		
 		// phone
 		public int insertPhone(Member dto) {return sqlSession.insert(namespace + ".insertPhone", dto);}
+		public int updatePhone(Member dto) {return sqlSession.update(namespace + ".updatePhone", dto);}
 		//checkbox
 		public int Uelete(MemberVo vo) {return sqlSession.update(namespace + ".Uelete", vo);}
 		
-		
+		//login
+		public Member selectOneLogin(Member dto) { return sqlSession.selectOne(namespace + ".selectOneLogin", dto);}
 }

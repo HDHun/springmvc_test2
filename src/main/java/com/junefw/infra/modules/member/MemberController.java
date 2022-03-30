@@ -1,12 +1,18 @@
 package com.junefw.infra.modules.member;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.junefw.infra.common.constants.Constants;
@@ -70,7 +76,6 @@ public class MemberController {
 		  
 		  // 디비까지 가서 한 건의 데이터를 가져온다.
 		  Member item = service.selectOne(vo);
-		  
 		  // jsp로 데이터를 넘겨준다
 		  model.addAttribute("item", item);
 		  
@@ -91,6 +96,7 @@ public class MemberController {
 		
 		  
 	  }
+	
 	  
 	  
 	  @RequestMapping(value = "/member/memberForm2") public String memberForm2(MemberVo vo, Model model) throws Exception {
@@ -108,6 +114,9 @@ public class MemberController {
 	  memberUpdt(Member dto) throws Exception {
 		  
 		  service.update(dto); 
+		  service.updateAddress(dto);
+		  service.updateEmail(dto);
+		  service.updatePhone(dto);
 			/*
 			 * return "redirect:/member/memberView?ifmmSeq=" +dto.getIfmmSeq();
 			 */		 
@@ -133,25 +142,57 @@ public class MemberController {
 	 
 	  
 	  @RequestMapping(value = "/member/MemberDele") public String
-	  memberDele(MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
+				memberDele(MemberVo vo , RedirectAttributes redirectAttributes ) throws Exception {
 		  service.delete(vo);
-			/*
-			 * redirectAttributes.addAttribute("thisPage", vo.getThisPage());
-			 * redirectAttributes.addAttribute("shOption", vo.getShOption());
-			 * redirectAttributes.addAttribute("shValue", vo.getShValue());
-			 */
+			
+			  redirectAttributes.addAttribute("thisPage", vo.getThisPage());
+			  redirectAttributes.addAttribute("shOption", vo.getShOption());
+			  redirectAttributes.addAttribute("shValue", vo.getShValue());
+			 
 			
 		  return "redirect:/member/MemberList";
 		  }
-	  @RequestMapping(value = "/member/MemberNele") public String
-	  memberNele(MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
+	  @RequestMapping(value = "/member/MemberNele") public String memberNele(MemberVo vo , RedirectAttributes redirectAttributes ) throws Exception {
 		  service.updateDelete(vo);
-			/*
-			 * redirectAttributes.addAttribute("thisPage", vo.getThisPage());
-			 * redirectAttributes.addAttribute("shOption", vo.getShOption());
-			 * redirectAttributes.addAttribute("shValue", vo.getShValue());
-			 */
+			
+			  redirectAttributes.addAttribute("thisPage", vo.getThisPage());
+			  redirectAttributes.addAttribute("shOption", vo.getShOption());
+			  redirectAttributes.addAttribute("shValue", vo.getShValue());
+			 
 		  
 		  return "redirect:/member/MemberList";
 	  }
+	  
+	  
+	  
+	  @RequestMapping(value = "/member/logIn") 
+	  public String logIn(HttpServletRequest httpServletRequest) throws Exception{
+		  
+		  return "member/logIn"; 
+		  
+		  
+	  }
+	  	@ResponseBody
+		@RequestMapping(value = "/member/loginProc")
+		public Map<String, Object> loginProc(Member dto, HttpSession httpSession) throws Exception {
+			Map<String, Object> returnMap = new HashMap<String, Object>();
+			
+			Member rtMember = service.selectOneLogin(dto);
+
+			if(rtMember != null) {
+
+				if(rtMember.getIfmmSeq() != null) {
+					httpSession.setAttribute("sessSeq", rtMember.getIfmmSeq());
+					httpSession.setAttribute("sessId", rtMember.getIfmmId());
+					httpSession.setAttribute("sessName", rtMember.getIfmmName());
+					
+					returnMap.put("rt", "success");
+				} else {
+					returnMap.put("rt", "fail");
+				}
+			} else {
+				returnMap.put("rt", "fail");
+			}
+			return returnMap;
+		}
 	}

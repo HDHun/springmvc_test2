@@ -55,7 +55,13 @@ public class MemberVo {
 	private String ifmpTelecomCd;
 	private String ifmpNumber;
 	private String ifmpDelNy;
+	private String ifmpSeq;
 	
+	
+
+
+
+
 	//code
 	private String ifcdSeq;
 	private String ifcdName;
@@ -369,6 +375,12 @@ public class MemberVo {
 	}
 	public void setIfmpTypeCd(String ifmpTypeCd) {
 		this.ifmpTypeCd = ifmpTypeCd;
+	}
+	public String getIfmpSeq() {
+		return ifmpSeq;
+	}
+	public void setIfmpSeq(String ifmpSeq) {
+		this.ifmpSeq = ifmpSeq;
 	}
 	public String getIfmpDeviceCd() {
 		return ifmpDeviceCd;

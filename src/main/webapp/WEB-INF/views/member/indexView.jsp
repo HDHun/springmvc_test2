@@ -19,7 +19,7 @@
 
 
 
-<title>logIn</title>
+<title>indexView</title>
 <style type="text/css">
 </style>
 </head>
@@ -102,35 +102,10 @@
 	    
 	    
 	    <!-- 이모티콘 버튼 -->
-<form method="post" name="" action="">
-	<div style="text-align: center; margin-top:100px;">
-		<h4 style="font-weight:bold; ">로그인</h4>
-	</div>	
-		<div class="container-fluid">
-			<div class="row" style="float:none; margin:0 auto;">
-					<div class="col-4 col-md-3" style="float:none; margin:0 auto;">
-						<input type="text" class="form-control" id="ifmmId" name="ifmmId"  placeholder="아이디를 입력해주세요." style="margin:10px; height:55px;">
-						<input type="password" class="form-control" id="ifmmPassword" name="ifmmPassword" placeholder="비밀번호를 입력해주세요." style="margin:10px; height:55px;">
-					
-						<div class="form-check" style="margin-left:10px;">
-							  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-
-							  <label class="form-check-label" for="flexCheckChecked">
-							    보안접속
-							  </label>
-							  <div style="float: right;">
-							  <a style="font-size: 12px; color: black; text-decoration-line:none;" href="#">아이디찾기 |</a>
-							  <a style="font-size: 12px; color: black; text-decoration-line:none;" href="#">비밀번호찾기</a>
-							  </div>
-						</div>
-						<div class="d-grid gap-2" style="margin-left:15px;">
-						  <button class="btn btn" style="background-color: purple; color:white; font-weight: bold; height: 50px;" type="button" id="btnLogin">로그인</button>
-						  <button class="btn btn" style="color: purple; border-color: purple; font-weight: bold; height: 50px;" type="button">회원가입</button>
-					</div>
-				</div>
-			</div>
-		</div>
-</form>			
+	
+						  <button class="btn btn" style="background-color: purple; color:white; font-weight: bold; height: 50px;" type="button">로그아웃</button>
+		
+		
 <lsection style="margin-top:10%;float: left; width: 50%;  margin-left:50px;">
 		<div style="float: left; width: 50%; text-align:right; ">
 			<h4 style="display: block;">고객행복센터</h4>
@@ -196,25 +171,6 @@ KURLY CORP. ALL RIGHTS RESERVED</p>
 	<script src="/infra/resources/jquery/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
 	<script src="/infra/resources/js/validation.js"></script>
 	<script type="text/javascript">
-	$("#btnLogin").click (function() {
-	$.ajax({
-		async: true 
-		,cache: false
-		,type: "post"
-		,url: "/infra/member/loginProc"
-		,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPassword" : $("#ifmmPassword").val()}
-		,success: function(response) {
-			if(response.rt == "success") {
-				location.href = "/infra/index/indexView";
-			} else {
-				alert("회원없음");
-			}
-		}
-		,error : function(jqXHR, textStatus, errorThrown){
-			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-		}
-	})
-	});
 	 </script>
 	
 	

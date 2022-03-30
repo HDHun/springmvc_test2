@@ -8,6 +8,7 @@
 
     <resultMap id="resultMapObj" type="com.junefw.infra.modules.member.Member"></resultMap>
 
+<!-- select -->
 	<sql id = "selectCommon">
 		 FROM 
 		 	shop.infrmember a
@@ -32,6 +33,7 @@
 			SELECT 
 				a.ifmmSeq
 			    ,a.ifmmName
+			    ,a.ifmmPassword
 			    ,a.ifmmId
 			    ,a.ifmmDelNy
 			    ,a.ifmmDob
@@ -46,6 +48,39 @@
 				<include refid="selectCommon"/>		
 	</select>
 	
+	<select id="selectOne" resultMap ="resultMapObj">
+			select 
+				a.ifmmSeq
+				,a.ifmmName
+				,a.ifmmId
+				,a.ifmmPassword
+				,a.ifmmDob
+				,a.ifmmDelNy
+				,b.ifmeEmailFull
+				,c.ifmpNumber
+				,d.ifmaAddress1
+				,d.ifmaAddress2
+			 from 
+				shop.infrmember a
+			LEFT JOIN infrmemberEmail b on a.ifmmSeq = b.ifmmSeq AND b.ifmeDelNy = 0
+			LEFT JOIN infrmemberPhone c on a.ifmmSeq = c.ifmmSeq AND c.ifmpDelNy = 0
+			LEFT JOIN infrmemberAddress d on a.ifmmSeq = d.ifmmSeq  AND d.ifmaDelNy = 0
+			where 1=1
+				and a.ifmmSeq = #{ifmmSeq}
+	</select>
+	<select id="selectOneLogin" resultMap ="resultMapObj">
+			select 
+				a.ifmmSeq
+				,a.ifmmId
+				,a.ifmmPassword
+				,a.ifmmDelNy
+			 from 
+				shop.infrmember a
+			where 1=1
+				and ifmmId = #{ifmmId}
+				and ifmmPassword = #{ifmmPassword}
+	</select>
+<!-- insert -->	
 	<insert id="insert">
 			INSERT INTO infrMember (
 				ifmmId
@@ -102,10 +137,15 @@
 			INSERT INTO infrMemberEmail (
 				ifmeEmailFull
 				,ifmeDelNy
+				,ifmeDefaultNy
+				,ifmmSeq
 				) values (
 				#{ifmeEmailFull}
-				,0)
-	<selectKey resultType="String" keyProperty="ifmeSeq,ifmmSeq" order="AFTER">
+				,0
+				,1
+				,#{ifmmSeq}
+				)
+	<selectKey resultType="String" keyProperty="ifmeSeq" order="AFTER">
 		SELECT last_insert_id()
 	</selectKey>
 	
@@ -114,10 +154,15 @@
 			INSERT INTO infrMemberAddress (
 				ifmaAddress1
 				,ifmaDelNy
+				,ifmaDefaultNy
+				,ifmmSeq
 				) values (
 				#{ifmaAddress1}
-				,0)
-	<selectKey resultType="String" keyProperty="ifmaSeq,ifmmSeq" order="AFTER">
+				,0
+				,1
+				,#{ifmmSeq}
+				)
+	<selectKey resultType="String" keyProperty="ifmaSeq" order="AFTER">
 		SELECT last_insert_id()
 	</selectKey>
 	
@@ -127,37 +172,59 @@
 				ifmpNumber
 				,ifmpDefaultNy
 				,ifmpDelNy
+				,ifmmSeq
 				) values (
 				#{ifmpNumber}
 				,1
-				,0)
-	<selectKey resultType="String" keyProperty="ifmpSeq,ifmmSeq" order="AFTER">
+				,0
+				,#{ifmmSeq}
+				)
+	<selectKey resultType="String" keyProperty="ifmpSeq" order="AFTER">
 		SELECT last_insert_id()
 	</selectKey>
 	
 	</insert>
-	
+<!-- update -->	
 	<update id="update">
 			UPDATE
 				infrmember
 			SET 
-				ifmmName = #{ifmmName}
+				ifmmPassword = #{ifmmPassword}
+				,ifmmDob = #{ifmmDob}
 			WHERE 1=1
 				AND ifmmSeq = #{ifmmSeq}
 	</update>
+	<update id="updatePhone">
+			UPDATE
+				infrmemberPhone
+			SET 
+				ifmpNumber = #{ifmpNumber}
+			WHERE 1=1
+				AND ifmmSeq = #{ifmmSeq}
+				AND ifmpSeq = #{ifmpSeq}
+	</update>
+	<update id="updateAddress">
+			UPDATE
+				infrmemberAddress
+			SET 
+				ifmaAddress1 = #{ifmaAddress1}
+				ifmaAddress2 = #{ifmaAddress2}
+			WHERE 1=1
+				AND ifmmSeq = #{ifmmSeq}
+				AND ifmaSeq = #{ifmaSeq}
+	</update>
+	<update id="updateEmail">
+			UPDATE
+				infrmemberEmail
+			SET 
+				ifmeEmailFull = #{ifmeEmailFull}
+			WHERE 1=1
+				AND ifmmSeq = #{ifmmSeq}
+				AND ifmeSeq = #{ifmeSeq}
+	</update>
 		
-	<select id="selectOne" resultMap ="resultMapObj">
-			select 
-				a.ifmmSeq
-				,a.ifmmName
-				a,ifmmId
-				,a.ifmmDelNy
-			 from 
-				shop.infrmember a
-			where 1=1
-				and ifmmSeq = #{ifmmSeq}
-	</select>
-		<update id="updateDelete">
+	
+	<update id="updateDelete">
 		UPDATE
 			infrMember
 		SET
@@ -165,7 +232,7 @@
 		WHERE 1=1
 					AND ifmmSeq = #{ifmmSeq}
 	</update>
-		<update id="Uelete">
+	<update id="Uelete">
 		UPDATE
 			infrMember
 		SET
@@ -173,6 +240,7 @@
 		WHERE 1=1
 					AND ifmmSeq = #{ifmmSeq}
 	</update>
+<!-- delete -->
 	<delete id="delete">
 		DELETE FROM 
 			infrMember

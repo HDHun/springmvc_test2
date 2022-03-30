@@ -55,6 +55,7 @@ public class Member {
 	private String ifmpTelecomCd;
 	private String ifmpNumber;
 	private String ifmpDelNy;
+	private String ifmpSeq;
 	
 	//code
 	private String ifcdSeq;
@@ -69,7 +70,6 @@ public class Member {
 	public void setIfmmDob(String ifmmDob) {
 		this.ifmmDob = ifmmDob;
 	}
-	private String ifmpSeq;
 	public String getIfmmSeq() {
 		return ifmmSeq;
 	}

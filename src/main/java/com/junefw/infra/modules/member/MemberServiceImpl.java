@@ -13,7 +13,7 @@ public class MemberServiceImpl implements MemberService{
 	MemberDao dao;
 
 	
-
+//member
 	@Override
 	public int insert(Member dto) throws Exception {
 		dao.insert(dto);
@@ -56,7 +56,7 @@ public class MemberServiceImpl implements MemberService{
 	public int selectOneCount(MemberVo vo) throws Exception {
 		return dao.selectOneCount(vo);
 	}
-
+//email
 	@Override
 	public int insertEmail(Member dto) throws Exception {
 		
@@ -64,15 +64,40 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
+	public int updateEmail(Member dto) throws Exception {
+		
+		return dao.updateEmail(dto);
+	}
+// phone
+	@Override
+	public int insertPhone(Member dto) throws Exception {
+		
+		return dao.insertPhone(dto);
+	}
+
+
+	@Override
+	public int updatePhone(Member dto) throws Exception {
+		
+		return dao.updatePhone(dto);
+	}
+// address	
+	@Override
 	public int insertAddress(Member dto) throws Exception {
 		
 		return dao.insertAddress(dto);
 	}
 
 	@Override
-	public int insertPhone(Member dto) throws Exception {
+	public int updateAddress(Member dto) throws Exception {
+	
+		return dao.updateAddress(dto);
+	}
+
+	@Override
+	public Member selectOneLogin(Member dto) throws Exception {
 		
-		return dao.insertPhone(dto);
+		return dao.selectOneLogin(dto);
 	}
 
 	

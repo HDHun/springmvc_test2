@@ -89,6 +89,7 @@ div {
 <form id ="formList" name="formList" method="post" action="/infra/member/memberList">
 <input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage}" default="1"/>">
 <input type="hidden" name="rowNumToShow" value="<c:out value="${vo.rowNumToShow}"/>">
+<input type="hidden" name="checkboxSeqArray">
 
 	<div style="text-align: center;">
 		<select name="shIfmmDelNy" class="form-select" style="width: 200px; display: inline;">
@@ -128,7 +129,7 @@ div {
 	   				   <tr>
 							<th scope="col" style="width: 15%;">
 								<div class="form-check">
-								<input class="form-check-input" type="checkbox" value=""id="check" name=""> 
+								<input class="form-check-input" type="checkbox" value=""id="checkboxAll" name=""> 
 								<label class="form-check-label" for="flexCheckDefault" style="width: 100px;">전체선택</label></div></th>
 							<th scope="col" style="width: 5%;"><div style="width: 80px;">#</div></th>
 							<th scope="col" style="width: 10%;"><div style="width: 100px;">이름</div></th>
@@ -152,7 +153,6 @@ div {
 							<td scope="col"><a class="btn btn-secondary"href="/infra/member/memberView?ifmmSeq=<c:out value="${item.ifmmSeq}"/>">상세정보</a></td>
 	    			  </tr>
 				</c:forEach>
-				      
 			    </tbody>
 			  </table>
 			</div>
@@ -178,7 +178,8 @@ div {
 					  </div>
 					</div>
 <!-- 데이터 삭제 -->		
-		<a class="btn btn-danger" href="/infra/member/memberNele?ifmmSeq=<c:out value="${item.ifmmSeq}"/>" id = btnNelete>
+		<a class="btn btn-danger" id = btnNelete href="/infra/member/memberNele?ifmmSeq=<c:out value="${item.ifmmSeq}"/>">
+																		 
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
  						 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
   						 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
@@ -245,7 +246,7 @@ div {
 				  </ul>
 				</nav>
 				
-			<lsection style="margin-top:10%;float: left; width: 50%;  margin-left:50px;">
+<lsection style="margin-top:10%;float: left; width: 50%;  margin-left:50px;">
 		<div style="float: left; width: 50%; text-align:right; ">
 			<h4 style="display: block;">고객행복센터</h4>
 			<h3 style="display: inline;">1644-1107</h3>
@@ -293,15 +294,16 @@ div {
 		<p style="font-size: 12px;margin:1px;">채용문의:recruit@kurlycorp.com</p>
 		<p style="font-size: 12px;margin:1px;">팩스:070-7500-6098 | 이메일 : help@kurlycorp.com</p>
 		<p style="font-size: 12px;margin:1px; margin-bottom:30px;">대량주문 문의 : kurlygift@kurlrycorp.com</p>
-		<input type="image" src="../../../images/icon_round_facebook_48.png" style="width: 40px;">
-		<input type="image" src="../../../images/icon_round_instgram_48.png" style="width: 40px;">
-		<input type="image" src="../../../images/icon_round_kakao_48.png" style="width: 40px;">
-		<input type="image" src="../../../images/icon_round_twitter_48.png" style="width: 40px;">
+		<input type="image" src="/infra/resources/images/icon_round_facebook_48.png" style="width: 40px;">
+		<input type="image" src="/infra/resources/images/icon_round_instgram_48.png" style="width: 40px;">
+		<input type="image" src="/infra/resources/images/icon_round_kakao_48.png" style="width: 40px;">
+		<input type="image" src="/infra/resources/images/icon_round_twitter_48.png" style="width: 40px;">
 </rsection>
 <footer style="clear: both; background-color:silver; ; text-align: center;">
-<p style="font-size: 10px;">마켓컬리에서 판매되는 상품 중에는 마켓컬리에 입점한 개별 판매자가 판매하는 마켓플레이스(오픈마켓) 상품이 포함되어 있습니다.<br>
-마켓플레이스(오픈마켓) 상품의 경우 컬리는 통신판매중개자로서 통신판매의 당사자가 아닙니다. 컬리는 해당 상품의 주문,품질,교환/환불 등 의무와 책임을 부담하지 않습니다.<br>
-KURLY CORP. ALL RIGHTS RESERVED</p>
+	<p style="font-size: 10px;">마켓컬리에서 판매되는 상품 중에는 마켓컬리에 입점한 개별 판매자가 판매하는 마켓플레이스(오픈마켓) 상품이 포함되어 있습니다.<br>
+		마켓플레이스(오픈마켓) 상품의 경우 컬리는 통신판매중개자로서 통신판매의 당사자가 아닙니다. 컬리는 해당 상품의 주문,품질,교환/환불 등 의무와 책임을 부담하지 않습니다.<br>
+		KURLY CORP. ALL RIGHTS RESERVED
+	</p>
 
 
 </footer>
@@ -339,18 +341,24 @@ KURLY CORP. ALL RIGHTS RESERVED</p>
 	<script src="/infra/resources/jquery/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
 	<script src="/infra/resources/js/validation.js"></script>
 	<script type="text/javascript">
-	$("chekboxAll").click(function() {
-		if($("#checkboxAll").is(":checked")) $("input[name=checkboxSeq]").prop("checked",true);
+	 
+	
+	$("#checkboxAll").click(function() {
+		if($("#checkboxAll").is(":checked")) $("input[name=checkboxSeq]").prop("checked", true);
 		else $("input[name=checkboxSeq]").prop("checked", false);
-		
-			});
-	$("input[name=checkboxSeq]:checked").each(function() { 
-		checkboxSeqArray.push($(this).val());
 	});
 	
-	$("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
-						
-	form.attr("action", goUrlMultiDele).submit();
+	$("#btnModalUelete").on("click", function(){
+		$("input[name=checkboxSeq]:checked").each(function() {
+			checkboxSeqArray.push($(this).val());	
+		});
+		
+		$("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
+		
+		$("#modalConfirm").modal("hide");
+		
+		$("#formList").attr("action", "/member/memberMultiUele").submit();
+	})
 	
 	$("#btnSubmit").on("click", function(){
 	
