@@ -72,6 +72,20 @@
 			select 
 				a.ifmmSeq
 				,a.ifmmId
+				,a.ifmmName
+				,a.ifmmPassword
+				,a.ifmmDelNy
+			 from 
+				shop.infrmember a
+			where 1=1
+				and ifmmId = #{ifmmId}
+				and ifmmPassword = #{ifmmPassword}
+	</select>
+	<select id="selectOneLogout" resultMap ="resultMapObj">
+			select 
+				a.ifmmSeq
+				,a.ifmmId
+				,a.ifmmName
 				,a.ifmmPassword
 				,a.ifmmDelNy
 			 from 
@@ -193,6 +207,7 @@
 				,ifmmDob = #{ifmmDob}
 			WHERE 1=1
 				AND ifmmSeq = #{ifmmSeq}
+				
 	</update>
 	<update id="updatePhone">
 			UPDATE
@@ -201,17 +216,15 @@
 				ifmpNumber = #{ifmpNumber}
 			WHERE 1=1
 				AND ifmmSeq = #{ifmmSeq}
-				AND ifmpSeq = #{ifmpSeq}
 	</update>
 	<update id="updateAddress">
 			UPDATE
 				infrmemberAddress
 			SET 
 				ifmaAddress1 = #{ifmaAddress1}
-				ifmaAddress2 = #{ifmaAddress2}
+				,ifmaAddress2 = #{ifmaAddress2}
 			WHERE 1=1
 				AND ifmmSeq = #{ifmmSeq}
-				AND ifmaSeq = #{ifmaSeq}
 	</update>
 	<update id="updateEmail">
 			UPDATE
@@ -220,7 +233,6 @@
 				ifmeEmailFull = #{ifmeEmailFull}
 			WHERE 1=1
 				AND ifmmSeq = #{ifmmSeq}
-				AND ifmeSeq = #{ifmeSeq}
 	</update>
 		
 	

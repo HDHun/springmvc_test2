@@ -37,18 +37,16 @@ public class MemberController {
 		System.out.println("UtilDateTime.nowDate()"+UtilDateTime.nowDate());
 		System.out.println("UtilDateTime.nowString()"+UtilDateTime.nowString());
 		
-		
-		
-		
 		 
-			vo.setShDateStart(vo.getShDateStart() == null ? 
-					UtilDateTime.calculateDayString(UtilDateTime.nowLocalDateTime(), 
-							Constants.DATE_INTERVAL) : UtilDateTime.addStringTime(vo.getShDateStart()));
-			vo.setShDateEnd(vo.getShDateEnd() == null ? UtilDateTime.nowString() : UtilDateTime.addStringTime(vo.getShDateEnd()));
+		vo.setShDateStart(vo.getShDateStart() == null ? 
+			UtilDateTime.calculateDayString(UtilDateTime.nowLocalDateTime(), 
+			Constants.DATE_INTERVAL) : UtilDateTime.addStringTime(vo.getShDateStart()));
+		vo.setShDateEnd(vo.getShDateEnd() == null ? UtilDateTime.nowString() : UtilDateTime.addStringTime(vo.getShDateEnd()));
 
-			int count = service.selectOneCount(vo);
+		int count = service.selectOneCount(vo);
 		
 		vo.setParamsPaging(count);
+		
 		if(count !=0) {
 		List<Member> list = service.selectList(vo);
 		model.addAttribute("list", list);}
@@ -73,7 +71,6 @@ public class MemberController {
 	  public String memberView(MemberVo vo, Model model) throws Exception {
 		  
 		  System.out.println("vo.getIfmmSeq(): " + vo.getIfmmSeq());
-		  
 		  // 디비까지 가서 한 건의 데이터를 가져온다.
 		  Member item = service.selectOne(vo);
 		  // jsp로 데이터를 넘겨준다
@@ -117,6 +114,8 @@ public class MemberController {
 		  service.updateAddress(dto);
 		  service.updateEmail(dto);
 		  service.updatePhone(dto);
+		  
+	
 			/*
 			 * return "redirect:/member/memberView?ifmmSeq=" +dto.getIfmmSeq();
 			 */		 
@@ -155,9 +154,7 @@ public class MemberController {
 	  @RequestMapping(value = "/member/MemberNele") public String memberNele(MemberVo vo , RedirectAttributes redirectAttributes ) throws Exception {
 		  service.updateDelete(vo);
 			
-			  redirectAttributes.addAttribute("thisPage", vo.getThisPage());
-			  redirectAttributes.addAttribute("shOption", vo.getShOption());
-			  redirectAttributes.addAttribute("shValue", vo.getShValue());
+			  redirectAttributes.addAttribute("ifmmSeq", vo.getIfmmSeq());
 			 
 		  
 		  return "redirect:/member/MemberList";
@@ -167,7 +164,7 @@ public class MemberController {
 	  
 	  @RequestMapping(value = "/member/logIn") 
 	  public String logIn(HttpServletRequest httpServletRequest) throws Exception{
-		  
+		 
 		  return "member/logIn"; 
 		  
 		  
@@ -195,4 +192,13 @@ public class MemberController {
 			}
 			return returnMap;
 		}
+	  	@ResponseBody
+	  	@RequestMapping(value = "/member/logoutProc")
+	  	public Map<String, Object> logoutProc(Member dto, HttpSession httpSession) throws Exception {
+	  		Map<String, Object> returnMap = new HashMap<String, Object>();
+	  		httpSession.invalidate();
+
+	  		
+	  		return returnMap;
+	  	}
 	}

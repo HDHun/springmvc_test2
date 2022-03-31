@@ -34,6 +34,8 @@ public class Member {
 	private String ifmaTypeCd;
 	private String ifmaTitle;
 	private String ifmaAddress1;
+	private String ifmaAddress2;
+	
 	private String ifmaZipcode;
 	private String ifmaDelNy;
 	
@@ -345,7 +347,12 @@ public class Member {
 	}
 
 	
-
+	public String getIfmaAddress2() {
+		return ifmaAddress2;
+	}
+	public void setIfmaAddress2(String ifmaAddress2) {
+		this.ifmaAddress2 = ifmaAddress2;
+	}
 
 
 

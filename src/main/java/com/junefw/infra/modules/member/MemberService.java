@@ -19,6 +19,7 @@ public interface MemberService {
 	Member selectOne(MemberVo vo) throws Exception;
 	
 	Member selectOneLogin(Member dto) throws Exception;
+	Member selectOneLogout(Member dto) throws Exception;
 	
 	//email
 	int insertEmail(Member dto) throws Exception;

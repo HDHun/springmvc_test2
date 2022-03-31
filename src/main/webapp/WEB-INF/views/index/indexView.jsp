@@ -102,9 +102,15 @@
 	    
 	    
 	    <!-- 이모티콘 버튼 -->
-	
-						  <button class="btn btn" style="background-color: purple; color:white; font-weight: bold; height: 50px;" type="button">로그아웃</button>
-		
+<form name="" id="" action="">
+sessSeq: <c:out value="${sessSeq}"/><br>
+sessName: <c:out value="${sessName}"/><br>
+sessId: <c:out value="${sessId}"/><br>
+
+<c:if test="${not empty sessSeq}">
+	<button type="button" class="btn btn-danger btn-sm" name="" id="btnLogout"><i class="fa-solid fa-power-off"></i></button>
+</c:if>	
+</form>
 		
 <lsection style="margin-top:10%;float: left; width: 50%;  margin-left:50px;">
 		<div style="float: left; width: 50%; text-align:right; ">
@@ -171,6 +177,26 @@ KURLY CORP. ALL RIGHTS RESERVED</p>
 	<script src="/infra/resources/jquery/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
 	<script src="/infra/resources/js/validation.js"></script>
 	<script type="text/javascript">
+	$("#btnLogout").click (function() {
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			,url: "/infra/member/logoutProc"
+			,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPassword" : $("#ifmmPassword").val()}
+			,success: function(response) {
+				if(response.rt == "success") {
+					location.href = "/infra/member/login";
+				} else {
+					alert("회원없음");
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		})
+		});
+	
 	 </script>
 	
 	

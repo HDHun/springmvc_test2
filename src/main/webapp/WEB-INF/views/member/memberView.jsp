@@ -6,8 +6,6 @@
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
 
 <!DOCTYPE HTML>
 <html>
@@ -77,11 +75,11 @@ div  {
 						</ul>
 	 				 </div>
 				</div>
-<form method="post" action="/infra/member/memberView">
+<form id="formView" name="formView" method="post" action="/infra/member/memberView">
 	<input type="hidden" id="shOption" name="shOption" value="<c:out value="${vo.shOption}"/>">
 	<input type="hidden" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>">
 	<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage}"/>">
-	<input type="hidden" id="ifmmSeq" name ="ifmmSeq">
+	<input type="hidden" id="ifmmSeq" name="ifmmSeq" value="<c:out value="${item.ifmmSeq}"/>">
 	
 		
 		<div class="container-fluid">
@@ -125,7 +123,7 @@ div  {
 					<label for="gender" class="form-label">성별</label> 
 					<select class="form-select" id="gender" disabled>
 						<option>선택</option>
-						<option selected>남성</option>
+						<option>남성</option>
 						<option>여성</option>
 					</select>
 				</div>
@@ -144,7 +142,7 @@ div  {
 				<div class="col">
 					이메일 마케팅 동의여부 <br>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="checkbox" id="ifmeEmail" value="option1" checked> 
+						<input class="form-check-input" type="checkbox" id="ifmeEmail" value="option1"> 
 							<label class="form-check-label" for="ifmeEmail" >동의</label>
 					</div>
 				</div>
@@ -157,7 +155,7 @@ div  {
 				<div class="col">
 					핸드폰 정보 마케팅 사용 동의 <br>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="checkbox" id="phone" value="option2" checked> 
+						<input class="form-check-input" type="checkbox" id="phone" value="option2"> 
 						<label class="form-check-label" for="phone">동의</label>
 					</div>
 				</div>
@@ -169,14 +167,14 @@ div  {
 					<select class="form-select" id="sns" disabled>
 						<option>선택</option>
 						<option>Facebook</option>
-						<option selected>Instagram</option>
+						<option>Instagram</option>
 						<option>Twitter</option>
 					</select>
 
 				</div>
 				<div class="col-sm-6">
 					<label for="fax" class="form-label">FAX</label> 
-					<input type="text" class="form-control" id="fax" value="024448888" disabled>
+					<input type="text" class="form-control" id="fax" value="" disabled>
 				</div>
 
 			</div>
@@ -185,7 +183,7 @@ div  {
 					<label for="state" class="form-label">거주국가</label> 
 					<select class="form-select" id="state" disabled>
 						<option>선택</option>
-						<option selected>한국</option>
+						<option>한국</option>
 						<option>미국</option>
 						<option>일본</option>
 						<option>중국</option>
@@ -200,9 +198,9 @@ div  {
 			</div>
 			<div class="row">
 				<div class="col-12 col-md-6">
-					<label for="address" class="form-label">주소</label>
-					<div class="input-group mb-3" id="address" >
-						<input type="text" class="form-control"disabled value="<c:out value="${item.ifmaAddress1}"/>">
+					<label for="ifmaAddress1" class="form-label">주소</label>
+					<div class="input-group mb-3" id="ifmaAddress1" >
+						<input type="text" class="form-control"disabled id="ifmaAddress1" value="<c:out value="${item.ifmaAddress1}"/>">
 						<!-- Button trigger modal -->
 <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#search">
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -244,11 +242,11 @@ div  {
 
 					</div>
 				</div>
-<!-- 상세주소 넣으면 밑부분 날라감 -->		
+	
 				<div class="col-12 col-md-6">
-					<label for="address1" class="form-label">상세주소</label>
-				<div class="input-group mb-3" id="address1">
-					<input type="text" class="form-control" disabled>
+					<label for="ifmaAddress2" class="form-label">상세주소</label>
+				<div class="input-group mb-3" id="ifmaAddress2">
+					<input type="text" class="form-control" id="ifmaAddress2" disabled value="<c:out value="${item.ifmaAddress2}"/>">
 				</div>
 				</div>
 			</div>
@@ -271,23 +269,35 @@ div  {
 				</div>
 
 			</div>
-		
-<a class="btn btn-primary" href="/infra/member/memberList" role="button">목록</a>
-<a class="btn btn-primary" href="/infra/member/memberForm2?ifmmSeq=<c:out value="${item.ifmmSeq}"/>" role="button">수정</a>
-	
-		
+<a class="btn btn-primary" href="javascript:goEdit(<c:out value='${item.ifmmSeq}'/>);" role="button">수정</a>
 </form>
 
+<form id="goList" method="post">
+	<input type="hidden" id="ifmmSeq" name="ifmmSeq">
+	<a class="btn btn-primary" href="javascript:goList();" role="button">목록</a>
+</form>
+
+<a class="btn btn-primary" href="/infra/member/memberForm2?ifmmSeq=<c:out value="${item.ifmmSeq}"/>" role="button">수정</a>
+<%-- 	
+<a class="btn btn-primary" href="/infra/member/memberNele?ifmmSeq=<c:out value="${item.ifmmSeq}"/>" role="button">삭제</a>
+		javascript:goForm2(<c:out value="${item.ifmmSeq}"/>);
+		/infra/member/memberForm2?ifmmSeq=<c:out value="${item.ifmmSeq}"/>
+ --%>
 
 <script src="/infra/resources/_bootstrap/_bootstrap/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="/infra/resources/js/validation.js"></script>
 	<script type="text/javascript">
+	
 	goEdit = function(seq) {
 		$("#ifmmSeq").val(seq);
-		$("#goEdit").attr("action","/infra/member/memberForm2");
-		$("#goEdit").submit();
+		$("#formView").attr("action","/infra/member/memberForm2");
+		$("#formView").submit();
+	}
+	goList = function() {
+		$("#goList").attr("action","/infra/member/memberList");
+		$("#goList").submit();
 	}
 	
 	</script>

@@ -93,11 +93,16 @@ public class MemberServiceImpl implements MemberService{
 	
 		return dao.updateAddress(dto);
 	}
-
+//login
 	@Override
 	public Member selectOneLogin(Member dto) throws Exception {
 		
 		return dao.selectOneLogin(dto);
+	}
+	@Override
+	public Member selectOneLogout(Member dto) throws Exception {
+		
+		return dao.selectOneLogout(dto);
 	}
 
 	

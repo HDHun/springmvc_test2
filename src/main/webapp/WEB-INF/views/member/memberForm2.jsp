@@ -5,7 +5,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="rb" uri="http://www.springframework.org/tags" %>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 
 
@@ -79,14 +78,14 @@ div  {
 				</div>
 
 <form id ="formList" name="formList" method="post" action="/infra/member/memberUpdt">
-	<input type="hidden" id="ifmmSeq" name ="ifmmSeq">
+	<input type="hidden" id="ifmmSeq" name ="ifmmSeq" value="<c:out value="${item.ifmmSeq}"/>">
 	<input type="hidden" id="shOption" name="shOption" value="<c:out value="${vo.shOption}"/>">
 	<input type="hidden" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="gy-3 col-12">
 					<label for="id" class="form-label">아이디</label>
-					<input type="text" class="form-control" id="id"  maxlength="20" minlength="4" value="Huun">
+					<input type="text" class="form-control" id="ifmmId" name="ifmmId"  maxlength="20" minlength="4" value="<c:out value="${item.ifmmId}"/>" disabled>
 				</div>
 
 			</div>
@@ -95,11 +94,11 @@ div  {
 			<div class="row">
 				<div class="col-12 col-md-6">
 					<label for="password" class="form-label">비밀번호</label>
-					 <input type="password" class="form-control" id="password" maxlength="20" minlength="4" value="*************">
+					 <input type="password" class="form-control" id="ifmmPassword" name="ifmmPassword" maxlength="20" minlength="4" value="<c:out value="${item.ifmmPassword}"/>">
 				</div>
 				<div class="col-12 col-md-6">
 					<label for="passwordcheck" class="form-label">비밀번호 확인</label> 
-					<input type="password" class="form-control" id="passwordcheck" maxlength="20" minlength="4" value="*************">
+					<input type="password" class="form-control" id="passwordcheck" maxlength="20" minlength="4" value="<c:out value="${item.ifmmPassword}"/>">
 				</div>
 
 			</div>
@@ -108,11 +107,11 @@ div  {
 			<div class="row">
 				<div class="col-12 col-md-6">
 					<label for="name" class="form-label">이름</label> 
-					<input type="text" class="form-control" id="name" value="동훈">
+					<input type="text" class="form-control" id="ifmmName" disabled value="<c:out value="${item.ifmmName}"/>">
 				</div>
 				<div class="col-12 col-md-6">
 					<label for="nameen" class="form-label">이름(영문)</label>
-					 <input type="text" class="form-control" id="nameen" value="DongHun">
+					 <input type="text" class="form-control" id="nameen">
 				</div>
 
 			</div>
@@ -122,26 +121,26 @@ div  {
 					<label for="gender" class="form-label">성별</label>
 					<select class="form-select" id="gender">
 						<option>선택</option>
-						<option selected>남성</option>
+						<option>남성</option>
 						<option>여성</option>
 					</select>
 				</div>
 				<div class="col-12 col-md-6">
 					<label for="birth" class="form-label">생일</label> 
-					<input type="text" class="form-control" id="birth" value="1996.12.03">
+					<input type="text" class="form-control" id="ifmmDob" name="ifmmDob" value="<c:out value="${item.ifmmDob}"/>">
 				</div>
 
 			</div>
 
 			<div class="row">
 				<div class="col">
-					<label for="email" class="form-label">이메일</label> 
-					<input type="text" class="form-control" id="email" value="Huun@naver.com">
+					<label for="ifmeEmail" class="form-label">이메일</label> 
+					<input type="text" class="form-control" id="ifmeEmail" name="ifmeEmailFull" value="<c:out value="${item.ifmeEmailFull}"/>">
 				</div>
 				<div class="col">
 					이메일 마케팅 동의여부 <br>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="checkbox" id="email1" value="option1" checked> 
+						<input class="form-check-input" type="checkbox" id="email1" value="option1"> 
 						<label class="form-check-label" for="email1">동의</label>
 					</div>
 				</div>
@@ -149,12 +148,12 @@ div  {
 			<div class="row">
 				<div class="col">
 					<label for="phone" class="form-label">핸드폰</label> 
-					<input type="text" class="form-control" id="phone" value="01064795894">
+					<input type="text" class="form-control" id="ifmpPhone" name="ifmpNumber"  value="<c:out value="${item.ifmpNumber}"/>">
 				</div>
 				<div class="col">
 					핸드폰 정보 마케팅 사용 동의 <br>
 					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="checkbox" id="phone"value="option2" checked> 
+						<input class="form-check-input" type="checkbox" id="phone"value="option2"> 
 						<label class="form-check-label" for="phone">동의</label>
 					</div>
 				</div>
@@ -166,14 +165,14 @@ div  {
 					<select class="form-select" id="sns">
 						<option>선택</option>
 						<option>Facebook</option>
-						<option selected>Instagram</option>
+						<option>Instagram</option>
 						<option>Twitter</option>
 					</select>
 
 				</div>
 				<div class="col-sm-6">
 					<label for="fax" class="form-label">FAX</label> 
-					<input type="text" class="form-control" id="fax" value="024448888">
+					<input type="text" class="form-control" id="fax" >
 				</div>
 
 			</div>
@@ -182,7 +181,7 @@ div  {
 					<label for="state" class="form-label">거주국가</label>
 					 <select class="form-select" id="state">
 						<option>선택</option>
-						<option selected>한국</option>
+						<option>한국</option>
 						<option>미국</option>
 						<option>일본</option>
 						<option>중국</option>
@@ -198,53 +197,74 @@ div  {
 			<div class="row">
 				<div class="col-12 col-md-6">
 					<label for="address" class="form-label">주소</label>
-					<div class="input-group mb-3" id="address" >
-						<input type="text" class="form-control"placeholder="경기도 파주시 가온로">
+								
+					
+					<div class="input-group mb-3" id="address">
+						<input type="text" class="form-control" id="sample5_address" name="ifmaAddress1" value="<c:out value="${item.ifmaAddress1}"/>">
 						<!-- Button trigger modal -->
-<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#search">
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-											fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
- 										 <path	d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-										</svg>
-</button>
+						<button type="button" class="btn btn-secondary" onclick="sample5_execDaumPostcode()" value="주소검색">
+	 						 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+							 <path	d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+							</svg>
+						</button>
+						<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
+		
 
-<!-- Modal -->
-<div class="modal fade" id="search" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">주소검색</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        	<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="예)판교역로 235, 분당주공, 삼평동 681" aria-label="Recipient's username" aria-describedby="button-addon2">
-  <button class="btn btn-outline-secondary" type="button" id="button-addon2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-											fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
- 										 <path	d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-										</svg></button>
-</div>
-										<h2>tip</h2>
-										<p>아래와 같은 조합으로 검색을 하시면 더욱 정확한 결과가 검색됩니다.</p>
-										<p>도로명 + 건물번호</p>
-										<p>지역명(동/리) + 번지</p>
-										<p>지역명(동/리) + 건물명(아파트명)</p>
-										<p>사서함명 + 번호</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-        <button type="button" class="btn btn-primary">저장</button>
-      </div>
-    </div>
-  </div>
-</div>
-
+					<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+					<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=22f130cc15670a20bd9b606872111930"></script>
+					<script>
+					    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+					        mapOption = {
+					            center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+					            level: 5 // 지도의 확대 레벨
+					        };
+					
+					    //지도를 미리 생성
+					    var map = new daum.maps.Map(mapContainer, mapOption);
+					    //주소-좌표 변환 객체를 생성
+					    var geocoder = new daum.maps.services.Geocoder();
+					    //마커를 미리 생성
+					    var marker = new daum.maps.Marker({
+					        position: new daum.maps.LatLng(37.537187, 127.005476),
+					        map: map
+					    });
+					
+					
+					    function sample5_execDaumPostcode() {
+					        new daum.Postcode({
+					            oncomplete: function(data) {
+					                var addr = data.address; // 최종 주소 변수
+					
+					                // 주소 정보를 해당 필드에 넣는다.
+					                document.getElementById("sample5_address").value = addr;
+					                // 주소로 상세 정보를 검색
+					                geocoder.addressSearch(data.address, function(results, status) {
+					                    // 정상적으로 검색이 완료됐으면
+					                    if (status === daum.maps.services.Status.OK) {
+					
+					                        var result = results[0]; //첫번째 결과의 값을 활용
+					
+					                        // 해당 주소에 대한 좌표를 받아서
+					                        var coords = new daum.maps.LatLng(result.y, result.x);
+					                        // 지도를 보여준다.
+					                        mapContainer.style.display = "block";
+					                        map.relayout();
+					                        // 지도 중심을 변경한다.
+					                        map.setCenter(coords);
+					                        // 마커를 결과값으로 받은 위치로 옮긴다.
+					                        marker.setPosition(coords)
+					                    }
+					                });
+					            }
+					        }).open();
+					    }
+					</script>
 					</div>
 				</div>
 				<div class="col-12 col-md-6">
 					<label for="address1" class="form-label">상세주소</label>
 					<div class="input-group mb-3" id="address1">
-						<input type="text" class="form-control" value="1111-111">
+						<input type="text" class="form-control" name="ifmaAddress2" value="<c:out value="${item.ifmaAddress2}"/>">
 
 					</div>
 				</div>
