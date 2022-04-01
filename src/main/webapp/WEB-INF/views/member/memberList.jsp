@@ -112,7 +112,7 @@ div {
 		</select>
 		
 		<select class="form-select" style="width: 200px; display: inline;" name="shOptionDate">
-			<option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>::검색구분::
+			<option value="0" <c:if test="${empty vo.shOptionDate}">selected</c:if>>::날짜::
 			<option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일
 			<option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일
 			<option value="3" <c:if test="${vo.shOptionDate eq 3}">selected</c:if>>생일

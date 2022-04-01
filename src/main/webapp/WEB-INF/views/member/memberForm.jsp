@@ -87,15 +87,15 @@ div  {
 			<div class="row">
 				<div class="col-12">
 					<label for="id" class="form-label">아이디</label>
-					<input type="text" class="form-control" id="id" name="ifmmId" maxlength="20" 
-					minlength="4" placeholder="영문(대소문자),숫자,특수문자O,4~20자리조합">
+					<input type="text" class="form-control" id="ifmmId" name="ifmmId" maxlength="20" 
+					 placeholder="영문(대소문자),숫자,특수문자O,4~20자리조합">
 				</div>
 
 			</div>
 			<div class="row">
 				<div class="col-12 col-md-6">
 					<label for="password" class="form-label">비밀번호</label>
-					<input type="password" class="form-control" id="password" name="ifmmPassword" maxlength="20"minlength="4" placeholder="영문(대소문자),숫자,특수문자O,4~20자리조합">
+					<input type="password" class="form-control" id="ifmmpassword" name="ifmmPassword" maxlength="20"minlength="4" placeholder="영문(대소문자),숫자,특수문자O,4~20자리조합">
 				</div>
 				<div class="col-12 col-md-6">
 					<label for="passwordcheck" class="form-label">비밀번호 확인</label>
@@ -106,7 +106,7 @@ div  {
 			<div class="row">
 				<div class="col-12 col-md-6">
 					<label for="name" class="form-label">이름</label> 
-					<input type="text" class="form-control" id="name" name="ifmmName">
+					<input type="text" class="form-control" id="ifmmname" name="ifmmName">
 				</div>
 				<div class="col-12 col-md-6">
 					<label for="nameen" class="form-label">이름(영문)</label> 
@@ -319,6 +319,22 @@ div  {
 	    showMonthAfterYear: true,
 	    yearSuffix: '년'
 	    });
+	
+		
+	
+	$("#btnSubmit").on("click", function(){
+		if(	!checkId($("#ifmmId"), $("#ifmmId").val(), "아이디를 입력하세요.")
+				) return false;
+		}
+	)
+	
+	
+	/* $("#btnSubmit").on("click", function(){
+
+		if(	!checkNull($("#shValue"), $("#shValue").val(), "검색어를 입력하세요.")) return false;});
+ */
+	
+	
 	</script>
 
 

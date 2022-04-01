@@ -8,6 +8,6 @@
 
 <form method="post" action="codeGroupUpdt">
 	<input type="text" name="ifcgSeq" value="${item.ifcgSeq}" style="visibility:hidden;">
-	<input type="text" name="ifcgChangeName" placeholder="name" value="${item.ifcgName}">
+	<input type="text" name="ifcgName" placeholder="name" value="${item.ifcgName}">
 	<input type="submit" value="제출">
 </form>

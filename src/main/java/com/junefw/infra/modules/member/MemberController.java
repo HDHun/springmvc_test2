@@ -38,11 +38,14 @@ public class MemberController {
 		System.out.println("UtilDateTime.nowString()"+UtilDateTime.nowString());
 		
 		 
-		vo.setShDateStart(vo.getShDateStart() == null ? 
-			UtilDateTime.calculateDayString(UtilDateTime.nowLocalDateTime(), 
-			Constants.DATE_INTERVAL) : UtilDateTime.addStringTime(vo.getShDateStart()));
+		vo.setShDateStart(vo.getShDateStart() == null ? UtilDateTime.calculateDayString(UtilDateTime.nowLocalDateTime(), Constants.DATE_INTERVAL) : UtilDateTime.addStringTime(vo.getShDateStart()));
 		vo.setShDateEnd(vo.getShDateEnd() == null ? UtilDateTime.nowString() : UtilDateTime.addStringTime(vo.getShDateEnd()));
 
+		
+		vo.setShOptionDate(vo.getShOptionDate() == null ? 0 : vo.getShOptionDate());
+		vo.setShDateStart(vo.getShDateStart() == null ? UtilDateTime.calculateDayString(UtilDateTime.nowLocalDateTime(), Constants.DATE_INTERVAL) : UtilDateTime.add00TimeString(vo.getShDateStart()));
+		vo.setShDateEnd(vo.getShDateEnd() == null ? UtilDateTime.nowString() : UtilDateTime.addNowTimeString(vo.getShDateEnd()));
+		
 		int count = service.selectOneCount(vo);
 		
 		vo.setParamsPaging(count);
@@ -68,7 +71,7 @@ public class MemberController {
 	  }
 	  
 	  @RequestMapping(value = "/member/memberView")
-	  public String memberView(MemberVo vo, Model model) throws Exception {
+	  public String memberView(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
 		  
 		  System.out.println("vo.getIfmmSeq(): " + vo.getIfmmSeq());
 		  // 디비까지 가서 한 건의 데이터를 가져온다.
@@ -107,19 +110,22 @@ public class MemberController {
 	
 	 
 	 
-	  @RequestMapping(value = "/member/memberUpdt") public String
-	  memberUpdt(Member dto) throws Exception {
+	  @RequestMapping(value = "/member/memberUpdt") 
+	  public String memberUpdt(Member dto, MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
 		  
 		  service.update(dto); 
-		  service.updateAddress(dto);
+		  service.updateAddress(dto); 
 		  service.updateEmail(dto);
 		  service.updatePhone(dto);
-		  
-	
+		 
+		  System.out.println("vo.ifmmSeq :" + vo.getIfmmSeq());
 			/*
 			 * return "redirect:/member/memberView?ifmmSeq=" +dto.getIfmmSeq();
-			 */		 
-		  return "redirect:/member/memberList"; 
+			 */
+		  
+		  
+		  redirectAttributes.addFlashAttribute("vo", vo);
+		  return "redirect:/member/memberView"; 
 		  
 	  }
 	  @RequestMapping(value = "/member/MemberMultiUele") public String

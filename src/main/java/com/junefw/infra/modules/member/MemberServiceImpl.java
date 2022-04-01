@@ -24,7 +24,9 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public int update(Member dto) throws Exception {
-		
+//		  dao.updateAddress(dto);
+//		  dao.updateEmail(dto);
+//		  dao.updatePhone(dto);
 		return dao.update(dto);
 	}
 

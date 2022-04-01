@@ -81,6 +81,7 @@ div  {
 	<input type="hidden" id="ifmmSeq" name ="ifmmSeq" value="<c:out value="${item.ifmmSeq}"/>">
 	<input type="hidden" id="shOption" name="shOption" value="<c:out value="${vo.shOption}"/>">
 	<input type="hidden" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>">
+		
 		<div class="container-fluid">
 			<div class="row">
 				<div class="gy-3 col-12">
@@ -289,8 +290,8 @@ div  {
 
 			</div>
 		
-<input class="btn btn-primary" type="submit" value="제출" id="editSubmit">
-<a class="btn btn-primary" href="/infra/member/memberView?ifmmSeq=<c:out value="${item.ifmmSeq}"/>" role="button">뒤로</a>
+	<input class="btn btn-primary" type="submit" value="제출" id="editSubmit">
+	<a class="btn btn-primary" href="javascript:goView(<c:out value='${item.ifmmSeq}'/>);" role="button">뒤로</a>
 </form>
 
 
@@ -305,10 +306,14 @@ div  {
 		$("#goForm").attr("action","/infra/member/memberForm");
 		$("#goForm").submit();
 	}
+	goView = function(seq) {
+		$("#ifmmSeq").val(seq);
+		$("#formList").attr("action","/infra/member/memberView");
+		$("#formList").submit();
+	}
 	$(document).ready(function(){
 		 $("#ifmmDob").datepicker();
 	}); 
-
 	$.datepicker.setDefaults({
 	    dateFormat: 'yy-mm-dd',
 	    prevText: '이전 달',

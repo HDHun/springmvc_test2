@@ -105,6 +105,7 @@
 				,ifmmDelNy
 				,ifmmDob
 				
+				
 				) values (
 				#{ifmmId}
 				,#{ifmmPassword}
@@ -116,7 +117,16 @@
 				<when test="ifmmDob.equals('')">,NULL</when>
 				<otherwise>,#{ifmmDob}</otherwise>
 				</choose>
-				
+				<!-- ,ifmmGenderCd
+				,ifmmEmailConsentNy
+				,ifmmSmsConsentNy
+				,ifmmPushConsentNy
+				,ifmmDesc
+				,#{ifmmGenderCd}
+				,#{ifmmEmailConsentNy}
+				,#{ifmmSmsConsentNy}
+				,#{ifmmPushConsentNy}
+				,#{ifmmDesc} -->
 				
 				)
 	

@@ -75,10 +75,10 @@ div  {
 						</ul>
 	 				 </div>
 				</div>
+				
 <form id="formView" name="formView" method="post" action="/infra/member/memberView">
 	<input type="hidden" id="shOption" name="shOption" value="<c:out value="${vo.shOption}"/>">
 	<input type="hidden" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>">
-	<input type="hidden" id="thisPage" name="thisPage" value="<c:out value="${vo.thisPage}"/>">
 	<input type="hidden" id="ifmmSeq" name="ifmmSeq" value="<c:out value="${item.ifmmSeq}"/>">
 	
 		
@@ -270,14 +270,10 @@ div  {
 
 			</div>
 <a class="btn btn-primary" href="javascript:goEdit(<c:out value='${item.ifmmSeq}'/>);" role="button">수정</a>
-</form>
-
-<form id="goList" method="post">
-	<input type="hidden" id="ifmmSeq" name="ifmmSeq">
 	<a class="btn btn-primary" href="javascript:goList();" role="button">목록</a>
 </form>
 
-<a class="btn btn-primary" href="/infra/member/memberForm2?ifmmSeq=<c:out value="${item.ifmmSeq}"/>" role="button">수정</a>
+
 <%-- 	
 <a class="btn btn-primary" href="/infra/member/memberNele?ifmmSeq=<c:out value="${item.ifmmSeq}"/>" role="button">삭제</a>
 		javascript:goForm2(<c:out value="${item.ifmmSeq}"/>);
@@ -296,8 +292,8 @@ div  {
 		$("#formView").submit();
 	}
 	goList = function() {
-		$("#goList").attr("action","/infra/member/memberList");
-		$("#goList").submit();
+		$("#formView").attr("action","/infra/member/memberList");
+		$("#formView").submit();
 	}
 	
 	</script>
