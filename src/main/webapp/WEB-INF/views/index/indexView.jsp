@@ -38,46 +38,8 @@
 	    	<nav>
 				<ul class="nav justify-content-center">
 				 	<li class="dropdown nav-item " style="margin-left: 60px;">
-				          <a style="color: black;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-				           전체 카테고리
-				          </a>
-				          <ul class="dropdown-menu" aria-labelledby="navbarDropdown" role="menu">
-				            <li><a class="dropdown-item" href="#">채소</a></li>
-				            <li><a class="dropdown-item" href="#">과일·견과·쌀</a></li>
-				            <li><a class="dropdown-item" href="#">수산물·건어물</a></li>
-				            <li><a class="dropdown-item" href="#">정육·계란</a></li>
-				            <li><a class="dropdown-item" href="#">국·반찬·요리</a></li>
-				            <li><a class="dropdown-item" href="#">샐러드·간편식</a></li>
-				            <li><a class="dropdown-item" href="#">면·양념·오일</a></li>
-				            <li><a class="dropdown-item" href="#">생수·음료·우유·커피</a></li>
-				            <li><a class="dropdown-item" href="#">간식·과자·떡</a></li>
-				            <li><a class="dropdown-item" href="#">베이커리·치즈·델리</a></li>
-				            <li><a class="dropdown-item" href="#">건강식품</a></li>
-				            <li><a class="dropdown-item" href="#">전통주</a></li>
-				            <li><a class="dropdown-item" href="#">생활용품·리빙·캠핑</a></li>
-				            <li><a class="dropdown-item" href="#">스킨케어·메이크업</a></li>
-				            <li><a class="dropdown-item" href="#">헤어·바디·구강</a></li>
-				            <li><a class="dropdown-item" href="#">주방용품</a></li>
-				            <li><a class="dropdown-item" href="#">가전용품</a></li>
-				            <li><a class="dropdown-item" href="#">반려동물</a></li>
-				            <li><a class="dropdown-item" href="#">베이비·키즈·완구</a></li>
-				            <li><a class="dropdown-item" href="#">컬리의 추천</a></li>
-				          </ul>
-			        </li>
-					<li class="nav-item">
-					<a class="nav-link" aria-current="page" href="#" style="color: black;">신상품</a></li>
-					<li class="nav-item">
-					<a class="nav-link" href="#"style="color: black;">베스트</a></li>
-					<li class="nav-item">
-					<a class="nav-link" href="#"style="color: black;">알뜰쇼핑</a></li>
-					<li class="nav-item">
-					<a class="nav-link" href="#" style="color: black;">특가/혜택</a></li>
-	      			<form class="d-flex">
-				        <input  class="form-control me-2" type="search" placeholder="검색어를 입력해주세요." aria-label="Search" style="width: 250px;">
-				        <button class="btn btn-outline-success" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-	 							<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-								</svg></button>
-	     			 </form>
+				        
+	      			
 	    			<div>
 		    			<a style="color: black; text-decoration-line:none; " href="#">
 		    			<svg style="width: 50px; margin-right:20px;margin-left:15px;" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-shop" viewBox="0 0 16 16">
@@ -196,6 +158,7 @@ KURLY CORP. ALL RIGHTS RESERVED</p>
 			}
 		})
 		});
+	
 	
 	 </script>
 	

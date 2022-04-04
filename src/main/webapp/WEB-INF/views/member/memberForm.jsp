@@ -95,7 +95,7 @@ div  {
 			<div class="row">
 				<div class="col-12 col-md-6">
 					<label for="password" class="form-label">비밀번호</label>
-					<input type="password" class="form-control" id="ifmmpassword" name="ifmmPassword" maxlength="20"minlength="4" placeholder="영문(대소문자),숫자,특수문자O,4~20자리조합">
+					<input type="password" class="form-control" id="ifmmPassword" name="ifmmPassword" maxlength="20"minlength="4" placeholder="영문(대소문자),숫자,특수문자O,4~20자리조합">
 				</div>
 				<div class="col-12 col-md-6">
 					<label for="passwordcheck" class="form-label">비밀번호 확인</label>
@@ -106,7 +106,7 @@ div  {
 			<div class="row">
 				<div class="col-12 col-md-6">
 					<label for="name" class="form-label">이름</label> 
-					<input type="text" class="form-control" id="ifmmname" name="ifmmName">
+					<input type="text" class="form-control" id="ifmmName" name="ifmmName">
 				</div>
 				<div class="col-12 col-md-6">
 					<label for="nameen" class="form-label">이름(영문)</label> 
@@ -134,7 +134,7 @@ div  {
 			<div class="row">
 				<div class="col-12 col-md-6">
 					<label for="email" class="form-label">이메일</label>
-					 <input type="text" class="form-control" id="email" name="ifmeEmailFull" placeholder="name@example.com">
+					 <input type="text" class="form-control" id="ifmeEmailFull" name="ifmeEmailFull" placeholder="name@example.com">
 				</div>
 				<div class="col-12 col-md-6">
 					이메일 마케팅 동의여부 <br>
@@ -146,8 +146,8 @@ div  {
 			</div>
 			<div class="row">
 				<div class="col-12 col-md-6">
-					<label for="phone" class="form-label">핸드폰</label> 
-					<input type="text" class="form-control" id="phone" name="ifmpNumber" placeholder="숫자만(01044448888)">
+					<label for="ifmpNumber" class="form-label">핸드폰</label> 
+					<input type="text" class="form-control" id="ifmpNumber" name="ifmpNumber" placeholder="숫자만(01044448888)">
 				</div>
 				<div class="col-12 col-md-6">
 					핸드폰 정보 마케팅 사용 동의 <br>
@@ -322,11 +322,22 @@ div  {
 	
 		
 	
+	
 	$("#btnSubmit").on("click", function(){
 		if(	!checkId($("#ifmmId"), $("#ifmmId").val(), "아이디를 입력하세요.")
 				) return false;
-		}
-	)
+		
+		if(	!checkPassword($("#ifmmPassword"), $("#ifmmPassword").val(), "비밀번호를 입력하세요.")
+				) return false;
+	
+		if(	!checkOnlyNumber($("#ifmpNumber"), $("#ifmpNumber").val(), "전화번호를 입력하세요.")
+				) return false;
+
+	
+	
+	
+	
+	});
 	
 	
 	/* $("#btnSubmit").on("click", function(){

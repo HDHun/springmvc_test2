@@ -132,6 +132,15 @@ div {
 	</div>
 </form>	
 		회원 수 : <c:out value="${vo.totalRows}"/>
+<form name="" id="" action="">
+	sessSeq: <c:out value="${sessSeq}"/><br>
+	sessName: <c:out value="${sessName}"/><br>
+	sessId: <c:out value="${sessId}"/><br>
+
+	<c:if test="${not empty sessSeq}">
+		<button type="button" name="" id="btnLogout"></button>
+	</c:if>	
+</form>
 		<div class="container-fluid">
 			<div class="table-responsive">
 			  <table class="table">
@@ -339,6 +348,7 @@ div {
                 		</c:otherwise>
                		</c:choose>
  --%>
+
 <script src="/infra/resources/_bootstrap/_bootstrap/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="/infra/resources/jquery/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
@@ -410,6 +420,25 @@ $.datepicker.setDefaults({
     showMonthAfterYear: true,
     yearSuffix: '년'
     });
+$("#btnLogout").click (function() {
+	$.ajax({
+		async: true 
+		,cache: false
+		,type: "post"
+		,url: "/infra/member/logoutProc"
+		,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPassword" : $("#ifmmPassword").val()}
+		,success: function(response) {
+			if(response.rt == "success") {
+				location.href = "/infra/member/login";
+			} else {
+				alert("회원없음");
+			}
+		}
+		,error : function(jqXHR, textStatus, errorThrown){
+			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+		}
+	})
+	});
 </script>
 </body>
 </html>
