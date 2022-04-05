@@ -149,7 +149,7 @@ KURLY CORP. ALL RIGHTS RESERVED</p>
 		,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPassword" : $("#ifmmPassword").val()}
 		,success: function(response) {
 			if(response.rt == "success") {
-				location.href = "/infra/index/indexView";
+				location.href = "/infra/member/memberList";
 			} else {
 				alert("회원없음");
 			}

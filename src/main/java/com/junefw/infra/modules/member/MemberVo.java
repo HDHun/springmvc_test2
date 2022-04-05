@@ -1,5 +1,7 @@
 package com.junefw.infra.modules.member;
 
+import java.util.Date;
+
 public class MemberVo {
 	// VO where 절에 들어가는 필드는 여기에
 	private String ifmmSeq;
@@ -11,7 +13,22 @@ public class MemberVo {
 	private String ifmmSmsConsentNy;
 	private String ifmmPushConsentNy;
 	
+	private String regIp;
+	private String regSeq;
+	private String regDevice;
+	private Date regDateTime;
+	private Date regDateTimesvr;
+
 	
+	
+
+
+
+	private String modIp;
+	private String modSeq;
+	private String modDevice;
+	private Date modDateTime;
+	private Date modDateTimesvr;
 	//search
 	private String shIfmmDelNy;
 	private String shIfmmUseNy;
@@ -447,7 +464,68 @@ public class MemberVo {
 		this.checkboxSeqArray = checkboxSeqArray;
 	}
 	
-	
+
+	public String getRegIp() {
+		return regIp;
+	}
+	public void setRegIp(String regIp) {
+		this.regIp = regIp;
+	}
+	public String getRegSeq() {
+		return regSeq;
+	}
+	public void setRegSeq(String regSeq) {
+		this.regSeq = regSeq;
+	}
+	public String getRegDevice() {
+		return regDevice;
+	}
+	public void setRegDevice(String regDevice) {
+		this.regDevice = regDevice;
+	}
+	public Date getRegDateTime() {
+		return regDateTime;
+	}
+	public void setRegDateTime(Date regDateTime) {
+		this.regDateTime = regDateTime;
+	}
+	public Date getRegDateTimesvr() {
+		return regDateTimesvr;
+	}
+	public void setRegDateTimesvr(Date regDateTimesvr) {
+		this.regDateTimesvr = regDateTimesvr;
+	}
+	public String getModIp() {
+		return modIp;
+	}
+	public void setModIp(String modIp) {
+		this.modIp = modIp;
+	}
+	public String getModSeq() {
+		return modSeq;
+	}
+	public void setModSeq(String modSeq) {
+		this.modSeq = modSeq;
+	}
+	public String getModDevice() {
+		return modDevice;
+	}
+	public void setModDevice(String modDevice) {
+		this.modDevice = modDevice;
+	}
+	public Date getModDateTime() {
+		return modDateTime;
+	}
+	public void setModDateTime(Date modDateTime) {
+		this.modDateTime = modDateTime;
+	}
+	public Date getModDateTimesvr() {
+		return modDateTimesvr;
+	}
+	public void setModDateTimesvr(Date modDateTimesvr) {
+		this.modDateTimesvr = modDateTimesvr;
+	}
+
 	
 	
 	// ---- paging

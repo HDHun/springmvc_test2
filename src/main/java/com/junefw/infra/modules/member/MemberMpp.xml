@@ -104,7 +104,10 @@
 				,ifmmSmsConsentNy -->
 				,ifmmDelNy
 				,ifmmDob
-				
+				,regDateTime
+				,regDateTimesvr
+			 	,modDateTime
+				,modDateTimesvr
 				
 				) values (
 				#{ifmmId}
@@ -117,6 +120,10 @@
 				<when test="ifmmDob.equals('')">,NULL</when>
 				<otherwise>,#{ifmmDob}</otherwise>
 				</choose>
+				,#{regDateTime}
+				,#{regDateTimesvr}
+				,#{modDateTime}
+				,#{modDateTimesvr}
 				<!-- ,ifmmGenderCd
 				,ifmmEmailConsentNy
 				,ifmmSmsConsentNy
@@ -130,27 +137,9 @@
 				
 				)
 	
-				<!-- ,regIp
-				,regSeq
-				,regDevice
-			 	,regDateTime
-				,regDateTimesvr
-				,modIp
-				,modSeq
-				,modDevice
-			 	,modDateTime
-				,modDateTimesvr
+			 	
 				
-				,#{regIp}
-				,#{regSeq}
-				,#{regDevice}
-				,#{regDateTime}
-				,#{regDateTimesvr}
-				,#{modIp}
-				,#{modSeq}
-				,#{modDevice}
-				,#{modDateTime}
-				,#{modDateTimesvr} -->
+				
 		
 	<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
 		SELECT last_insert_id()
