@@ -56,6 +56,10 @@ public class MemberDao {
 		//checkbox
 		public int Uelete(MemberVo vo) {return sqlSession.update(namespace + ".Uelete", vo);}
 		
+		//auth
+		public int insertAuth(Member dto) {return sqlSession.insert(namespace + ".insertAuth", dto);}
+		
+		
 		//login
 		public Member selectOneLogin(Member dto) { return sqlSession.selectOne(namespace + ".selectOneLogin", dto);}
 		public Member selectOneLogout(Member dto) { return sqlSession.selectOne(namespace + ".selectOneLogout", dto);}

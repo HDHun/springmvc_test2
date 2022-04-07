@@ -70,7 +70,12 @@
 						</div>
 						<div class="d-grid gap-2" style="margin-left:15px;">
 						  <button class="btn btn" style="background-color: purple; color:white; font-weight: bold; height: 50px;" type="button" id="btnLogin">로그인</button>
-					</div>
+									<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v13.0&appId=1920010474859986&autoLogAppEvents=1" nonce="AMpiVJN3"></script>	
+								<div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="true" data-use-continue-as="false"></div>		
+												
+												
+						</div>
 				</div>
 			</div>
 		</div>
@@ -161,6 +166,7 @@ KURLY CORP. ALL RIGHTS RESERVED</p>
 	});
 	 </script>
 	
+
 	
 </body>
 </html>

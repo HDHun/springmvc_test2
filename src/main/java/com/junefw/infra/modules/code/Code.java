@@ -3,6 +3,8 @@ package com.junefw.infra.modules.code;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Code {
 	// DTO codegroup
 	private String ifcgSeq;
@@ -16,9 +18,26 @@ public class Code {
 	private String ifcdDelNy;
 	private String ifcdUseNy;
 	
-	
+	//cache
 	public static List<Code> cachedCodeArrayList = new ArrayList<Code>();
 	
+	//file
+	public MultipartFile file;
+	public MultipartFile file1;
+	
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+	public MultipartFile getFile1() {
+		return file1;
+	}
+	public void setFile1(MultipartFile file1) {
+		this.file1 = file1;
+	}
 	public String getIfcdUseNy() {
 		return ifcdUseNy;
 	}

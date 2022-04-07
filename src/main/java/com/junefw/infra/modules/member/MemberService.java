@@ -30,6 +30,8 @@ public interface MemberService {
 	//address
 	int insertAddress(Member dto) throws Exception;
 	int updateAddress(Member dto) throws Exception; 
+	//auth
+	int insertAuth(Member dto) throws Exception;
 	
 	
 	

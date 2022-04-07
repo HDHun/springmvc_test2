@@ -116,7 +116,7 @@
 				#{ifcdName}
 				,0
 				,#{ifcdSeq}
-				,0
+				,#{ifcgSeq}
 			)
 	</insert>
 	<select id="selectOneCode" resultMap ="resultMapObj">

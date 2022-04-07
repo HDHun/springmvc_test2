@@ -2,6 +2,8 @@ package com.junefw.infra.modules.member;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Member {
 	//member
 	private String ifmmSeq;
@@ -35,6 +37,10 @@ public class Member {
 	private String ifmaTitle;
 	private String ifmaAddress1;
 	private String ifmaAddress2;
+	/*
+	 * private double ifmaLat; private double ifmaLng;
+	 */
+	
 	
 	private String ifmaZipcode;
 	private String ifmaDelNy;
@@ -65,6 +71,47 @@ public class Member {
 	private String ifcdUseNy;
 	private String ifcdDelNy;
 	
+	//upload
+	public MultipartFile file;
+	public MultipartFile file1;
+	
+	
+	//image
+	private String ifatSeq;
+	private String ifatName;
+	private String ifatNameEng;
+	
+	
+	public String getIfatSeq() {
+		return ifatSeq;
+	}
+	public void setIfatSeq(String ifatSeq) {
+		this.ifatSeq = ifatSeq;
+	}
+	public String getIfatName() {
+		return ifatName;
+	}
+	public void setIfatName(String ifatName) {
+		this.ifatName = ifatName;
+	}
+	public String getIfatNameEng() {
+		return ifatNameEng;
+	}
+	public void setIfatNameEng(String ifatNameEng) {
+		this.ifatNameEng = ifatNameEng;
+	}
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+	public MultipartFile getFile1() {
+		return file1;
+	}
+	public void setFile1(MultipartFile file1) {
+		this.file1 = file1;
+	}
 	// getset
 	public String getIfmmDob() {
 		return ifmmDob;
@@ -353,9 +400,12 @@ public class Member {
 	public void setIfmaAddress2(String ifmaAddress2) {
 		this.ifmaAddress2 = ifmaAddress2;
 	}
-
-
-
+	/*
+	 * public double getIfmaLat() { return ifmaLat; } public void setIfmaLat(double
+	 * ifmaLat) { this.ifmaLat = ifmaLat; } public double getIfmaLng() { return
+	 * ifmaLng; } public void setIfmaLng(double ifmaLng) { this.ifmaLng = ifmaLng; }
+	 */
+	
 
 
 

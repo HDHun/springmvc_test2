@@ -60,6 +60,8 @@
 				,c.ifmpNumber
 				,d.ifmaAddress1
 				,d.ifmaAddress2
+				<!-- ,d.ifmaLng
+				,d.ifmaLat -->
 			 from 
 				shop.infrmember a
 			LEFT JOIN infrmemberEmail b on a.ifmmSeq = b.ifmmSeq AND b.ifmeDelNy = 0
@@ -163,17 +165,41 @@
 	</selectKey>
 	
 	</insert>
+	<insert id="insertAuth">
+			INSERT INTO infrAuth (
+				ifatSeq
+				,ifatName
+				,ifatNameEng
+				) values (
+				#{ifatSeq}
+				,#{ifatName}
+				,#{ifatNameEng}
+				)
+	<selectKey resultType="String" keyProperty="ifatSeq" order="AFTER">
+		SELECT last_insert_id()
+	</selectKey>
+	
+	</insert>
 	<insert id="insertAddress">
 			INSERT INTO infrMemberAddress (
 				ifmaAddress1
+				,ifmaAddress2
+				,ifmaZipcode
 				,ifmaDelNy
 				,ifmaDefaultNy
 				,ifmmSeq
+				<!-- ,ifmaLat
+				,ifmaLng -->
 				) values (
 				#{ifmaAddress1}
+				,#{ifmaAddress2}
+				,#{ifmaZipcode}
 				,0
 				,1
 				,#{ifmmSeq}
+				<!-- ,#{ifmaLat}
+				,#{ifmaLng} -->
+				
 				)
 	<selectKey resultType="String" keyProperty="ifmaSeq" order="AFTER">
 		SELECT last_insert_id()
