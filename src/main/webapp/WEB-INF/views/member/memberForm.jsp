@@ -82,9 +82,17 @@ div  {
 	<input type="hidden" id="shValue" name="shValue" value="<c:out value="${vo.shValue}"/>">
 	<input type="hidden" id="ifmmSeq" name ="ifmmSeq">
 	<input type="hidden" id="ifmpDefaultNy" name ="ifmpDefaultNy" value="1">
-	<br><input type="file" name="file" name="ifatName" id="ifatName">
-	<br><input type="file" name="file1" name="ifatNameEng"id="ifatNameEng">
-
+	<br>
+	<div class="mb-3">
+		<label for="file0" calss="form-label input-file-button">이미지첨부</label>
+	    <input type="file" id="file0" name="file0" class="form-control" multiple="multiple" onchange="upload(0,2)">
+	    <div class="addScroll">
+	    	<ul id="ulFile0" class="list-group">
+	    	</ul>
+	    </div>
+ 	</div>
+	
+<!-- <a href="" download="originalFileName"> -->
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
@@ -351,8 +359,51 @@ div  {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="/infra/resources/jquery/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
 <script src="/infra/resources/js/validation.js"></script>
+<script src="/infra/resources/js/commonXdmin.js"></script>
 <script type="text/javascript">
+upload = funtion(seq, div) {
+	
+	$("#ulFile" +seq).children().remove();
+	
+	var fileCount = $("input[type=file]")[seq].files.length;
+	
+	if(checkUploadedTotalFileNumber(fileCount, seq) == false) {return false;}
+	
+	var totalFileSize;
+	for (var i =0; i<fileCount; i++) {
+		if(div == 1) {
+			if(checkUploadedAllExt($("input[type=file]")[seq].files[i].name, seq) == false) {return false;}
+		} else if(div == 2) {
+			if(checkUploadedImageExt($("input[type=file]")[seq].files[i].name, seq) == false) {return false;}
+		} else {
+			return false;
+		}
+		if(checkUploadedEachFileSize($("input[type=file]")[seq].files[i].name, seq) == false) {return false;}
+		totalFileSize += $("input[type=file]")[seq].files[i].size;
+	}
+	if(checkUploadedTotalFileSize(totalFileSize, seq) == false) {return false;}
+	
+	for(var i =0; i<fileCount; i++) {
+		addUpliadLi(seq, i, $("input[type=file]")[seq].files[i].name);
+	}
+	
+	}
+	
+addUploadLi = function(seq, index, name)
 
+var ul_list = $("ulFile0");
+
+	li = '<li id="li_' + seq + '_' +index +'" class="list-group-item d-flex justify-content-between align-item-center">'; 
+	li = li + name;
+	li = li + '<span class="badge bg-danger rounded-pill" onClick="delLi('+seq+','+index+')"><i class="bi bi-x-lg"></i>';
+	li = li + '</li>';
+
+
+
+
+
+
+// date
 	$(document).ready(function(){
 		 $("#ifmmDob").datepicker();
 	}); 
@@ -372,7 +423,7 @@ div  {
 	
 		
 	
-	
+// validation
 	$("#btnSubmit").on("click", function(){
 		/* if(	!checkId($("#ifmmId"), $("#ifmmId").val(), "아이디를 입력하세요.")
 				) return false;
@@ -390,13 +441,9 @@ div  {
 	});
 	
 	
-	/* $("#btnSubmit").on("click", function(){
-
-		if(	!checkNull($("#shValue"), $("#shValue").val(), "검색어를 입력하세요.")) return false;});
- */
 	
 	
-	</script>
+</script>
 
 
 

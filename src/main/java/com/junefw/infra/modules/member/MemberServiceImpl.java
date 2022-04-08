@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.junefw.infra.common.util.UtilDateTime;
+import com.junefw.infra.common.util.UtilUpload;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -19,6 +21,7 @@ public class MemberServiceImpl implements MemberService{
 		dao.insert(dto);
 		dto.setRegDateTime(UtilDateTime.nowDate());
 		dto.setModDateTime(UtilDateTime.nowDate());
+		
 		return 1;
 	}
 
@@ -32,6 +35,16 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public int insertAuth(Member dto) throws Exception {
+		
+		/*
+		 * int j = 0; for(MultipartFile multipartFile1 : dto.file1) { String pathModule
+		 * = this.getClass().getSimpleName().toString().toLowerCase().replace(
+		 * "serviceImpl", ""); UtilUpload.upload(multipartFile1, pathModule, dto);
+		 * 
+		 * }
+		 */
+		
+		
 		return dao.insertAuth(dto);
 	}
 

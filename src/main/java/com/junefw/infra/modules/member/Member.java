@@ -73,32 +73,38 @@ public class Member {
 	
 	//upload
 	public MultipartFile file;
-	public MultipartFile file1;
+	public MultipartFile[] file0;
+	public MultipartFile[] file1;
+	
+	
 	
 	
 	//image
 	private String ifatSeq;
-	private String ifatName;
-	private String ifatNameEng;
+	private String ifatUuidFileName;
+	private String ifatOriginalFileName;
 	
 	
+	
+	
+	// getset
+	public String getIfatUuidFileName() {
+		return ifatUuidFileName;
+	}
+	public void setIfatUuidFileName(String ifatUuidFileName) {
+		this.ifatUuidFileName = ifatUuidFileName;
+	}
+	public String getIfatOriginalFileName() {
+		return ifatOriginalFileName;
+	}
+	public void setIfatOriginalFileName(String ifatOriginalFileName) {
+		this.ifatOriginalFileName = ifatOriginalFileName;
+	}
 	public String getIfatSeq() {
 		return ifatSeq;
 	}
 	public void setIfatSeq(String ifatSeq) {
 		this.ifatSeq = ifatSeq;
-	}
-	public String getIfatName() {
-		return ifatName;
-	}
-	public void setIfatName(String ifatName) {
-		this.ifatName = ifatName;
-	}
-	public String getIfatNameEng() {
-		return ifatNameEng;
-	}
-	public void setIfatNameEng(String ifatNameEng) {
-		this.ifatNameEng = ifatNameEng;
 	}
 	public MultipartFile getFile() {
 		return file;
@@ -106,13 +112,19 @@ public class Member {
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
-	public MultipartFile getFile1() {
+	public MultipartFile[] getFile1() {
 		return file1;
 	}
-	public void setFile1(MultipartFile file1) {
+	public void setFile1(MultipartFile[] file1) {
 		this.file1 = file1;
 	}
-	// getset
+
+	public MultipartFile[] getFile0() {
+		return file0;
+	}
+	public void setFile0(MultipartFile[] file0) {
+		this.file0 = file0;
+	}
 	public String getIfmmDob() {
 		return ifmmDob;
 	}

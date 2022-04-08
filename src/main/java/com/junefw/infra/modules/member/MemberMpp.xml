@@ -165,15 +165,17 @@
 	</selectKey>
 	
 	</insert>
-	<insert id="insertAuth">
+	 <insert id="insertAuth">
 			INSERT INTO infrAuth (
 				ifatSeq
-				,ifatName
-				,ifatNameEng
+				,ifatOriginalFileName
+				,ifatUuidFileName
+				,ifatDelNy
 				) values (
 				#{ifatSeq}
-				,#{ifatName}
-				,#{ifatNameEng}
+				,#{ifatOriginalFileName}
+				,#{ifatUuidFileName}
+				,0
 				)
 	<selectKey resultType="String" keyProperty="ifatSeq" order="AFTER">
 		SELECT last_insert_id()

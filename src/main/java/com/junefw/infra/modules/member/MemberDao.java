@@ -57,7 +57,9 @@ public class MemberDao {
 		public int Uelete(MemberVo vo) {return sqlSession.update(namespace + ".Uelete", vo);}
 		
 		//auth
-		public int insertAuth(Member dto) {return sqlSession.insert(namespace + ".insertAuth", dto);}
+		
+		  public int insertAuth(Member dto) {return sqlSession.insert(namespace +".insertAuth", dto);}
+		 
 		
 		
 		//login
