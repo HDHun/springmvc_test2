@@ -1,6 +1,7 @@
 package com.junefw.infra.modules.member;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,11 +17,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.junefw.infra.common.constants.Constants;
 import com.junefw.infra.common.util.UtilDateTime;
 import com.junefw.infra.modules.code.Code;
+import com.junefw.infra.modules.naver.NaverLoginBO;
 
 
 
@@ -201,6 +205,13 @@ public class MemberController {
 		  
 		  
 	  }
+	  @RequestMapping(value = "/member/logInNaver") 
+	  public String logInNaver(HttpServletRequest httpServletRequest) throws Exception{
+		  
+		  return "member/logInNaver"; 
+		  
+		  
+	  }
 	  	@ResponseBody
 		@RequestMapping(value = "/member/loginProc")
 		public Map<String, Object> loginProc(Member dto, HttpSession httpSession) throws Exception {
@@ -235,6 +246,41 @@ public class MemberController {
 	  		
 	  		return returnMap;
 	  	}
+
+	  	/* NaverLoginBO */
+		private NaverLoginBO naverLoginBO;
+
+		/* NaverLoginBO */
+		@Autowired
+		private void setNaverLoginBO(NaverLoginBO naverLoginBO){
+			this.naverLoginBO = naverLoginBO;
+		}
+		
+	    @RequestMapping("/naver/logIn")
+	    public ModelAndView login(HttpSession session) {
+	        /* 네아로 인증 URL을 생성하기 위하여 getAuthorizationUrl을 호출 */
+	        String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+	        
+	        /* 생성한 인증 URL을 View로 전달 */
+	        return new ModelAndView("/naver/logIn", "url", naverAuthUrl);
+	    }
+	        
+	    @RequestMapping("/naver/callback")
+		public String callback(@RequestParam String code, @RequestParam String state, HttpSession session) throws IOException {
+			OAuth2AccessToken oauthToken = naverLoginBO.getAccessToken(session, code, state);
+			
+			//로그인 사용자 정보를 읽어온다.
+			String apiResult = naverLoginBO.getUserProfile(oauthToken);
+//	      System.out.println(naverLoginBO.getUserProfile(oauthToken).toString());
+	        session.setAttribute("result", apiResult);
+	        System.out.println("result"+apiResult);
+	        
+	        session.setAttribute("sessSeq", 0); //생략 가능
+			
+			return "redirect:/member/memberList"; //사용자설정
+		}
+
+
 
 	  
 }
