@@ -11,6 +11,9 @@
 <html>
 
 <head>
+<!-- content에 자신의 OAuth2.0 클라이언트ID를 넣습니다. -->
+<meta name ="google-signin-client_id" content="615226315658-iiq1q9gamf4c20sp0npt74fpchbs9fn0.apps.googleusercontent.com">
+
 <meta charset="uTF-8">
 <meta name="viewport" content="width=dievice-width, intitial-scale=1.0">
 
@@ -73,10 +76,12 @@
 									<div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v13.0&appId=1920010474859986&autoLogAppEvents=1" nonce="AMpiVJN3"></script>	
 								<div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="true" data-use-continue-as="false"></div>		
+									<button class="w-100 btn btn-lg" style="background-color: black;" id="GgCustomLogin" onclick="javascript:void(0)"></button>
+
 												
 												
 						</div>
-<!-- naver -->
+
 						
 						
 				</div>
@@ -147,6 +152,7 @@ KURLY CORP. ALL RIGHTS RESERVED</p>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="/infra/resources/jquery/jquery-ui-1.13.1.custom/jquery-ui.js"></script>
 	<script src="/infra/resources/js/validation.js"></script>
+		<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 	<script type="text/javascript">
 	$("#btnLogin").click (function() {
 	$.ajax({
@@ -167,6 +173,43 @@ KURLY CORP. ALL RIGHTS RESERVED</p>
 		}
 	})
 	});
+	//처음 실행하는 함수
+	function init() {
+		gapi.load('auth2', function() {
+			gapi.auth2.init();
+			options = new gapi.auth2.SigninOptionsBuilder();
+			options.setPrompt('select_account');
+	        // 추가는 Oauth 승인 권한 추가 후 띄어쓰기 기준으로 추가
+			options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
+	        // 인스턴스의 함수 호출 - element에 로그인 기능 추가
+	        // GgCustomLogin은 li태그안에 있는 ID, 위에 설정한 options와 아래 성공,실패시 실행하는 함수들
+			gapi.auth2.getAuthInstance().attachClickHandler('GgCustomLogin', options, onSignIn, onSignInFailure);
+		})
+	}
+	function onSignIn(googleUser) {
+		var access_token = googleUser.getAuthResponse().access_token
+		$.ajax({
+	    	// people api를 이용하여 프로필 및 생년월일에 대한 선택동의후 가져온다.
+			 url: 'https://people.googleapis.com/v1/people/me'
+	        // key에 자신의 API 키를 넣습니다.
+			, data: {personFields:'birthdays', key:'AIzaSyBvXItLhBrKGi5FAlnr8ZjqJm8p7s4fitg', 'access_token': access_token}
+			, method:'GET'
+		})
+		.done(function(e){
+	        //프로필을 가져온다.
+			var profile = googleUser.getBasicProfile();
+			console.log(profile)
+		})
+		.fail(function(e){
+			console.log(e);
+		})
+	}
+	function onSignInFailure(t){		
+		console.log(t);
+	}
+	
+	
+
 	 </script>
 	
 

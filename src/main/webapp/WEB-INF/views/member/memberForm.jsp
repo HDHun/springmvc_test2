@@ -256,7 +256,7 @@ div  {
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('ifmaZipcode').value = data.zonecode;
                 document.getElementById("ifmaAddress1").value = roadAddr;
-               document.getElementById("ifmaAddress2").value = data.jibunAddress; 
+                document.getElementById("ifmaAddress2").value = data.jibunAddress; 
                 
                 // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
                 if(roadAddr !== ''){
@@ -287,10 +287,10 @@ div  {
             	 
             		// 정상적으로 검색이 완료됐으면,
             		if (status == daum.maps.services.Status.OK) {
-            			/* 
-            			 document.getElementById("ifmaLat").value=x;
-            			document.getElementById("ifmaLng").value=y;
-            			  */
+            			 
+            			 document.getElementById("ifmaLat").value=y;
+            			document.getElementById("ifmaLng").value=x;
+            			  
             					
             		 	var coords = new daum.maps.LatLng(result[0].y, result[0].x);
             	
@@ -298,8 +298,6 @@ div  {
             			x = result[0].y;
             	
             			
-            			document.getElementById("ifmaLat").value=x;
-            			document.getElementById("ifmaLng").value=y; 
             					
             		}
             	});
@@ -361,7 +359,7 @@ div  {
 <script src="/infra/resources/js/validation.js"></script>
 <script src="/infra/resources/js/commonXdmin.js"></script>
 <script type="text/javascript">
-upload = funtion(seq, div) {
+upload = funtion(seq, div) {	
 	
 	$("#ulFile" +seq).children().remove();
 	
@@ -387,8 +385,9 @@ upload = funtion(seq, div) {
 		addUpliadLi(seq, i, $("input[type=file]")[seq].files[i].name);
 	}
 	
-	}
 	
+	
+
 addUploadLi = function(seq, index, name)
 
 var ul_list = $("ulFile0");
