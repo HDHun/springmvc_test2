@@ -15,9 +15,7 @@
 <meta charset="uTF-8">
 <meta name="viewport" content="width=dievice-width, intitial-scale=1.0">
 
-<link
-	href="/infra/resources/_bootstrap/_bootstrap/bootstrap-5.1.3-dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="/infra/resources/_bootstrap/_bootstrap/bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="/infra/resources/jquery/jquery-ui-1.13.1.custom/jquery-ui.css" rel="stylesheet">
 
 
