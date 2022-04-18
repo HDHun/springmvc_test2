@@ -166,7 +166,7 @@ public class MemberController {
 	  memberMultiUele(MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		  String[] checkboxSeqArray = vo.getCheckboxSeqArray();
-		  
+		  System.out.println("vo.getCheckboxSeqArray():" + vo.getCheckboxSeqArray());
 		  for(String checkboxSeq : checkboxSeqArray) {
 			  vo.setIfmmSeq(checkboxSeq);
 			  service.Uelete(vo);
