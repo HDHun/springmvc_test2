@@ -82,14 +82,7 @@ div  {
 	<input type="hidden" id="ifmmSeq" name ="ifmmSeq">
 	<input type="hidden" id="ifmpDefaultNy" name ="ifmpDefaultNy" value="1">
 	<br>
-	<div class="mb-3">
-		<label for="file0" calss="form-label input-file-button">이미지첨부</label>
-	    <input type="file" id="file0" name="file0" class="form-control" multiple="multiple" onchange="upload(0,2)">
-	    <div class="addScroll">
-	    	<ul id="ulFile0" class="list-group">
-	    	</ul>
-	    </div>
- 	</div>
+
 	
 <!-- <a href="" download="originalFileName"> -->
 		<div class="container-fluid">
@@ -205,13 +198,11 @@ div  {
 			<div class="row">
 				<div class="col-12 col-md-6">
 					<label for="address" class="form-label" id="post1">주소</label>
-					
-					
 					<div class="input-group mb-3" id="address">
 						<input type="text" class="form-control" id="ifmaAddress1" name="ifmaAddress1">
 						<input type="text" class="form-control" id="ifmaZipcode" name="ifmaZipcode">
-						<input type="text" class="form-control" id="ifmaLat" name="ifmaLat">
-						<input type="text" class="form-control" id="ifmaLng" name="ifmaLng">
+						<!-- <input type="text" class="form-control" id="ifmaLat" name="ifmaLat">
+						<input type="text" class="form-control" id="ifmaLng" name="ifmaLng"> -->
 						<!-- Button trigger modal -->
 						<button type="button" class="btn btn-secondary" onclick="sample4_execDaumPostcode()" value="주소검색">
 	 						 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -316,17 +307,25 @@ div  {
 
 
 						
+		</div>
+	</div>
+			<div class="col-12 col-md-6">
+				<label for="address1" class="form-label">상세주소</label>
+				<div class="input-group mb-3" id="address1">
+					<input type="text" class="form-control" id="post2">
+
 				</div>
 			</div>
-					<div class="col-12 col-md-6">
-						<label for="address1" class="form-label">상세주소</label>
-						<div class="input-group mb-3" id="address1">
-							<input type="text" class="form-control" id="post2">
-	
-						</div>
-					</div>
-				</div>
-			</div>
+		</div>
+	</div>
+			<div class="col-md-6">
+		<label for="file0" class="form-label input-file-button">이미지 파일</label>
+		<input type="file" class="form-control form-control-sm mb-1" id="file0" name="file0" multiple onChange="upload(0,2);"style="display: none;" >
+		<div class="addScroll">
+			<ul id="ulFile0" class="list-group" ></ul>
+		</div>
+	</div>
+		
 		
 			<div class="row">
 				<div class="col-12 col-md-3">
@@ -358,44 +357,49 @@ div  {
 <script src="/infra/resources/js/validation.js"></script>
 <script src="/infra/resources/js/commonXdmin.js"></script>
 <script type="text/javascript">
-upload = funtion(seq, div) {	
+upload = function(seq,div){
 	
-	$("#ulFile" +seq).children().remove();
+	$("#ulFile" + seq).children().remove();
 	
 	var fileCount = $("input[type=file]")[seq].files.length;
 	
 	if(checkUploadedTotalFileNumber(fileCount, seq) == false) {return false;}
 	
 	var totalFileSize;
-	for (var i =0; i<fileCount; i++) {
-		if(div == 1) {
+	for(var i = 0; i < fileCount; i++){
+		if(div==1){
 			if(checkUploadedAllExt($("input[type=file]")[seq].files[i].name, seq) == false) {return false;}
-		} else if(div == 2) {
+		}else if(div==2){
 			if(checkUploadedImageExt($("input[type=file]")[seq].files[i].name, seq) == false) {return false;}
-		} else {
+		}else {
 			return false;
 		}
+		
 		if(checkUploadedEachFileSize($("input[type=file]")[seq].files[i].name, seq) == false) {return false;}
 		totalFileSize += $("input[type=file]")[seq].files[i].size;
 	}
 	if(checkUploadedTotalFileSize(totalFileSize, seq) == false) {return false;}
 	
-	for(var i =0; i<fileCount; i++) {
-		addUpliadLi(seq, i, $("input[type=file]")[seq].files[i].name);
+	for(var i=0; i<fileCount; i++){
+		addUploadLi(seq, i, $("input[type=file]")[seq].files[i].name);
 	}
-	
-	
-	
+}
 
-addUploadLi = function(seq, index, name)
-
-var ul_list = $("ulFile0");
-
-	li = '<li id="li_' + seq + '_' +index +'" class="list-group-item d-flex justify-content-between align-item-center">'; 
+addUploadLi = function(seq,index,name){
+	
+	var ul_list = $("#ulFile0");
+	
+	li = '<li id="li_'+seq+'_'+index+'" class="list-group-item d-flex justify-content-between align-item-center">';
 	li = li + name;
-	li = li + '<span class="badge bg-danger rounded-pill" onClick="delLi('+seq+','+index+')"><i class="bi bi-x-lg"></i>';
+	li = li + '<span class="badge bg-danger rounded-pill" onClick="delLi('+ seq +','+index +')"><i class="fa-solid fa-x" style="cursor: pointer;"></i></span>';
 	li = li + '</li>';
+	
+	$("#ulFile"+seq).append(li);
+}
 
+delLi = function(seq, index){
+	$("#li_"+seq+"_"+index).remove();
+}
 
 
 

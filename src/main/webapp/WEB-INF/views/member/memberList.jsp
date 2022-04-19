@@ -191,7 +191,7 @@ div {
 		</div>
 	</div>
 <!-- 데이터 삭제 -->		
-	<button type="submit" class="btn btn-danger" id = "btnModalUelete" name="btnModalUelete">
+	<button type="button" class="btn btn-danger" id = "btnModalUelete" name="btnModalUelete">
 		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
 			 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
 				 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
@@ -244,7 +244,7 @@ div {
 			</c:choose>
 		</c:forEach>     
 		<c:if test="${vo.endPage ne vo.totalPages}">                
-			<li class="page-item"><a class="page-link" href="javascript:page(<c:out value='${vo.startPage + 1}'/>);">Next</a></li>
+			<li class="page-item"><a class="page-link" href="javascript:page(<c:out value='${vo.endPage + 1}'/>);">Next</a></li>
 		</c:if>  
 	  </ul>
 	</nav>
@@ -351,20 +351,28 @@ $("#checkboxAll").click(function() {
 	else $("input[name=checkboxSeq]").prop("checked", false);
 });
 
+var checkboxSeqArray = [];
 $("#btnModalUelete").on("click", function(){
+	var answer = confirm("삭제하시겠습니까?");
+	
+	if(answer){
 	$("input[name=checkboxSeq]:checked").each(function() {
 		checkboxSeqArray.push($(this).val());	
 	});
 	
 	$("input:hidden[name=checkboxSeqArray]").val(checkboxSeqArray);
-	
-	$("#formList").attr("action", "/member/memberMultiUele");
+	$("#formList").attr("action", "/infra/member/MemberMultiUele");
 	$("#formList").submit();
+	} else {
+		return false;
+	}
 });
 
 $("#btnSubmit").on("click", function(){
 
-if(	!checkNull($("#shValue"), $("#shValue").val(), "검색어를 입력하세요.")) return false;});
+/* if(	!checkNull($("#shValue"), $("#shValue").val(), "검색어를 입력하세요.")) return false;
+ */
+ });
 
 $("#btnNelete").on("click", function(){
 	var answer =  confirm("정말 삭제하시겠습니까?");

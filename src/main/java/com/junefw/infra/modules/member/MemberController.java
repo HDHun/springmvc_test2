@@ -175,7 +175,7 @@ public class MemberController {
 		  
 		  
 		  
-		  return "redirect:/member/MemberList";
+		  return "redirect:/member/memberList";
 	  }
 	  
 	 
@@ -197,7 +197,7 @@ public class MemberController {
 			  redirectAttributes.addAttribute("ifmmSeq", vo.getIfmmSeq());
 			 
 		  
-		  return "redirect:/member/MemberList";
+		  return "redirect:/member/memberList";
 	  }
 	  
 	  
