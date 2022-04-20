@@ -77,27 +77,30 @@ public class MemberController {
 		  service.insertPhone(dto);
 		  service.insertAddress(dto);
 		  service.insertEmail(dto);
+		 
 		  
-			
-			
-			  MultipartFile multipartFile = dto.getFile();
-			  
-			  System.out.println("dto.getFile():" + dto.getFile());
-			  
-			  String fileName = multipartFile.getOriginalFilename(); String ext =
-			  fileName.substring(fileName.lastIndexOf(".")+1); String uuid =
-			  UUID.randomUUID().toString(); String uuidFileName= uuid + "." +ext;
-			  
-			  
-			  multipartFile.transferTo(new File(
-			  "C:/factory/ws_sts_4130/springmvc_test2/src/main/webapp/resources/uploaded/"
-			  + uuidFileName));
-			  
-			  
-			  dto.setIfatOriginalFileName(fileName);
-			  dto.setIfatUuidFileName(uuidFileName);
-			 			  
-			  service.insertAuth(dto);
+		  System.out.println("UtilDateTime.nowDate()"+UtilDateTime.nowDate());
+		  
+		  
+			/*
+			 * MultipartFile multipartFile = dto.getFile();
+			 * 
+			 * System.out.println("dto.getFile():" + dto.getFile());
+			 * 
+			 * String fileName = multipartFile.getOriginalFilename(); String ext =
+			 * fileName.substring(fileName.lastIndexOf(".")+1); String uuid =
+			 * UUID.randomUUID().toString(); String uuidFileName= uuid + "." +ext;
+			 * 
+			 * 
+			 * multipartFile.transferTo(new File(
+			 * "C:/factory/ws_sts_4130/springmvc_test2/src/main/webapp/resources/uploaded/"
+			 * + uuidFileName));
+			 * 
+			 * 
+			 * dto.setIfatOriginalFileName(fileName); dto.setIfatUuidFileName(uuidFileName);
+			 * 
+			 * service.insertAuth(dto);
+			 */
 			  
 			
 		

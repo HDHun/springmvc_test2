@@ -107,10 +107,7 @@
 				,ifmmDelNy
 				,ifmmDob
 				,regDateTime
-				,regDateTimesvr
 			 	,modDateTime
-				,modDateTimesvr
-				
 				) values (
 				#{ifmmId}
 				,#{ifmmPassword}
@@ -123,9 +120,7 @@
 				<otherwise>,#{ifmmDob}</otherwise>
 				</choose>
 				,#{regDateTime}
-				,#{regDateTimesvr}
 				,#{modDateTime}
-				,#{modDateTimesvr}
 				<!-- ,ifmmGenderCd
 				,ifmmEmailConsentNy
 				,ifmmSmsConsentNy
@@ -138,16 +133,11 @@
 				,#{ifmmDesc} -->
 				
 				)
-	
-			 	
-				
-				
-		
 	<selectKey resultType="String" keyProperty="ifmmSeq" order="AFTER">
 		SELECT last_insert_id()
 	</selectKey>
-	
 	</insert>
+	
 	<insert id="insertEmail">
 			INSERT INTO infrMemberEmail (
 				ifmeEmailFull
