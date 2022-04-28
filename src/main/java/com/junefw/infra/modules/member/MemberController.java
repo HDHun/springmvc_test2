@@ -118,6 +118,19 @@ public class MemberController {
 		  
 		  return "member/memberView";
 	  }
+	  @RequestMapping(value = "/member/memberView2")
+	  public String memberView2() throws Exception {
+		  
+		  
+		  return "member/memberView2";
+	  }
+	  
+	  @RequestMapping(value = "/member/memberView3")
+	  public String memberView3() throws Exception {
+		  
+		  
+		  return "member/memberView3";
+	  }
 	  
 	  @RequestMapping(value = "/member/memberForm") 
 	  public String memberForm(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {

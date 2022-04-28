@@ -155,7 +155,7 @@ div {
 	      				<tr>
 							<td scope="col">
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="${item.ifmmSeq}"id="checkboxSeq" name="checkboxSeq" value="<c:out value="${item.ifmmSeq}"/>">
+									<input class="form-check-input" type="checkbox" id="checkboxSeq" name="checkboxSeq" value="<c:out value="${item.ifmmSeq}"/>">
 								</div>
 							</td>
 							<td scope="col"><c:out value="${item.ifmmSeq}"/></td>
