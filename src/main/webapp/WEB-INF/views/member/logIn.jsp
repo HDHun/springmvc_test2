@@ -47,8 +47,6 @@
 			</nav>
 		</div>
 	    
-	    
-	    
 	    <!-- 이모티콘 버튼 -->
 <form method="post" name="" action="">
 	<div style="text-align: center; margin-top:100px;">
@@ -209,7 +207,7 @@ KURLY CORP. ALL RIGHTS RESERVED</p>
 	}
 	
 	
-
+	
 	 </script>
 	
 
