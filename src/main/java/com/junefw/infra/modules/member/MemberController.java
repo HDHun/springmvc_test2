@@ -225,23 +225,14 @@ public class MemberController {
 		  
 		  
 	  }
+	  @RequestMapping(value = "/member/logInForm") 
+	  public String logInForm(HttpServletRequest httpServletRequest) throws Exception{
+		  
+		  return "member/logInForm"; 
+		  
+		  
+	  }
 
-		
-		  @RequestMapping(value = "/member/logInNaver") public String
-		  logInNaver(HttpServletRequest httpServletRequest) throws Exception{
-		  
-		  return "member/logInNaver";
-		  
-		  
-		  }
-		  
-		  @RequestMapping(value = "/member/logInNaverCallback") public String
-		  logInNaverCallbacck(HttpServletRequest httpServletRequest) throws Exception{
-		  
-		  return "member/logInNaverCallback";
-		  
-		  
-		  }
 		 
 	  	@ResponseBody
 		@RequestMapping(value = "/member/loginProc")

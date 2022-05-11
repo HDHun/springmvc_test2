@@ -10,6 +10,7 @@ public interface MemberService {
 	
 	//member
 	int insert(Member dto) throws Exception;
+	int insertRest(Member dto) throws Exception;
 	List<Member> selectList(MemberVo vo) throws Exception;
 	int delete(MemberVo vo) throws Exception; 
 	int updateDelete(MemberVo vo) throws Exception; 
