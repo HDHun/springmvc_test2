@@ -1,7 +1,11 @@
 package com.junefw.infra.modules.member;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +26,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
- 
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.scribejava.core.model.OAuth2AccessToken;
  
 import com.junefw.infra.common.constants.Constants;
@@ -269,7 +275,93 @@ public class MemberController {
 	  		return returnMap;
 	  	}
 
+	  	@RequestMapping(value ="/rest/memberView")
+		public String memberView(Model model) throws Exception {
+			
+			String apiUrl = "http://localhost:8021/infra/rest/member/3";
+			
+			URL url = new URL(apiUrl);
+				
+			HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+			httpURLConnection.setRequestMethod("GET");
+			
+			BufferedReader bufferedReader ;
+			if (httpURLConnection.getResponseCode() >= 200 && httpURLConnection.getResponseCode() <=300) {
+				bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+			} else {
+				bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
+			}
+			
+			StringBuilder stringBulider = new StringBuilder();
+			String line;
+			while ((line = bufferedReader.readLine()) != null) {
+				stringBulider.append(line);
+			}
+			bufferedReader.close();
+			httpURLConnection.disconnect();
+			
+			System.out.println("final line:" + stringBulider.append(line));
 
+			ObjectMapper objectMapper = new ObjectMapper();
+			Member member = objectMapper.readValue(stringBulider.toString() , Member.class);
+			
+			model.addAttribute("item", member);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			return "rest/memberView";
+		}
+	  	@RequestMapping(value ="/rest/memberList2")
+	  	public String memberList2(Model model) throws Exception {
+	  		
+	  		String apiUrl = "http://localhost:8021/infra/rest/member";
+	  		
+	  		URL url = new URL(apiUrl);
+	  		
+	  		HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+	  		httpURLConnection.setRequestMethod("GET");
+	  		
+	  		BufferedReader bufferedReader ;
+	  		if (httpURLConnection.getResponseCode() >= 200 && httpURLConnection.getResponseCode() <=300) {
+	  			bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+	  		} else {
+	  			bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getErrorStream()));
+	  		}
+	  		
+	  		StringBuilder stringBulider = new StringBuilder();
+	  		String line;
+	  		while ((line = bufferedReader.readLine()) != null) {
+	  			stringBulider.append(line);
+	  		}
+	  		bufferedReader.close();
+	  		httpURLConnection.disconnect();
+	  		
+	  		System.out.println("final line:" + stringBulider.append(line));
+	  		
+	  		ObjectMapper objectMapper = new ObjectMapper();
+	  		List<Member> memberList2 = objectMapper.readValue(stringBulider.toString() , new TypeReference<List<Member>>() {
+			});
+	  		
+	  		model.addAttribute("list", memberList2);
+	  		
+	  		
+	  		
+	  		
+	  		
+	  		
+	  		
+	  		
+	  		
+	  		
+	  		return "rest/memberList2";
+	  	}
 
 	  
 }
