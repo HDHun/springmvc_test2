@@ -29,7 +29,7 @@
 <br>	<c:out value="${item.VALD_BEGN_DT}"/>
 <br>	<c:out value="${item.VALD_END_DT}"/>
 <br>	<c:out value="${item.SORC}"/>
-<br>	<c:out value="${item.MXMM_VAL}"/>
+<br>	<c:out value="${item.MXMM_VAL}"/> 
 <br>	<c:out value="${item.MIMM_VAL}"/>
 <br>	<c:out value="${item.INJRY_YN}"/>
 <br>	<c:out value="${item.UNIT_NM}"/>
