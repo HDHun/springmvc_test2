@@ -13,7 +13,7 @@
 <br> <c:out value="${resultMsg}"/>
 <br> <c:out value="${pageNo}"/>
 <br> <c:out value="${totalCount}"/>
-<br> <c:out value="${numOfRows}"/>
+<br> <c:out value="${numOfRows}"/> 
 <br> <c:out value="${items}"/>
 
 
