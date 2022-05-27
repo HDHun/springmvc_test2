@@ -1,7 +1,7 @@
 package com.junefw.infra.modules.member;
 
 public class Home {
-	
+	 
 	
 	private String resultCode;
 	private String resultMsg;
