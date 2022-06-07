@@ -41,6 +41,14 @@
 				limit #{startRnumForMysql},#{rowNumToShow} 	
 						
 	</select>
+	<select id="selectListOracle" resultMap="resultMapObj">
+			SELECT 
+				a.ifmmSeq
+			    ,a.ifmmName
+			    ,a.ifmmId
+			    ,a.ifmmDob
+			from member a						
+	</select>
 	
 	<select id="selectOneCount" resultType="Integer">  <!-- Integer -->
 			SELECT 

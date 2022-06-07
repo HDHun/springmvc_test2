@@ -23,8 +23,11 @@ public class MemberDao {
 	
 	private static String namespace = "com.junefw.infra.modules.member.MemberMpp";
 
-	
+	@Inject
+	@Resource(name = "sqlSessionOracle")
+	private SqlSession sqlSessionOracle;
 
+	public List<Member> selectListOracle(MemberVo vo) { List<Member> list = sqlSession.selectList(namespace + ".selectListOracle",vo); return list;}
 	
 	
 	public List<Member> selectList(MemberVo vo) { List<Member> list = sqlSession.selectList(namespace + ".selectList",vo); return list;}
