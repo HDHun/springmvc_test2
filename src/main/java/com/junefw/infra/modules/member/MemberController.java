@@ -154,6 +154,14 @@ public class MemberController {
 		
 		  
 	  }
+	  @RequestMapping(value = "/member/testForm") 
+	  public String testForm(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
+		  
+		  
+		  return "member/testForm"; 
+		  
+		  
+	  }
 	
 	  
 	  

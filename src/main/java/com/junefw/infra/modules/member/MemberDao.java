@@ -4,6 +4,7 @@ package com.junefw.infra.modules.member;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -17,7 +18,7 @@ import com.junefw.infra.modules.member.MemberVo;
 public class MemberDao {
 	
 	@Inject
-//	@Resource(name = "sqlSession")
+	@Resource(name = "sqlSession")
 	private SqlSession sqlSession;
 	
 	private static String namespace = "com.junefw.infra.modules.member.MemberMpp";
