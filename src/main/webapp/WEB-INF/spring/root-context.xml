@@ -5,17 +5,23 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 			<!-- mysql s 2022.02.15 -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	<property name="driverClassName" value="org.mariadb.jdbc.Driver" />
-	<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
-		<!-- <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" /> --> <!-- log4j2 -->
-		<!-- <property name="url" value="jdbc:mysql://localhost:3306/shop" /> -->
-		<!-- <property name="url" value="jdbc:log4jdbc:mysql://localhost:3306/shop" /> -->
+	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" /> log4j2
+		<property name="url" value="jdbc:mysql://localhost:3306/shop" />
+		<property name="url" value="jdbc:log4jdbc:mysql://localhost:3306/shop" />
 		<property name="url" value="jdbc:mysql://localhost:3306/shop?allowPublicKeyRetrieval=true"/>
 		<property name="username" value="root" />
 		<property name="password" value="poo6479!" />
+	</bean> -->
+	 	<!-- mariadb s 2022.02.15 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+		<property name="url" value="jdbc:log4jdbc:mysql://localhost:3306/shop?allowPublicKeyRetrieval=true"/>
+		<property name="username" value="root" />
+		<property name="password" value="poo6479!" />
 	</bean>
-	    
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:/mybatis-config.xml" />
@@ -29,14 +35,30 @@
 	<!-- mysql e 2022.02.25 -->
 	
 		<!-- oracle s 2022.06.03 -->
+	<!-- 
 	<bean id="dataSourceOracle" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />	<!-- log4j2로 디비 로그를 찍기 위하여 아래 내용으로 변경 -->
-		<!-- <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" /> -->
-		<!-- <property name="url" value="jdbc:mariadb://rds-inst-1.cqrisz1cmtkf.ap-northeast-2.rds.amazonaws.com:33062/nct" /> -->	<!-- log4j2로 디비 로그를 찍기 위하여 아래 내용으로 변경 -->
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521/xe" />
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />	log4j2로 디비 로그를 찍기 위하여 아래 내용으로 변경
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+		<property name="url" value="jdbc:mariadb://rds-inst-1.cqrisz1cmtkf.ap-northeast-2.rds.amazonaws.com:33062/nct" />	log4j2로 디비 로그를 찍기 위하여 아래 내용으로 변경
+		<property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521/xe" />
 		<property name="username" value="hr" />
 		<property name="password" value="poohr" />
 	</bean>
+ -->	
+		<bean id="dataSourceOracle" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+		<property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521/xe" />	<!-- log4j2로 디비 로그를 찍기 위하여 아래 내용으로 변경 -->
+		<property name="username" value="hr" />
+		<property name="password" value="poohr" />
+	</bean>
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	<bean id="sqlSessionFactoryOracle" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSourceOracle" />
