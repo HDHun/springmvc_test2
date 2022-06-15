@@ -148,6 +148,7 @@ div {
 							<th scope="col" style="width: 15%;"><div style="width: 100px;">아이디</div></th>
 							<th scope="col" style="width: 15%;"><div style="width: 100px;">생일</div></th>
 							<th scope="col" style="width: 15%;"><div style="width: 100px;">상세정보</div></th>
+							<th scope="col" style="width: 15%;"><div style="width: 100px;">삭제여부</div></th>
 	      				</tr>
 	   			 </thead>
 	   			 <tbody>
@@ -162,8 +163,8 @@ div {
 							<td scope="col"><c:out value="${item.ifmmName}"/></td>
 							<td scope="col"><c:out value="${item.ifmmId}"/></td>
 							<td scope="col"><c:out value="${item.ifmmDob}"/></td>
-							
 							<td scope="col"><a class="btn btn-secondary"href="javascript:goView(<c:out value='${item.ifmmSeq}'/>);">상세정보</a></td>
+							<td scope="col"><c:out value="${item.ifmmDelNy}"/></td>
 	    			  </tr>
 					</c:forEach>
 			    </tbody>
