@@ -74,7 +74,6 @@
 									<div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v13.0&appId=1920010474859986&autoLogAppEvents=1" nonce="AMpiVJN3"></script>	
 								<div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="true" data-use-continue-as="false"></div>		
-									<button class="w-100 btn btn-lg" style="background-color: black;" id="GgCustomLogin" onclick="javascript:void(0)"></button>
 
 												
 												
