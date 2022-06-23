@@ -164,7 +164,13 @@ div {
 							<td scope="col"><c:out value="${item.ifmmId}"/></td>
 							<td scope="col"><c:out value="${item.ifmmDob}"/></td>
 							<td scope="col"><a class="btn btn-secondary"href="javascript:goView(<c:out value='${item.ifmmSeq}'/>);">상세정보</a></td>
-							<td scope="col"><c:out value="${item.ifmmDelNy }"/></td>
+							<td scope="col">
+								<c:choose>
+									<c:when test = "${item.ifmmDelNy eq 0}">X</c:when>
+									<c:otherwise>O</c:otherwise>
+								</c:choose>							
+							
+							</td>
 	    			  </tr>
 					</c:forEach>
 			    </tbody>
