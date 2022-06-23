@@ -178,25 +178,7 @@ div {
 			</div>
 		</div>
 
-	<%-- javascript:goView(<c:out value='${item.ifmmSeq}'/>); --%>
-	<%-- /infra/member/memberView?ifmmSeq=<c:out value="${item.ifmmSeq}"/> --%>
-<!-- 푸쉬전송 -->
-	<button class="btn btn-info" type="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop1" aria-controls="offcanvasTop1">
-		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"fill="currentColor" class="bi bi-send" viewBox="0 0 16 16" data-toggle="modal" data-target="#sendModal">
-		<path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" /></svg>
-	</button>
-	<div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop1" aria-labelledby="offcanvasTopLabel">
-	 	 <div class="offcanvas-header">
-	 	 	<h5 id="offcanvasTopLabel">Send Message</h5>
-	 	 	<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-	  	</div>
-		<div class="offcanvas-body">
-			<div class="input-group mb-3">
-				<input type="text" class="form-control" placeholder="메세지를 입력하세요." aria-label="message" aria-describedby="button-addon2">
-				<button class="btn btn-outline-secondary" type="button" id="button-addon2">전송</button>
-			</div>
-		</div>
-	</div>
+
 <!-- 데이터 삭제 -->		
 	<button type="button" class="btn btn-danger" id = "btnModalUelete" name="btnModalUelete">
 		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -206,20 +188,6 @@ div {
 	</button>					
 	 <button type="button" class="badge bg-secondary" style="float: right;" id="btnExcel" name="btnExcel">엑셀</button>
 							
-		<!-- <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel2">
-		  <div class="offcanvas-header">
-		    <h5 id="offcanvasTopLabel2">Delete Infomation</h5>
-		    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-		  </div>
-		  <div class="offcanvas-body">
-		    <p style="text-align: center;">정말삭제하시겠습니까?</p>
-		    <br>
-		    	<div style="text-align: center;">
-		    		<button type="button" value="예" id="btnModalUelete" class="btn btn-outline-secondary">예</button>
-		    		<button type="button" value="아니오" class="btn btn-outline-secondary">아니오</button>
-		  		</div>
-		  </div>
-		</div> -->
 </form>		
 					
 <!-- 데이터 등록 -->
