@@ -137,14 +137,14 @@ public class MemberController {
 
 			
 			
-		//        Workbook wb = new HSSFWorkbook();
+		//        Workbook wb = new HSSFWorkbook(); 시트이름
 		        Workbook wb = new XSSFWorkbook();
 		        Sheet sheet = wb.createSheet("첫번째 시트");
 		        Row row = null;
 		        Cell cell = null;
 		        int rowNum = 0;
 		
-		        // Header
+		        // Header 
 		        row = sheet.createRow(rowNum++);
 		        cell = row.createCell(0);
 		        cell.setCellValue("번호");
@@ -153,7 +153,7 @@ public class MemberController {
 		        cell = row.createCell(2);
 		        cell.setCellValue("제목");
 		
-		        // Body
+		        // Body 저장된 정보
 		        
 		        for (int i=0; i<list.size(); i++) {
 		            row = sheet.createRow(rowNum++);
