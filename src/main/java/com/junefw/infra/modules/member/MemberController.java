@@ -137,7 +137,7 @@ public class MemberController {
 
 			
 			
-		//        Workbook wb = new HSSFWorkbook(); 시트이름
+		//        Workbook wb = new HSSFWorkbook(); 시트이름, pom에 추가 후 import
 		        Workbook wb = new XSSFWorkbook();
 		        Sheet sheet = wb.createSheet("첫번째 시트");
 		        Row row = null;
