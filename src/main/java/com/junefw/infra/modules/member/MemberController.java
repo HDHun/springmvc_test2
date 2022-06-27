@@ -21,6 +21,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -140,6 +142,7 @@ public class MemberController {
 		//        Workbook wb = new HSSFWorkbook(); 시트이름, pom에 추가 후 import
 		        Workbook wb = new XSSFWorkbook();
 		        Sheet sheet = wb.createSheet("첫번째 시트");
+		        CellStyle cellStyle = wb.createCellStyle();
 		        Row row = null;
 		        Cell cell = null;
 		        int rowNum = 0;
