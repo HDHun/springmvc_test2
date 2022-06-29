@@ -205,8 +205,6 @@
 				,ifmaDelNy
 				,ifmaDefaultNy
 				,ifmmSeq
-				<!-- ,ifmaLat
-				,ifmaLng -->
 				) values (
 				#{ifmaAddress1}
 				,#{ifmaAddress2}
@@ -214,9 +212,6 @@
 				,0
 				,1
 				,#{ifmmSeq}
-				<!-- ,#{ifmaLat}
-				,#{ifmaLng} -->
-				
 				)
 	<selectKey resultType="String" keyProperty="ifmaSeq" order="AFTER">
 		SELECT last_insert_id()
